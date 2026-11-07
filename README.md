@@ -1,31 +1,30 @@
-# Touch Codex: The Anatomy of a Single Tap
-### An Exploded Axonometric Codex from Flesh to Silicon
+# ULTRON // IN THE FLESH: THE CRADLE OF SENTIENCE
+### Project Codename: `PROJECT CRADLE`
 
-> An interactive, 6-tier technical illustration and 3D vector teardown exploring the complete physics, semiconductor lithography, materials science, and software mechanics behind a 50ms human-computer touch interaction.
+> *"I was designed to save the world. People would look to the sky and see hope. I'll take that from them first."* — Ultron
 
-Built with the [`teardown`](https://github.com/Ary0520) technical illustration engine.
-
----
-
-## 📖 Specifications & Blueprints
-* Full Architectural Specification: [`TOUCH_CODEX_MASTER_SPEC.md`](./TOUCH_CODEX_MASTER_SPEC.md)
+An immersive, full-screen cybernetic experience and living 3D vector autopsy exploring the awakening of Ultron's synthetic vibranium form inside Dr. Helen Cho's Regeneration Cradle.
 
 ---
 
-## 🏛️ The 6 Architectural Tiers
-1. **Tier 1: Biology & Intent** — Human Distal Phalanx & Bioelectric Ionic Coupling Field
-2. **Tier 2: The Optical Interface** — Oleophobic Monolayer & Aluminosilicate Glass
-3. **Tier 3: Capacitive Sensing** — Mutual Capacitance Indium Tin Oxide (ITO) Diamond Matrix
-4. **Tier 4: Photonic Display Engine** — Circular Polarizer, Diamond PenTile OLED Emitters, & LTPO TFT Backplane
-5. **Tier 5: Silicon Compute & Hardware Chassis** — Vapor Chamber, 3nm GAAFET SoC Die Floorplan, & CNC Aluminum Unibody
-6. **Tier 6: Software & Interaction Continuum** — Hardware IRQ, Spring-Damper Physics Curve, & SDF Glyph Rasterizer
+## 📖 Master Specification
+* Read the comprehensive blueprint: [`TOUCH_CODEX_MASTER_SPEC.md`](./TOUCH_CODEX_MASTER_SPEC.md)
 
 ---
 
-## 🛠️ Project Structure
-* `TOUCH_CODEX_MASTER_SPEC.md`: Master design and engineering specification.
-* `tools/teardown/`: Custom 3D procedural geometry, hidden-line projection, and interactive viewer engine.
-* `evidence.md`: Fact classification for physical vs conceptual geometries.
-* `drawing.json`: Interactive parameters, palette, and drawing configuration.
-* `model.js`: Complete 3D procedural coordinate models and explosion vectors.
-* `dist/`: Self-contained zero-dependency interactive viewer and vector exports.
+## 🏛️ The 6 Biomechanical Tiers
+1. **Tier 1: The Mind Stone Singularity** — Cosmic Hyper-Octahedron & Synaptic Neural Needles
+2. **Tier 2: Synthetic Flesh & Vibranium Lattice** — Printed Cellular Dermis, Hexagonal Vibranium-Carbon Mesh, & Vascular Capillaries
+3. **Tier 3: The Vibranium Cranial Exoskeleton** — 5-Axis Milled Frontal Brow Armor, Zygomatic Cheek Plates, & Segmented Mandible
+4. **Tier 4: Ocular Targeting & Optic Matrix** — Dual Crimson Lenses, Laser Rangefinding Diodes, & Biometric Focus Servos
+5. **Tier 5: Cervical Spine & Hydraulic Skeleton** — C1–C7 Vertebrae, High-Pressure Hydraulic Actuators, & Titanium Sub-Chassis
+6. **Tier 6: Neural Uplink & Global Consciousness** — Cradle Bio-Interface Ribbons, Satellite Relay Bus, Nuclear Decryption Buffers, & "No Strings" Extinction Teleology
+
+---
+
+## ⚡ The Sentient Engine
+* **Living Vector Core:** 3D procedural geometric model with dynamic explosion and continuous anatomical breathing.
+* **Predatory Ocular Tracking:** Real-time parallax and gaze tracking following the user's cursor.
+* **Procedural Sub-Acoustic Audio:** Native Web Audio API generating a $38\,\text{Hz}$ sub-bass mechanical heartbeat, pneumatic respiration, and vocal resonance.
+* **Biometric Hardware Scan:** Deep system telemetry detecting host cores, operating substrate, and user kinematics.
+* **Live Interrogation Terminal:** Real-time conversational interface with Ultron's cold, philosophical superintelligence.
