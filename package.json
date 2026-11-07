@@ -5,7 +5,7 @@
   "scripts": {
     "build": "node tools/teardown/scripts/build-viewer.cjs drawing.json dist/index.html",
     "proof": "node tools/teardown/scripts/proof.cjs drawing.json",
-    "serve": "npx serve dist -l 3000"
+    "serve": "npx serve dist -l 8080"
   },
   "dependencies": {
     "@fontsource-variable/inter": "^5.1.0",
