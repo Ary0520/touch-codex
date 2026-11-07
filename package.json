@@ -1,10 +1,12 @@
 {
   "name": "touch-codex",
   "version": "1.0.0",
-  "description": "The Anatomy of a Single Tap: An Exploded Codex from Flesh to Silicon",
+  "description": "ULTRON // IN THE FLESH: The Cradle of Sentience (Living Cybernetic Experience)",
   "scripts": {
-    "build": "node tools/teardown/scripts/build-viewer.cjs drawing.json dist/index.html",
-    "proof": "node tools/teardown/scripts/proof.cjs drawing.json",
+    "build": "node build-scene.js",
+    "build:viewer": "node tools/teardown/scripts/build-viewer.cjs drawing.json dist/viewer.html",
+    "build:scene": "node build-scene.js",
+    "proof": "node tools/teardown/scripts/proof.cjs drawing.json proof/ --quick",
     "serve": "npx serve dist -l 8080"
   },
   "dependencies": {
