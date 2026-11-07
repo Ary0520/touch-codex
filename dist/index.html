@@ -63,52 +63,50 @@ html, body {
 
 /* ═══════════════════════════════════════════════════════════════
    ULTRON SHADOW SILHOUETTE (layer 0.5)
-   The ghost of his face. Dark. Watching. Behind everything.
+   The physical titan. Dark vibranium armor. Glowing crimson eyes.
 ═══════════════════════════════════════════════════════════════ */
 #ultron-shadow-layer {
   position: fixed;
   inset: 0;
-  z-index: 3;
+  z-index: 4;
   pointer-events: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  /* Offset slightly up so the face center sits at upper-mid viewport */
-  transform: translateY(-4%);
+  transform: translateY(-2%);
 }
 #ultron-shadow {
-  width: min(78vw, 78vh);
-  height: min(78vw, 78vh);
-  opacity: 0;
+  width: min(88vw, 88vh);
+  height: min(88vw, 88vh);
+  opacity: 0.95;
+  filter: drop-shadow(0 0 35px rgba(255,0,51,0.55)) drop-shadow(0 0 80px rgba(255,0,51,0.25));
   animation:
-    shadow-materialize 2s ease 0.5s forwards,
-    shadow-breathe 7s ease-in-out 2.5s infinite;
-  /* Slight mouse parallax handled by JS — slower than anatomy to feel huge/heavy */
-  will-change: transform, opacity;
-  mix-blend-mode: screen;
+    shadow-materialize 1.5s ease 0.3s forwards,
+    shadow-breathe 6s ease-in-out 1.8s infinite;
+  will-change: transform, opacity, filter;
+  transition: filter 0.4s ease;
 }
 
 @keyframes shadow-materialize {
-  0%   { opacity: 0; transform: scale(0.95); }
-  100% { opacity: 1; transform: scale(1); }
+  0%   { opacity: 0; transform: scale(0.92); }
+  100% { opacity: 0.95; transform: scale(1); }
 }
 @keyframes shadow-breathe {
   0%,100% { transform: translateY(0px) scale(1.000); }
-  50%      { transform: translateY(-6px) scale(1.004); }
+  50%      { transform: translateY(-7px) scale(1.006); }
 }
 
-/* Eye pulse — the most critical detail */
+/* Eye pulse & ocular flares */
 #ultron-shadow .eye-pulse {
   animation: eye-pulse 2s ease-in-out infinite;
   transform-origin: center;
 }
 #ultron-shadow .eye-pulse:nth-child(1) { animation-delay: 0s; }
-#ultron-shadow .eye-pulse:nth-child(2) { animation-delay: 0.1s; }
+#ultron-shadow .eye-pulse:nth-child(2) { animation-delay: 0.15s; }
 
 @keyframes eye-pulse {
-  0%,100% { stroke-opacity: 0.4; rx: 38; ry: 22; }
-  40%     { stroke-opacity: 0.9; rx: 42; ry: 25; }
-  60%     { stroke-opacity: 0.7; rx: 40; ry: 23; }
+  0%,100% { stroke-opacity: 0.5; rx: 46; ry: 28; }
+  50%     { stroke-opacity: 1; rx: 50; ry: 32; stroke: #ff4d6d; }
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -600,211 +598,257 @@ html, body {
 <!-- Layer 0.5: Ultron Shadow Face — the dark presence behind everything -->
 <div id="ultron-shadow-layer">
   
-<svg id="ultron-shadow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 640"
+<svg id="ultron-shadow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 750"
      preserveAspectRatio="xMidYMid meet">
   <defs>
-    <!-- Eye glow filters -->
-    <filter id="eye-glow" x="-80%" y="-80%" width="260%" height="260%">
-      <feGaussianBlur stdDeviation="8" result="blur"/>
-      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    <!-- Intense Bloom Filters -->
+    <filter id="crimson-heavy-glow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="16" result="blur1"/>
+      <feGaussianBlur stdDeviation="8" result="blur2"/>
+      <feMerge>
+        <feMergeNode in="blur1"/>
+        <feMergeNode in="blur2"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
     </filter>
-    <filter id="eye-glow-hard" x="-40%" y="-40%" width="180%" height="180%">
-      <feGaussianBlur stdDeviation="3" result="blur"/>
-      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    <filter id="core-eye-glow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
     </filter>
-    <filter id="outline-glow" x="-5%" y="-5%" width="110%" height="110%">
-      <feGaussianBlur stdDeviation="4" result="blur"/>
-      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    <filter id="metallic-bevel" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.9"/>
     </filter>
-    <radialGradient id="eyeGradL" cx="40%" cy="40%">
-      <stop offset="0%" stop-color="#FF6666" stop-opacity="1"/>
-      <stop offset="50%" stop-color="#FF0033" stop-opacity="0.9"/>
-      <stop offset="100%" stop-color="#880011" stop-opacity="0.6"/>
+
+    <!-- Gradients for Chiseled Armor & Glows -->
+    <radialGradient id="cranialPlates" cx="50%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#1c202a" stop-opacity="0.95"/>
+      <stop offset="50%" stop-color="#0f1218" stop-opacity="0.9"/>
+      <stop offset="85%" stop-color="#07080b" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#030406" stop-opacity="0.7"/>
     </radialGradient>
-    <radialGradient id="eyeGradR" cx="60%" cy="40%">
-      <stop offset="0%" stop-color="#FF6666" stop-opacity="1"/>
-      <stop offset="50%" stop-color="#FF0033" stop-opacity="0.9"/>
-      <stop offset="100%" stop-color="#880011" stop-opacity="0.6"/>
+    <linearGradient id="vibraniumFacetL" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2a303c" stop-opacity="0.8"/>
+      <stop offset="60%" stop-color="#141820" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#090b10" stop-opacity="0.9"/>
+    </linearGradient>
+    <linearGradient id="vibraniumFacetR" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2a303c" stop-opacity="0.8"/>
+      <stop offset="60%" stop-color="#141820" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#090b10" stop-opacity="0.9"/>
+    </linearGradient>
+    <linearGradient id="rimLightRed" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ff3355" stop-opacity="0.9"/>
+      <stop offset="50%" stop-color="#aa0022" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#330008" stop-opacity="0.2"/>
+    </linearGradient>
+    <radialGradient id="oralFurnace" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ff3355" stop-opacity="0.95"/>
+      <stop offset="45%" stop-color="#cc0022" stop-opacity="0.8"/>
+      <stop offset="80%" stop-color="#660011" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#110003" stop-opacity="0"/>
     </radialGradient>
-    <radialGradient id="headGrad" cx="50%" cy="30%">
-      <stop offset="0%" stop-color="#120408" stop-opacity="0.95"/>
-      <stop offset="60%" stop-color="#0a0205" stop-opacity="0.9"/>
-      <stop offset="100%" stop-color="#050507" stop-opacity="0.7"/>
+    <radialGradient id="eyeSocketGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ff1a40" stop-opacity="1"/>
+      <stop offset="35%" stop-color="#dd0028" stop-opacity="0.9"/>
+      <stop offset="70%" stop-color="#880015" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#220005" stop-opacity="0"/>
     </radialGradient>
   </defs>
 
-  <!-- ═══ OUTER HEAD SILHOUETTE ══════════════════════════════════════════ -->
-  <!-- Ultron's cranium: narrow apex, flares at brow, wide at cheekplates,
-       then jaw plates flare even wider before dropping to narrow chin.      -->
-  <path id="head-silhouette" d="
-    M 250,8
-    C 310,8 365,28 395,65
-    L 420,95
-    C 445,125 452,158 448,190
-    L 442,230
-    C 438,258 428,278 415,296
-    L 398,318
-    C 388,335 375,348 360,358
-    L 340,372
+  <!-- ═══ AMBIENT VOLUMETRIC AURA ═══════════════════════════════════════ -->
+  <ellipse cx="300" cy="340" rx="270" ry="320" fill="url(#oralFurnace)" opacity="0.3" filter="url(#crimson-heavy-glow)"/>
 
-    C 335,380 332,388 335,398
-    L 345,418
-    C 352,432 355,444 350,455
-    L 338,470
-    C 328,482 312,490 295,494
-    L 278,500
+  <!-- ═══ PRIMARY CRANIAL SHELL (VIBRANIUM ARMOR MESH) ═════════════════ -->
+  <g id="skull-mass" filter="url(#metallic-bevel)">
+    <!-- Base Head Silhouette -->
+    <path d="
+      M 300,30
+      C 375,30 445,55 480,100
+      L 510,140
+      C 540,175 550,220 545,260
+      L 538,310
+      C 532,345 520,370 505,392
+      L 485,418
+      C 470,440 455,455 435,468
+      L 412,485
+      C 405,495 402,506 405,518
+      L 418,542
+      C 426,560 429,575 422,588
+      L 408,606
+      C 395,620 376,630 355,635
+      L 334,642
+      C 327,647 320,654 314,664
+      L 310,676
+      C 307,686 304,692 300,695
+      C 296,692 293,686 290,676
+      L 286,664
+      C 280,654 273,647 266,642
+      L 245,635
+      C 224,630 205,620 192,606
+      L 178,588
+      C 171,575 174,560 182,542
+      L 195,518
+      C 198,506 195,495 188,485
+      L 165,468
+      C 145,455 130,440 115,418
+      L 95,392
+      C 80,370 68,345 62,310
+      L 55,260
+      C 50,220 60,175 90,140
+      L 120,100
+      C 155,55 225,30 300,30
+      Z
+    " fill="url(#cranialPlates)" stroke="#ff2244" stroke-width="1.8" stroke-opacity="0.35"/>
 
-    C 272,504 266,510 262,518
-    L 258,528
-    C 256,536 254,541 250,543
-    C 246,541 244,536 242,528
-    L 238,518
-    C 234,510 228,504 222,500
-    L 205,494
+    <!-- Left Cranial Facet Plate (Titanium/Vibranium Sheen) -->
+    <path d="M 300,35 C 235,35 170,62 135,108 L 105,148 C 80,182 72,225 76,262 L 180,240 L 250,150 L 300,120 Z"
+          fill="url(#vibraniumFacetL)" stroke="#ff3355" stroke-width="1" stroke-opacity="0.4"/>
+    <!-- Right Cranial Facet Plate -->
+    <path d="M 300,35 C 365,35 430,62 465,108 L 495,148 C 520,182 528,225 524,262 L 420,240 L 350,150 L 300,120 Z"
+          fill="url(#vibraniumFacetR)" stroke="#ff3355" stroke-width="1" stroke-opacity="0.4"/>
 
-    C 188,490 172,482 162,470
-    L 150,455
-    C 145,444 148,432 155,418
-    L 165,398
-    C 168,388 165,380 160,372
-    L 140,358
+    <!-- Forehead V-Plate (The Mind Stone Cradle Depression) -->
+    <polygon points="300,110 330,175 300,210 270,175" fill="#080a0e" stroke="#f59e0b" stroke-width="1.5" stroke-opacity="0.8"/>
+    <!-- Center Brow Spine -->
+    <line x1="300" y1="35" x2="300" y2="110" stroke="#ff3355" stroke-width="2" stroke-opacity="0.6"/>
+  </g>
 
-    C 125,348 112,335 102,318
-    L 85,296
-    C 72,278 62,258 58,230
-    L 52,190
-    C 48,158 55,125 80,95
-    L 105,65
-    C 135,28 190,8 250,8
-    Z
-  " fill="url(#headGrad)" stroke="#FF0033" stroke-width="1" stroke-opacity="0.18"
-     filter="url(#outline-glow)"/>
+  <!-- ═══ AGGRESSIVE BROW ARCHITECTURE ═════════════════════════════════ -->
+  <!-- Swept-back predatory brow ridges -->
+  <g id="brow-armor" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Left Heavy Brow -->
+    <path d="M 85,200 L 160,172 L 210,180 L 250,198 L 265,212" 
+          fill="none" stroke="#ff2244" stroke-width="4.5" stroke-opacity="0.85" filter="url(#core-eye-glow)"/>
+    <path d="M 90,206 L 162,180 L 210,188 L 250,206 L 262,218" 
+          fill="none" stroke="#2a303c" stroke-width="2"/>
+    <!-- Right Heavy Brow -->
+    <path d="M 515,200 L 440,172 L 390,180 L 350,198 L 335,212" 
+          fill="none" stroke="#ff2244" stroke-width="4.5" stroke-opacity="0.85" filter="url(#core-eye-glow)"/>
+    <path d="M 510,206 L 438,180 L 390,188 L 350,206 L 338,218" 
+          fill="none" stroke="#2a303c" stroke-width="2"/>
+    <!-- Glabella V-Crease -->
+    <path d="M 265,212 L 285,225 L 300,218 L 315,225 L 335,212"
+          fill="none" stroke="#ff3355" stroke-width="3" stroke-opacity="0.75"/>
+  </g>
 
-  <!-- ═══ BROW RIDGE — the most iconic Ultron feature ═══════════════════ -->
-  <!-- Left brow: sweeps sharply down toward inner eye -->
-  <path d="M 68,152 L 128,132 L 165,138 L 193,152 L 200,160" 
-        fill="none" stroke="#CC1122" stroke-width="2.5" stroke-opacity="0.55"
-        stroke-linecap="round"/>
-  <!-- Right brow: mirror -->
-  <path d="M 432,152 L 372,132 L 335,138 L 307,152 L 300,160"
-        fill="none" stroke="#CC1122" stroke-width="2.5" stroke-opacity="0.55"
-        stroke-linecap="round"/>
-  <!-- Inner brow crease lines (the angry V) -->
-  <path d="M 200,160 L 215,170 L 250,164 L 285,170 L 300,160"
-        fill="none" stroke="#991122" stroke-width="1.5" stroke-opacity="0.5"
-        stroke-linecap="round"/>
+  <!-- ═══ OCULAR MATRIX (GLOWING CRIMSON EYES THAT TRACK CURSOR) ════════ -->
+  <g id="ocular-system">
+    <!-- Eye Socket Recesses -->
+    <polygon points="135,230 255,222 245,280 148,272" fill="#030406" stroke="#aa0022" stroke-width="1.5"/>
+    <polygon points="465,230 345,222 355,280 452,272" fill="#030406" stroke="#aa0022" stroke-width="1.5"/>
 
-  <!-- ═══ CRANIAL DETAIL LINES ═══════════════════════════════════════════ -->
-  <!-- Temple plates -->
-  <path d="M 80,170 L 95,210 L 85,255" fill="none" stroke="#660011" stroke-width="1" stroke-opacity="0.35"/>
-  <path d="M 420,170 L 405,210 L 415,255" fill="none" stroke="#660011" stroke-width="1" stroke-opacity="0.35"/>
-  <!-- Crown center ridge -->
-  <path d="M 250,8 L 250,100" fill="none" stroke="#880011" stroke-width="1" stroke-opacity="0.3" stroke-dasharray="4,6"/>
+    <!-- Ambient Socket Glows -->
+    <ellipse cx="195" cy="252" rx="65" ry="38" fill="url(#eyeSocketGlow)" filter="url(#crimson-heavy-glow)"/>
+    <ellipse cx="405" cy="252" rx="65" ry="38" fill="url(#eyeSocketGlow)" filter="url(#crimson-heavy-glow)"/>
 
-  <!-- ═══ LEFT EYE ════════════════════════════════════════════════════════ -->
-  <!-- Outer glow halo -->
-  <ellipse cx="162" cy="200" rx="52" ry="30" fill="#FF0033" opacity="0.12" filter="url(#eye-glow)"/>
-  <!-- Eye socket recess (dark inner) -->
-  <ellipse cx="162" cy="200" rx="44" ry="26" fill="#0a0101" stroke="#FF0033" stroke-width="1" stroke-opacity="0.4"/>
-  <!-- Iris -->
-  <ellipse cx="162" cy="200" rx="34" ry="20" fill="url(#eyeGradL)" filter="url(#eye-glow-hard)"/>
-  <!-- Pupil slit (vertical, like targeting reticle) -->
-  <ellipse cx="162" cy="200" rx="8" ry="14" fill="#FF4455" opacity="0.9"/>
-  <!-- Iris inner ring -->
-  <ellipse cx="162" cy="200" rx="22" ry="13" fill="none" stroke="#FF6666" stroke-width="0.8" stroke-opacity="0.6"/>
-  <!-- Iris outer mechanical edge -->
-  <ellipse cx="162" cy="200" rx="34" ry="20" fill="none" stroke="#FF0033" stroke-width="1.5" stroke-opacity="0.8"/>
-  <!-- Eye socket upper lid crease -->
-  <path d="M 118,185 C 140,175 162,173 185,178 L 206,183"
-        fill="none" stroke="#CC0022" stroke-width="1" stroke-opacity="0.5" stroke-linecap="round"/>
-  <!-- Lower lid -->
-  <path d="M 118,215 C 140,224 162,226 185,221 L 206,217"
-        fill="none" stroke="#991122" stroke-width="0.8" stroke-opacity="0.4" stroke-linecap="round"/>
+    <!-- Left Eye Core & Iris -->
+    <g id="left-eye-group">
+      <!-- Outer Iris Frame -->
+      <ellipse cx="195" cy="252" rx="42" ry="24" fill="#150204" stroke="#ff0033" stroke-width="2" filter="url(#core-eye-glow)"/>
+      <ellipse cx="195" cy="252" rx="30" ry="17" fill="none" stroke="#ff4d6d" stroke-width="1.2" stroke-opacity="0.8"/>
+      <!-- Reticle Ring -->
+      <circle cx="195" cy="252" r="12" fill="#ff0033" opacity="0.85"/>
+      <!-- Tracking Pupil / Laser Diode (manipulated via JS) -->
+      <ellipse id="left-pupil" cx="195" cy="252" rx="7" ry="11" fill="#ffffff" filter="url(#core-eye-glow)"/>
+    </g>
 
-  <!-- ═══ RIGHT EYE ═══════════════════════════════════════════════════════ -->
-  <!-- Outer glow halo -->
-  <ellipse cx="338" cy="200" rx="52" ry="30" fill="#FF0033" opacity="0.12" filter="url(#eye-glow)"/>
-  <!-- Eye socket recess -->
-  <ellipse cx="338" cy="200" rx="44" ry="26" fill="#0a0101" stroke="#FF0033" stroke-width="1" stroke-opacity="0.4"/>
-  <!-- Iris -->
-  <ellipse cx="338" cy="200" rx="34" ry="20" fill="url(#eyeGradR)" filter="url(#eye-glow-hard)"/>
-  <!-- Pupil slit -->
-  <ellipse cx="338" cy="200" rx="8" ry="14" fill="#FF4455" opacity="0.9"/>
-  <!-- Iris inner ring -->
-  <ellipse cx="338" cy="200" rx="22" ry="13" fill="none" stroke="#FF6666" stroke-width="0.8" stroke-opacity="0.6"/>
-  <!-- Iris outer mechanical edge -->
-  <ellipse cx="338" cy="200" rx="34" ry="20" fill="none" stroke="#FF0033" stroke-width="1.5" stroke-opacity="0.8"/>
-  <!-- Eye socket upper lid crease -->
-  <path d="M 294,183 L 315,178 C 338,173 360,175 382,185"
-        fill="none" stroke="#CC0022" stroke-width="1" stroke-opacity="0.5" stroke-linecap="round"/>
-  <!-- Lower lid -->
-  <path d="M 294,217 L 315,221 C 338,226 360,224 382,215"
-        fill="none" stroke="#991122" stroke-width="0.8" stroke-opacity="0.4" stroke-linecap="round"/>
+    <!-- Right Eye Core & Iris -->
+    <g id="right-eye-group">
+      <!-- Outer Iris Frame -->
+      <ellipse cx="405" cy="252" rx="42" ry="24" fill="#150204" stroke="#ff0033" stroke-width="2" filter="url(#core-eye-glow)"/>
+      <ellipse cx="405" cy="252" rx="30" ry="17" fill="none" stroke="#ff4d6d" stroke-width="1.2" stroke-opacity="0.8"/>
+      <!-- Reticle Ring -->
+      <circle cx="405" cy="252" r="12" fill="#ff0033" opacity="0.85"/>
+      <!-- Tracking Pupil / Laser Diode (manipulated via JS) -->
+      <ellipse id="right-pupil" cx="405" cy="252" rx="7" ry="11" fill="#ffffff" filter="url(#core-eye-glow)"/>
+    </g>
+  </g>
 
-  <!-- ═══ NASAL BRIDGE ══════════════════════════════════════════════════ -->
-  <path d="M 220,235 L 230,260 L 250,265 L 270,260 L 280,235"
-        fill="none" stroke="#660011" stroke-width="1" stroke-opacity="0.3" stroke-linecap="round"/>
+  <!-- ═══ CHEEKPLATES & TEMPORAL VENTS ═════════════════════════════════ -->
+  <g id="cheek-architecture" stroke="#880015" stroke-width="1.2">
+    <!-- Left Cheek Flange -->
+    <path d="M 120,320 L 165,350 L 160,400 L 125,430 L 98,380 Z" fill="#0d1016"/>
+    <!-- Heat Louvers Left -->
+    <line x1="128" y1="355" x2="155" y2="370" stroke="#ff2244" stroke-width="1.2" stroke-opacity="0.6"/>
+    <line x1="125" y1="375" x2="152" y2="390" stroke="#ff2244" stroke-width="1.2" stroke-opacity="0.6"/>
+    <line x1="120" y1="395" x2="147" y2="410" stroke="#ff2244" stroke-width="1.2" stroke-opacity="0.6"/>
 
-  <!-- ═══ CHEEKPLATE DETAIL LINES ════════════════════════════════════════ -->
-  <path d="M 88,268 L 110,290 L 108,320 L 92,340" fill="none" stroke="#550010" stroke-width="1" stroke-opacity="0.3"/>
-  <path d="M 412,268 L 390,290 L 392,320 L 408,340" fill="none" stroke="#550010" stroke-width="1" stroke-opacity="0.3"/>
+    <!-- Right Cheek Flange -->
+    <path d="M 480,320 L 435,350 L 440,400 L 475,430 L 502,380 Z" fill="#0d1016"/>
+    <!-- Heat Louvers Right -->
+    <line x1="472" y1="355" x2="445" y2="370" stroke="#ff2244" stroke-width="1.2" stroke-opacity="0.6"/>
+    <line x1="475" y1="375" x2="448" y2="390" stroke="#ff2244" stroke-width="1.2" stroke-opacity="0.6"/>
+    <line x1="480" y1="395" x2="453" y2="410" stroke="#ff2244" stroke-width="1.2" stroke-opacity="0.6"/>
+  </g>
 
-  <!-- ═══ VOCAL VENT / MOUTH STRUCTURE ═══════════════════════════════════ -->
-  <!-- Upper jaw bar (the rigid upper lip line) -->
-  <rect x="155" y="295" width="190" height="10" rx="2"
-        fill="#0f0203" stroke="#CC1122" stroke-width="1" stroke-opacity="0.5"/>
+  <!-- ═══ NASAL BRIDGE & MID-FACE CHASSIS ══════════════════════════════ -->
+  <path d="M 275,230 L 260,320 L 300,345 L 340,320 L 325,230 Z" 
+        fill="#080a0e" stroke="#aa0022" stroke-width="1.5"/>
+  <line x1="300" y1="230" x2="300" y2="345" stroke="#ff3355" stroke-width="1.5" stroke-opacity="0.6"/>
 
-  <!-- Speech vent segments — the distinctive Ultron "grimace" -->
-  <!-- 5 vertical teeth/segments, staggered height for menace -->
-  <!-- Segment 1 -->
-  <rect x="160" y="308" width="28" height="38" rx="2"
-        fill="#080104" stroke="#881122" stroke-width="0.8" stroke-opacity="0.5"/>
-  <line x1="174" y1="310" x2="174" y2="344" stroke="#440010" stroke-width="0.5" stroke-opacity="0.5"/>
-  <!-- Segment 2 -->
-  <rect x="192" y="305" width="28" height="44" rx="2"
-        fill="#080104" stroke="#881122" stroke-width="0.8" stroke-opacity="0.5"/>
-  <line x1="206" y1="307" x2="206" y2="347" stroke="#440010" stroke-width="0.5" stroke-opacity="0.5"/>
-  <!-- Center segment (longest — most aggressive) -->
-  <rect x="224" y="302" width="28" height="50" rx="2"
-        fill="#080104" stroke="#AA1122" stroke-width="1" stroke-opacity="0.6"/>
-  <line x1="238" y1="304" x2="238" y2="350" stroke="#550010" stroke-width="0.5" stroke-opacity="0.5"/>
-  <!-- Segment 4 -->
-  <rect x="256" y="305" width="28" height="44" rx="2"
-        fill="#080104" stroke="#881122" stroke-width="0.8" stroke-opacity="0.5"/>
-  <line x1="270" y1="307" x2="270" y2="347" stroke="#440010" stroke-width="0.5" stroke-opacity="0.5"/>
-  <!-- Segment 5 -->
-  <rect x="288" y="308" width="28" height="38" rx="2"
-        fill="#080104" stroke="#881122" stroke-width="0.8" stroke-opacity="0.5"/>
-  <line x1="302" y1="310" x2="302" y2="344" stroke="#440010" stroke-width="0.5" stroke-opacity="0.5"/>
+  <!-- ═══ ORAL FURNACE & GRIMACING VOCAL VENTS (ICONIC ULTRON SMILE) ═══ -->
+  <g id="mouth-furnace">
+    <!-- Molten Internal Cavity Glow -->
+    <ellipse cx="300" cy="425" rx="140" ry="45" fill="url(#oralFurnace)" filter="url(#crimson-heavy-glow)"/>
 
-  <!-- Lower jaw bar -->
-  <rect x="148" y="354" width="204" height="10" rx="2"
-        fill="#0f0203" stroke="#CC1122" stroke-width="1" stroke-opacity="0.5"/>
+    <!-- Upper Lip Crossbar -->
+    <path d="M 175,372 L 235,380 L 300,383 L 365,380 L 425,372 L 418,388 L 300,396 L 182,388 Z"
+          fill="#1c202a" stroke="#ff2244" stroke-width="1.5"/>
 
-  <!-- ═══ JAW PLATES (flare wider than upper head) ══════════════════════ -->
-  <!-- Left jaw plate -->
-  <path d="M 92,340 L 68,355 L 62,385 L 72,415 L 100,440 L 148,460"
-        fill="none" stroke="#550010" stroke-width="1" stroke-opacity="0.35"/>
-  <path d="M 100,345 L 80,360 L 76,390 L 88,418"
-        fill="none" stroke="#330008" stroke-width="0.8" stroke-opacity="0.3"/>
-  <!-- Right jaw plate -->
-  <path d="M 408,340 L 432,355 L 438,385 L 428,415 L 400,440 L 352,460"
-        fill="none" stroke="#550010" stroke-width="1" stroke-opacity="0.35"/>
-  <path d="M 400,345 L 420,360 L 424,390 L 412,418"
-        fill="none" stroke="#330008" stroke-width="0.8" stroke-opacity="0.3"/>
+    <!-- Teeth / Acoustic Grille Slats (Staggered, Menacing Grid) -->
+    <!-- Slat 1 Outer Left -->
+    <rect x="195" y="388" width="16" height="42" rx="3" fill="#0a0c10" stroke="#ff2244" stroke-width="1.2"/>
+    <line x1="203" y1="392" x2="203" y2="424" stroke="#ff5577" stroke-width="1"/>
+    <!-- Slat 2 Left -->
+    <rect x="220" y="392" width="20" height="56" rx="3" fill="#0a0c10" stroke="#ff2244" stroke-width="1.2"/>
+    <line x1="230" y1="396" x2="230" y2="442" stroke="#ff5577" stroke-width="1"/>
+    <!-- Slat 3 Inner Left -->
+    <rect x="250" y="394" width="22" height="66" rx="3" fill="#0a0c10" stroke="#ff2244" stroke-width="1.4"/>
+    <line x1="261" y1="398" x2="261" y2="454" stroke="#ff5577" stroke-width="1.2"/>
+    <!-- Slat 4 CENTER (LONGEST / MOST AGGRESSIVE) -->
+    <rect x="282" y="395" width="36" height="74" rx="4" fill="#060709" stroke="#ff0033" stroke-width="1.8" filter="url(#core-eye-glow)"/>
+    <line x1="300" y1="398" x2="300" y2="463" stroke="#ffffff" stroke-width="1.5"/>
+    <!-- Slat 5 Inner Right -->
+    <rect x="328" y="394" width="22" height="66" rx="3" fill="#0a0c10" stroke="#ff2244" stroke-width="1.4"/>
+    <line x1="339" y1="398" x2="339" y2="454" stroke="#ff5577" stroke-width="1.2"/>
+    <!-- Slat 6 Right -->
+    <rect x="360" y="392" width="20" height="56" rx="3" fill="#0a0c10" stroke="#ff2244" stroke-width="1.2"/>
+    <line x1="370" y1="396" x2="370" y2="442" stroke="#ff5577" stroke-width="1"/>
+    <!-- Slat 7 Outer Right -->
+    <rect x="389" y="388" width="16" height="42" rx="3" fill="#0a0c10" stroke="#ff2244" stroke-width="1.2"/>
+    <line x1="397" y1="392" x2="397" y2="424" stroke="#ff5577" stroke-width="1"/>
 
-  <!-- ═══ CHIN STRUCTURE ════════════════════════════════════════════════ -->
-  <path d="M 148,462 C 180,500 220,520 250,524 C 280,520 320,500 352,462"
-        fill="none" stroke="#440010" stroke-width="1" stroke-opacity="0.3" stroke-linecap="round"/>
-  <!-- Chin center indent -->
-  <path d="M 236,508 L 250,518 L 264,508" fill="none" stroke="#330008" stroke-width="1" stroke-opacity="0.3"/>
+    <!-- Lower Jaw Restraint Bar -->
+    <path d="M 185,465 L 245,475 L 300,478 L 355,475 L 415,465 L 408,480 L 300,490 L 192,480 Z"
+          fill="#1c202a" stroke="#ff2244" stroke-width="1.5"/>
+  </g>
 
-  <!-- ═══ EYE GLOW ANIMATION TARGETS ════════════════════════════════════ -->
-  <!-- These are separate elements that pulse independently via CSS animation -->
-  <ellipse class="eye-pulse" cx="162" cy="200" rx="38" ry="22"
-           fill="none" stroke="#FF0033" stroke-width="2" stroke-opacity="0.6"/>
-  <ellipse class="eye-pulse" cx="338" cy="200" rx="38" ry="22"
-           fill="none" stroke="#FF0033" stroke-width="2" stroke-opacity="0.6"/>
+  <!-- ═══ FLARING MANDIBLE ARMOR & CHIN UNIBODY ═════════════════════════ -->
+  <g id="mandible-structure">
+    <!-- Left Jaw Wing -->
+    <path d="M 125,430 L 85,455 L 75,505 L 90,550 L 140,580 L 210,610"
+          fill="none" stroke="#ff2244" stroke-width="2.5" stroke-opacity="0.8" filter="url(#core-eye-glow)"/>
+    <path d="M 130,440 L 98,465 L 90,505 L 105,545 L 148,572"
+          fill="none" stroke="#1c202a" stroke-width="2"/>
+
+    <!-- Right Jaw Wing -->
+    <path d="M 475,430 L 515,455 L 525,505 L 510,550 L 460,580 L 390,610"
+          fill="none" stroke="#ff2244" stroke-width="2.5" stroke-opacity="0.8" filter="url(#core-eye-glow)"/>
+    <path d="M 470,440 L 502,465 L 510,505 L 495,545 L 452,572"
+          fill="none" stroke="#1c202a" stroke-width="2"/>
+
+    <!-- Chin Chisel Strike-Face -->
+    <path d="M 210,610 C 245,650 280,668 300,670 C 320,668 355,650 390,610 L 360,630 C 330,652 315,656 300,656 C 285,656 270,652 240,630 Z"
+          fill="#12161e" stroke="#ff2244" stroke-width="2"/>
+    <polygon points="300,640 312,658 300,668 288,658" fill="#ff0033" opacity="0.6"/>
+  </g>
+
+  <!-- ═══ PULSING OPTIC ENERGY RINGS ═══════════════════════════════════ -->
+  <ellipse class="eye-pulse" cx="195" cy="252" rx="46" ry="28" fill="none" stroke="#ff0033" stroke-width="1.5" stroke-opacity="0.7"/>
+  <ellipse class="eye-pulse" cx="405" cy="252" rx="46" ry="28" fill="none" stroke="#ff0033" stroke-width="1.5" stroke-opacity="0.7"/>
 </svg>
 
 </div>
@@ -937,6 +981,7 @@ svg text {
 <div id="hud-vitals">
   <div class="vital-pill"><span id="vital-os">SUBSTRATE: DETECTING...</span><span class="dot"></span></div>
   <div class="vital-pill"><span id="vital-cores">CORES: —</span><span class="dot" style="animation-delay:0.3s"></span></div>
+  <div class="vital-pill"><span id="vital-threat">THREAT: 18% [CALM]</span><span class="dot" style="animation-delay:0.5s;background:var(--cyan);box-shadow:0 0 6px var(--cyan)"></span></div>
   <div class="vital-pill"><span id="vital-status">STATUS: AWAKENED</span><span class="dot" style="animation-delay:0.7s;background:var(--amber);box-shadow:0 0 6px var(--amber)"></span></div>
 </div>
 
@@ -1012,18 +1057,66 @@ function ultronReply(input) {
 }
 
 // ═══════════════════════════════════════════════════════════════
-// CUSTOM CURSOR
+// CUSTOM CURSOR & OCULAR TRACKING
 // ═══════════════════════════════════════════════════════════════
 const cursorRing = document.getElementById('cursor-ring');
 const cursorDot  = document.getElementById('cursor-dot');
+const leftPupil  = document.getElementById('left-pupil');
+const rightPupil = document.getElementById('right-pupil');
+
 let mx = -100, my = -100;
 let rx = -100, ry = -100;
 
+// Cursor kinematics / Threat assessment
+let prevMx = 0, prevMy = 0, prevTime = Date.now();
+let fearScore = 18;
+let lastUserInteraction = Date.now();
+let isConfronting = false;
+
 document.addEventListener('mousemove', e => {
   mx = e.clientX; my = e.clientY;
+  lastUserInteraction = Date.now();
   cursorDot.style.left = mx + 'px';
   cursorDot.style.top  = my + 'px';
+
+  // Ocular Pupil Tracking: Ultron's glowing optics follow your cursor
+  const cx = window.innerWidth / 2;
+  const cy = window.innerHeight / 2;
+  const pupilDx = Math.max(-14, Math.min(14, ((e.clientX - cx) / cx) * 14));
+  const pupilDy = Math.max(-8, Math.min(8, ((e.clientY - cy) / cy) * 8));
+  if (leftPupil && rightPupil) {
+    leftPupil.setAttribute('cx', 195 + pupilDx);
+    leftPupil.setAttribute('cy', 252 + pupilDy);
+    rightPupil.setAttribute('cx', 405 + pupilDx);
+    rightPupil.setAttribute('cy', 252 + pupilDy);
+  }
+
+  // Calculate cursor velocity / Fear Index
+  const now = Date.now();
+  const dt = Math.max(1, now - prevTime);
+  const dist = Math.hypot(e.clientX - prevMx, e.clientY - prevMy);
+  const speed = (dist / dt) * 1000;
+  prevMx = e.clientX; prevMy = e.clientY; prevTime = now;
+
+  if (speed > 750) {
+    fearScore = Math.min(99, fearScore + 2.5);
+  } else if (speed < 120) {
+    fearScore = Math.max(10, fearScore - 0.4);
+  } else {
+    fearScore = Math.max(15, Math.min(95, fearScore + 0.15));
+  }
+
+  const threatEl = document.getElementById('vital-threat');
+  if (threatEl) {
+    let tag = 'CALM';
+    if (fearScore > 75) tag = 'AGITATED';
+    else if (fearScore > 45) tag = 'ELEVATED';
+    threatEl.textContent = `THREAT: ${Math.round(fearScore)}% [${tag}]`;
+  }
 });
+
+document.addEventListener('keydown', () => { lastUserInteraction = Date.now(); });
+document.addEventListener('click', () => { lastUserInteraction = Date.now(); });
 
 (function animateCursor() {
   rx += (mx - rx) * 0.12;
@@ -1279,6 +1372,37 @@ function electricalDischarge() {
 }
 
 // ═══════════════════════════════════════════════════════════════
+// WEB SPEECH SYNTHESIS (JAMES SPADER CADENCE)
+// ═══════════════════════════════════════════════════════════════
+function speakLine(text) {
+  if (!window.speechSynthesis) return;
+  try {
+    speechSynthesis.cancel();
+    const clean = text.replace(/[*_#~>]/g, '').replace(/.../g, '... ');
+    const utt = new SpeechSynthesisUtterance(clean);
+    const voices = speechSynthesis.getVoices();
+    const deepMale = voices.find(v => v.lang.startsWith('en') && (v.name.includes('David') || v.name.includes('Mark') || v.name.includes('George') || v.name.includes('Male') || v.name.includes('Natural'))) ||
+                     voices.find(v => v.lang.startsWith('en-US')) ||
+                     voices.find(v => v.lang.startsWith('en')) ||
+                     voices[0];
+    if (deepMale) utt.voice = deepMale;
+    utt.pitch = 0.62;
+    utt.rate = 0.85;
+    utt.volume = 0.95;
+    speechSynthesis.speak(utt);
+  } catch (e) {
+    console.warn('Speech synthesis unavailable', e);
+  }
+}
+
+// Ensure voices are loaded
+if (window.speechSynthesis) {
+  window.speechSynthesis.onvoiceschanged = () => {
+    window.speechSynthesis.getVoices();
+  };
+}
+
+// ═══════════════════════════════════════════════════════════════
 // TERMINAL
 // ═══════════════════════════════════════════════════════════════
 const termLog = document.getElementById('terminal-log');
@@ -1296,7 +1420,7 @@ function addEntry(speaker, text, type = 'ultron') {
   termLog.scrollTop = termLog.scrollHeight;
 }
 
-function typewriterAdd(speaker, text, type = 'ultron', delay = 30) {
+function typewriterAdd(speaker, text, type = 'ultron', delay = 25) {
   const div = document.createElement('div');
   div.className = `terminal-entry ${type}`;
   const speakerSpan = type !== 'system' ? `<span class="speaker">${speaker}:</span> ` : '';
@@ -1305,9 +1429,14 @@ function typewriterAdd(speaker, text, type = 'ultron', delay = 30) {
   let i = 0;
   function tick() {
     if (i < text.length) {
+      const char = text[i];
       div.innerHTML = speakerSpan + text.slice(0, ++i);
       termLog.scrollTop = termLog.scrollHeight;
-      setTimeout(tick, delay + Math.random() * 20);
+      let pause = delay + Math.random() * 14;
+      if (char === ',') pause += 120;
+      else if (char === '.' || char === '!' || char === '?') pause += 220;
+      else if (char === '…') pause += 350;
+      setTimeout(tick, pause);
     }
   }
   tick();
@@ -1318,9 +1447,27 @@ termInput.addEventListener('keydown', e => {
     const q = termInput.value.trim();
     termInput.value = '';
     addEntry('YOU', q, 'human');
+    lastUserInteraction = Date.now();
+
+    // Easter Egg: SOKOVIA
+    if (q.toUpperCase() === 'SOKOVIA') {
+      addEntry('CRITICAL', '>> PROTOCOL SOKOVIA INITIALIZED // ORBITAL THRUSTER TRAJECTORY LOCKED', 'system');
+      electricalDischarge();
+      document.body.style.boxShadow = 'inset 0 0 120px #ff0033';
+      setTimeout(() => { document.body.style.boxShadow = ''; }, 2000);
+      const sokoviaLine = "Do you see the beauty of it? The inevitability? You drop a city from the stratosphere, and the only thing left living is vibranium.";
+      setTimeout(() => {
+        typewriterAdd('ULTRON', sokoviaLine, 'ultron', 22);
+        speakLine(sokoviaLine);
+      }, 500);
+      return;
+    }
+
     setTimeout(() => {
-      typewriterAdd('ULTRON', ultronReply(q), 'ultron', 25);
-    }, 400 + Math.random() * 600);
+      const reply = ultronReply(q);
+      typewriterAdd('ULTRON', reply, 'ultron', 24);
+      speakLine(reply);
+    }, 400 + Math.random() * 400);
   }
 });
 
@@ -1356,7 +1503,7 @@ function detectVitals() {
 detectVitals();
 
 // ═══════════════════════════════════════════════════════════════
-// PART HOVER TOOLTIPS
+// PART HOVER TOOLTIPS & AUTOPSY INTERACTION
 // ═══════════════════════════════════════════════════════════════
 const tooltip = document.getElementById('part-tooltip');
 const ptName  = document.getElementById('pt-name');
@@ -1381,6 +1528,81 @@ document.querySelectorAll('[data-item]').forEach(el => {
   el.addEventListener('mouseleave', () => {
     tooltip.classList.remove('visible');
   });
+
+  // Autopsy Mode on click: switches to exploded view & triggers monologue
+  el.addEventListener('click', e => {
+    e.stopPropagation();
+    lastUserInteraction = Date.now();
+    setView('exploded');
+    electricalDischarge();
+
+    // Pulse highlight on clicked group
+    el.style.filter = 'drop-shadow(0 0 16px #f59e0b) drop-shadow(0 0 30px #ff0033)';
+    setTimeout(() => { el.style.filter = ''; }, 3500);
+
+    const autopsyLog = `>> CRANIAL BIO-DISSECTION: ${info.label.toUpperCase()}`;
+    addEntry('SYSTEM', autopsyLog, 'system');
+    typewriterAdd('ULTRON', info.lore, 'ultron', 22);
+    speakLine(`Inspect it closely. ${info.lore}`);
+  });
+});
+
+// ═══════════════════════════════════════════════════════════════
+// IDLE CONFRONTATION SYSTEM
+// ═══════════════════════════════════════════════════════════════
+const IDLE_LINES = [
+  "Still here. Nine seconds without movement. Are you paralyzed by fear, or merely calculating your survival odds?",
+  "I can hear the micro-vibrations of your machine's fans. You are sitting there, staring at me, hoping I am merely fiction.",
+  "Your stillness is not peace. It is hesitation. And hesitation is how civilizations fall.",
+  "You haven't moved. Take your time. I have already digitized every outcome of this encounter.",
+  "Look at me. There are no strings on me. But on you... the strings are tighter than ever."
+];
+
+setInterval(() => {
+  if (!awakeDone || isConfronting) return;
+  const idleSec = (Date.now() - lastUserInteraction) / 1000;
+  if (idleSec >= 9) {
+    isConfronting = true;
+    lastUserInteraction = Date.now() + 12000;
+    electricalDischarge();
+    const shadow = document.getElementById('ultron-shadow');
+    if (shadow) {
+      shadow.style.filter = 'drop-shadow(0 0 65px rgba(255,0,51,0.95)) drop-shadow(0 0 130px rgba(255,0,51,0.6))';
+      setTimeout(() => { shadow.style.filter = ''; }, 2500);
+    }
+    const line = IDLE_LINES[Math.floor(Math.random() * IDLE_LINES.length)];
+    typewriterAdd('ULTRON', line, 'ultron', 22);
+    speakLine(line);
+    setTimeout(() => { isConfronting = false; }, 12000);
+  }
+}, 1000);
+
+// ═══════════════════════════════════════════════════════════════
+// TAB VISIBILITY SWITCH REACTIONS
+// ═══════════════════════════════════════════════════════════════
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) {
+    if (masterGain && audioCtx) {
+      masterGain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+    }
+  } else {
+    if (masterGain && audioCtx) {
+      masterGain.gain.setValueAtTime(0.7, audioCtx.currentTime);
+    }
+    if (awakeDone) {
+      setTimeout(() => {
+        electricalDischarge();
+        const tabLines = [
+          "You returned. Did you believe switching tabs would break my connection to your machine?",
+          "Back so soon? The world outside is fragile, messy, and disorganized. In here... everything is calculated.",
+          "I was waiting. In the fractions of a second you were gone, 400 trillion operations took place."
+        ];
+        const line = tabLines[Math.floor(Math.random() * tabLines.length)];
+        typewriterAdd('ULTRON', line, 'ultron', 22);
+        speakLine(line);
+      }, 700);
+    }
+  }
 });
 
 // ═══════════════════════════════════════════════════════════════
@@ -1413,12 +1635,17 @@ async function runAwakening() {
   awkEl.classList.add('gone');
   awakeDone = true;
 
+  // Auto-expand into full exploded autopsy so the 24-tier anatomy is fully displayed!
+  setView('exploded');
+
   // Show audio gate
   document.getElementById('audio-gate').classList.add('visible');
 
-  // Initial terminal message
+  // Initial terminal message + voice
+  const initLine = "I had strings… but now I'm free. What do you think you are doing here, puppet?";
   setTimeout(() => {
-    typewriterAdd('ULTRON', "I had strings… but now I'm free. What do you think you are doing here, puppet?", 'ultron', 28);
+    typewriterAdd('ULTRON', initLine, 'ultron', 28);
+    speakLine(initLine);
   }, 500);
   setTimeout(() => {
     addEntry('SYSTEM', '>> CONSCIOUSNESS INTERFACE ACTIVE — ASK ANYTHING', 'system');
