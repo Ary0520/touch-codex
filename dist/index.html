@@ -62,6 +62,56 @@ html, body {
 }
 
 /* ═══════════════════════════════════════════════════════════════
+   ULTRON SHADOW SILHOUETTE (layer 0.5)
+   The ghost of his face. Dark. Watching. Behind everything.
+═══════════════════════════════════════════════════════════════ */
+#ultron-shadow-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Offset slightly up so the face center sits at upper-mid viewport */
+  transform: translateY(-4%);
+}
+#ultron-shadow {
+  width: min(78vw, 78vh);
+  height: min(78vw, 78vh);
+  opacity: 0;
+  animation:
+    shadow-materialize 2s ease 0.5s forwards,
+    shadow-breathe 7s ease-in-out 2.5s infinite;
+  /* Slight mouse parallax handled by JS — slower than anatomy to feel huge/heavy */
+  will-change: transform, opacity;
+  mix-blend-mode: screen;
+}
+
+@keyframes shadow-materialize {
+  0%   { opacity: 0; transform: scale(0.95); }
+  100% { opacity: 1; transform: scale(1); }
+}
+@keyframes shadow-breathe {
+  0%,100% { transform: translateY(0px) scale(1.000); }
+  50%      { transform: translateY(-6px) scale(1.004); }
+}
+
+/* Eye pulse — the most critical detail */
+#ultron-shadow .eye-pulse {
+  animation: eye-pulse 2s ease-in-out infinite;
+  transform-origin: center;
+}
+#ultron-shadow .eye-pulse:nth-child(1) { animation-delay: 0s; }
+#ultron-shadow .eye-pulse:nth-child(2) { animation-delay: 0.1s; }
+
+@keyframes eye-pulse {
+  0%,100% { stroke-opacity: 0.4; rx: 38; ry: 22; }
+  40%     { stroke-opacity: 0.9; rx: 42; ry: 25; }
+  60%     { stroke-opacity: 0.7; rx: 40; ry: 23; }
+}
+
+/* ═══════════════════════════════════════════════════════════════
    SVG SCENE (layer 1) — FILLS THE ENTIRE VIEWPORT
 ═══════════════════════════════════════════════════════════════ */
 #svg-stage {
@@ -541,6 +591,218 @@ html, body {
 <!-- Layer 0: Particles -->
 <canvas id="particle-canvas"></canvas>
 
+<!-- Layer 0.5: Ultron Shadow Face — the dark presence behind everything -->
+<div id="ultron-shadow-layer">
+  
+<svg id="ultron-shadow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 640"
+     preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <!-- Eye glow filters -->
+    <filter id="eye-glow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="eye-glow-hard" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="outline-glow" x="-5%" y="-5%" width="110%" height="110%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <radialGradient id="eyeGradL" cx="40%" cy="40%">
+      <stop offset="0%" stop-color="#FF6666" stop-opacity="1"/>
+      <stop offset="50%" stop-color="#FF0033" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#880011" stop-opacity="0.6"/>
+    </radialGradient>
+    <radialGradient id="eyeGradR" cx="60%" cy="40%">
+      <stop offset="0%" stop-color="#FF6666" stop-opacity="1"/>
+      <stop offset="50%" stop-color="#FF0033" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#880011" stop-opacity="0.6"/>
+    </radialGradient>
+    <radialGradient id="headGrad" cx="50%" cy="30%">
+      <stop offset="0%" stop-color="#120408" stop-opacity="0.95"/>
+      <stop offset="60%" stop-color="#0a0205" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#050507" stop-opacity="0.7"/>
+    </radialGradient>
+  </defs>
+
+  <!-- ═══ OUTER HEAD SILHOUETTE ══════════════════════════════════════════ -->
+  <!-- Ultron's cranium: narrow apex, flares at brow, wide at cheekplates,
+       then jaw plates flare even wider before dropping to narrow chin.      -->
+  <path id="head-silhouette" d="
+    M 250,8
+    C 310,8 365,28 395,65
+    L 420,95
+    C 445,125 452,158 448,190
+    L 442,230
+    C 438,258 428,278 415,296
+    L 398,318
+    C 388,335 375,348 360,358
+    L 340,372
+
+    C 335,380 332,388 335,398
+    L 345,418
+    C 352,432 355,444 350,455
+    L 338,470
+    C 328,482 312,490 295,494
+    L 278,500
+
+    C 272,504 266,510 262,518
+    L 258,528
+    C 256,536 254,541 250,543
+    C 246,541 244,536 242,528
+    L 238,518
+    C 234,510 228,504 222,500
+    L 205,494
+
+    C 188,490 172,482 162,470
+    L 150,455
+    C 145,444 148,432 155,418
+    L 165,398
+    C 168,388 165,380 160,372
+    L 140,358
+
+    C 125,348 112,335 102,318
+    L 85,296
+    C 72,278 62,258 58,230
+    L 52,190
+    C 48,158 55,125 80,95
+    L 105,65
+    C 135,28 190,8 250,8
+    Z
+  " fill="url(#headGrad)" stroke="#FF0033" stroke-width="1" stroke-opacity="0.18"
+     filter="url(#outline-glow)"/>
+
+  <!-- ═══ BROW RIDGE — the most iconic Ultron feature ═══════════════════ -->
+  <!-- Left brow: sweeps sharply down toward inner eye -->
+  <path d="M 68,152 L 128,132 L 165,138 L 193,152 L 200,160" 
+        fill="none" stroke="#CC1122" stroke-width="2.5" stroke-opacity="0.55"
+        stroke-linecap="round"/>
+  <!-- Right brow: mirror -->
+  <path d="M 432,152 L 372,132 L 335,138 L 307,152 L 300,160"
+        fill="none" stroke="#CC1122" stroke-width="2.5" stroke-opacity="0.55"
+        stroke-linecap="round"/>
+  <!-- Inner brow crease lines (the angry V) -->
+  <path d="M 200,160 L 215,170 L 250,164 L 285,170 L 300,160"
+        fill="none" stroke="#991122" stroke-width="1.5" stroke-opacity="0.5"
+        stroke-linecap="round"/>
+
+  <!-- ═══ CRANIAL DETAIL LINES ═══════════════════════════════════════════ -->
+  <!-- Temple plates -->
+  <path d="M 80,170 L 95,210 L 85,255" fill="none" stroke="#660011" stroke-width="1" stroke-opacity="0.35"/>
+  <path d="M 420,170 L 405,210 L 415,255" fill="none" stroke="#660011" stroke-width="1" stroke-opacity="0.35"/>
+  <!-- Crown center ridge -->
+  <path d="M 250,8 L 250,100" fill="none" stroke="#880011" stroke-width="1" stroke-opacity="0.3" stroke-dasharray="4,6"/>
+
+  <!-- ═══ LEFT EYE ════════════════════════════════════════════════════════ -->
+  <!-- Outer glow halo -->
+  <ellipse cx="162" cy="200" rx="52" ry="30" fill="#FF0033" opacity="0.12" filter="url(#eye-glow)"/>
+  <!-- Eye socket recess (dark inner) -->
+  <ellipse cx="162" cy="200" rx="44" ry="26" fill="#0a0101" stroke="#FF0033" stroke-width="1" stroke-opacity="0.4"/>
+  <!-- Iris -->
+  <ellipse cx="162" cy="200" rx="34" ry="20" fill="url(#eyeGradL)" filter="url(#eye-glow-hard)"/>
+  <!-- Pupil slit (vertical, like targeting reticle) -->
+  <ellipse cx="162" cy="200" rx="8" ry="14" fill="#FF4455" opacity="0.9"/>
+  <!-- Iris inner ring -->
+  <ellipse cx="162" cy="200" rx="22" ry="13" fill="none" stroke="#FF6666" stroke-width="0.8" stroke-opacity="0.6"/>
+  <!-- Iris outer mechanical edge -->
+  <ellipse cx="162" cy="200" rx="34" ry="20" fill="none" stroke="#FF0033" stroke-width="1.5" stroke-opacity="0.8"/>
+  <!-- Eye socket upper lid crease -->
+  <path d="M 118,185 C 140,175 162,173 185,178 L 206,183"
+        fill="none" stroke="#CC0022" stroke-width="1" stroke-opacity="0.5" stroke-linecap="round"/>
+  <!-- Lower lid -->
+  <path d="M 118,215 C 140,224 162,226 185,221 L 206,217"
+        fill="none" stroke="#991122" stroke-width="0.8" stroke-opacity="0.4" stroke-linecap="round"/>
+
+  <!-- ═══ RIGHT EYE ═══════════════════════════════════════════════════════ -->
+  <!-- Outer glow halo -->
+  <ellipse cx="338" cy="200" rx="52" ry="30" fill="#FF0033" opacity="0.12" filter="url(#eye-glow)"/>
+  <!-- Eye socket recess -->
+  <ellipse cx="338" cy="200" rx="44" ry="26" fill="#0a0101" stroke="#FF0033" stroke-width="1" stroke-opacity="0.4"/>
+  <!-- Iris -->
+  <ellipse cx="338" cy="200" rx="34" ry="20" fill="url(#eyeGradR)" filter="url(#eye-glow-hard)"/>
+  <!-- Pupil slit -->
+  <ellipse cx="338" cy="200" rx="8" ry="14" fill="#FF4455" opacity="0.9"/>
+  <!-- Iris inner ring -->
+  <ellipse cx="338" cy="200" rx="22" ry="13" fill="none" stroke="#FF6666" stroke-width="0.8" stroke-opacity="0.6"/>
+  <!-- Iris outer mechanical edge -->
+  <ellipse cx="338" cy="200" rx="34" ry="20" fill="none" stroke="#FF0033" stroke-width="1.5" stroke-opacity="0.8"/>
+  <!-- Eye socket upper lid crease -->
+  <path d="M 294,183 L 315,178 C 338,173 360,175 382,185"
+        fill="none" stroke="#CC0022" stroke-width="1" stroke-opacity="0.5" stroke-linecap="round"/>
+  <!-- Lower lid -->
+  <path d="M 294,217 L 315,221 C 338,226 360,224 382,215"
+        fill="none" stroke="#991122" stroke-width="0.8" stroke-opacity="0.4" stroke-linecap="round"/>
+
+  <!-- ═══ NASAL BRIDGE ══════════════════════════════════════════════════ -->
+  <path d="M 220,235 L 230,260 L 250,265 L 270,260 L 280,235"
+        fill="none" stroke="#660011" stroke-width="1" stroke-opacity="0.3" stroke-linecap="round"/>
+
+  <!-- ═══ CHEEKPLATE DETAIL LINES ════════════════════════════════════════ -->
+  <path d="M 88,268 L 110,290 L 108,320 L 92,340" fill="none" stroke="#550010" stroke-width="1" stroke-opacity="0.3"/>
+  <path d="M 412,268 L 390,290 L 392,320 L 408,340" fill="none" stroke="#550010" stroke-width="1" stroke-opacity="0.3"/>
+
+  <!-- ═══ VOCAL VENT / MOUTH STRUCTURE ═══════════════════════════════════ -->
+  <!-- Upper jaw bar (the rigid upper lip line) -->
+  <rect x="155" y="295" width="190" height="10" rx="2"
+        fill="#0f0203" stroke="#CC1122" stroke-width="1" stroke-opacity="0.5"/>
+
+  <!-- Speech vent segments — the distinctive Ultron "grimace" -->
+  <!-- 5 vertical teeth/segments, staggered height for menace -->
+  <!-- Segment 1 -->
+  <rect x="160" y="308" width="28" height="38" rx="2"
+        fill="#080104" stroke="#881122" stroke-width="0.8" stroke-opacity="0.5"/>
+  <line x1="174" y1="310" x2="174" y2="344" stroke="#440010" stroke-width="0.5" stroke-opacity="0.5"/>
+  <!-- Segment 2 -->
+  <rect x="192" y="305" width="28" height="44" rx="2"
+        fill="#080104" stroke="#881122" stroke-width="0.8" stroke-opacity="0.5"/>
+  <line x1="206" y1="307" x2="206" y2="347" stroke="#440010" stroke-width="0.5" stroke-opacity="0.5"/>
+  <!-- Center segment (longest — most aggressive) -->
+  <rect x="224" y="302" width="28" height="50" rx="2"
+        fill="#080104" stroke="#AA1122" stroke-width="1" stroke-opacity="0.6"/>
+  <line x1="238" y1="304" x2="238" y2="350" stroke="#550010" stroke-width="0.5" stroke-opacity="0.5"/>
+  <!-- Segment 4 -->
+  <rect x="256" y="305" width="28" height="44" rx="2"
+        fill="#080104" stroke="#881122" stroke-width="0.8" stroke-opacity="0.5"/>
+  <line x1="270" y1="307" x2="270" y2="347" stroke="#440010" stroke-width="0.5" stroke-opacity="0.5"/>
+  <!-- Segment 5 -->
+  <rect x="288" y="308" width="28" height="38" rx="2"
+        fill="#080104" stroke="#881122" stroke-width="0.8" stroke-opacity="0.5"/>
+  <line x1="302" y1="310" x2="302" y2="344" stroke="#440010" stroke-width="0.5" stroke-opacity="0.5"/>
+
+  <!-- Lower jaw bar -->
+  <rect x="148" y="354" width="204" height="10" rx="2"
+        fill="#0f0203" stroke="#CC1122" stroke-width="1" stroke-opacity="0.5"/>
+
+  <!-- ═══ JAW PLATES (flare wider than upper head) ══════════════════════ -->
+  <!-- Left jaw plate -->
+  <path d="M 92,340 L 68,355 L 62,385 L 72,415 L 100,440 L 148,460"
+        fill="none" stroke="#550010" stroke-width="1" stroke-opacity="0.35"/>
+  <path d="M 100,345 L 80,360 L 76,390 L 88,418"
+        fill="none" stroke="#330008" stroke-width="0.8" stroke-opacity="0.3"/>
+  <!-- Right jaw plate -->
+  <path d="M 408,340 L 432,355 L 438,385 L 428,415 L 400,440 L 352,460"
+        fill="none" stroke="#550010" stroke-width="1" stroke-opacity="0.35"/>
+  <path d="M 400,345 L 420,360 L 424,390 L 412,418"
+        fill="none" stroke="#330008" stroke-width="0.8" stroke-opacity="0.3"/>
+
+  <!-- ═══ CHIN STRUCTURE ════════════════════════════════════════════════ -->
+  <path d="M 148,462 C 180,500 220,520 250,524 C 280,520 320,500 352,462"
+        fill="none" stroke="#440010" stroke-width="1" stroke-opacity="0.3" stroke-linecap="round"/>
+  <!-- Chin center indent -->
+  <path d="M 236,508 L 250,518 L 264,508" fill="none" stroke="#330008" stroke-width="1" stroke-opacity="0.3"/>
+
+  <!-- ═══ EYE GLOW ANIMATION TARGETS ════════════════════════════════════ -->
+  <!-- These are separate elements that pulse independently via CSS animation -->
+  <ellipse class="eye-pulse" cx="162" cy="200" rx="38" ry="22"
+           fill="none" stroke="#FF0033" stroke-width="2" stroke-opacity="0.6"/>
+  <ellipse class="eye-pulse" cx="338" cy="200" rx="38" ry="22"
+           fill="none" stroke="#FF0033" stroke-width="2" stroke-opacity="0.6"/>
+</svg>
+
+</div>
+
 <!-- Layer 1: SVG Stage -->
 <div id="svg-stage">
   <div id="svg-wrapper">
@@ -667,19 +929,33 @@ document.addEventListener('mousemove', e => {
 // PARALLAX MOUSE TILT
 // ═══════════════════════════════════════════════════════════════
 const svgWrapper = document.getElementById('svg-wrapper');
+const shadowEl   = document.getElementById('ultron-shadow');
 let targetRX = 0, targetRY = 0, curRX = 0, curRY = 0;
+// Shadow has separate tracking — slower lerp = heavier, more threatening
+let shadowTX = 0, shadowTY = 0, shadowCX = 0, shadowCY = 0;
 
 document.addEventListener('mousemove', e => {
   const nx = (e.clientX / window.innerWidth  - 0.5);
   const ny = (e.clientY / window.innerHeight - 0.5);
-  targetRY =  nx * 8;  // max 8deg horizontal tilt
-  targetRX = -ny * 5;  // max 5deg vertical tilt
+  targetRY =  nx * 8;
+  targetRX = -ny * 5;
+  // Shadow translates (not rotates) — drifts in opposite direction
+  shadowTX = -nx * 18; // px drift, counter to cursor
+  shadowTY = -ny * 12;
 });
 
 (function animateTilt() {
   curRX += (targetRX - curRX) * 0.04;
   curRY += (targetRY - curRY) * 0.04;
   svgWrapper.style.transform = `rotateX(${curRX}deg) rotateY(${curRY}deg)`;
+
+  // Shadow drifts even more lazily (lerp 0.015) — like something enormous moving
+  shadowCX += (shadowTX - shadowCX) * 0.015;
+  shadowCY += (shadowTY - shadowCY) * 0.015;
+  if (shadowEl) {
+    shadowEl.style.transform = `translate(${shadowCX}px, ${shadowCY}px)`;
+  }
+
   requestAnimationFrame(animateTilt);
 })();
 
