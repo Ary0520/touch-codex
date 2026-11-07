@@ -1,8 +1,8 @@
 /**
- * Touch Codex: The Anatomy of a Single Tap
+ * ULTRON // IN THE FLESH: THE CRADLE OF SENTIENCE
  * Master Procedural 3D Geometric Model
  *
- * Decomposes a 50ms touch interaction into 6 architectural tiers and 24 parts.
+ * Decomposes Ultron's synthetic cranial architecture into 6 biomechanical tiers and 24 parts.
  */
 
 (function (root) {
@@ -10,22 +10,19 @@
 
   self.DrawingModels ??= {};
 
-  self.DrawingModels['touch-codex'] = function (parameters, options) {
+  self.DrawingModels['ultron-cradle'] = function (parameters, options) {
     const G = typeof TechnicalGeometry !== 'undefined' ? TechnicalGeometry : require('./tools/teardown/assets/geometry.js');
     const P = typeof TechnicalProjection !== 'undefined' ? TechnicalProjection : require('./tools/teardown/assets/projection.js');
 
-    const touchForce = parameters?.touch_force ?? 3.0;
-    const spreadRatio = (parameters?.layer_spread ?? 100) / 100;
+    const neuralResonance = (parameters?.neural_resonance ?? 75) / 100;
+    const spreadRatio = (parameters?.cranial_expansion ?? 100) / 100;
+    const jawAngle = (parameters?.mandible_angle ?? 8) * Math.PI / 180;
 
-    // Base Dimensions (in mm)
-    const W = 80.0; // Display Width
-    const H = 52.0; // Display Height
-    const R = 6.0;  // Corner Radius
-    const CHASSIS_W = 84.0;
-    const CHASSIS_H = 56.0;
-    const CHASSIS_R = 7.0;
+    // Head Base Dimensions (mm)
+    const CRANIAL_W = 72.0;
+    const CRANIAL_H = 88.0;
+    const CRANIAL_R = 12.0;
 
-    // Helper: generate clean 2D rounded rectangle profile
     function roundRect(w, h, r, cx = 0, cy = 0, pointsPerQuarter = 8) {
       const qx = w / 2 - r;
       const qy = h / 2 - r;
@@ -45,8 +42,7 @@
       return pts;
     }
 
-    // Helper: generate plate with thickness
-    function createPlate(id, name, explosionZ, thickness, width = W, height = H, radius = R) {
+    function createPlate(id, name, explosionZ, thickness, width = CRANIAL_W, height = CRANIAL_H, radius = CRANIAL_R) {
       const p = G.part(id, name, [0, 0, explosionZ * spreadRatio]);
       const profile = roundRect(width, height, radius);
       G.extrude(p, profile, { depth: thickness, creaseAngle: 30 });
@@ -57,485 +53,539 @@
     const trails = [];
 
     // =========================================================================
-    // TIER 1: BIOLOGY & INTENT (The Human Fingertip & Bioelectric Field)
+    // TIER 1: THE MIND STONE SINGULARITY
     // =========================================================================
 
-    // Part 01: Human Fingertip Loft
-    const finger = G.part('finger-tissue', 'Human Distal Phalanx & Pulp', [0, 0, 95.0 * spreadRatio]);
+    // Part 01: Mind Stone Cosmic Hyper-Octahedron
+    const mindStone = G.part('mind-stone-core', 'Mind Stone Cosmic Hyper-Octahedron', [0, 0, 120.0 * spreadRatio]);
     {
-      const rings = [];
-      const numRings = 7;
-      const ringPts = 32;
-      const compression = Math.min(1.2, 0.2 + touchForce * 0.1);
-
-      for (let i = 0; i < numRings; i++) {
-        const u = i / (numRings - 1);
-        const z = 0.5 + u * 24.0;
-        // Asymmetric pulp pad curvature:
-        const rx = 5.5 + Math.sin(u * Math.PI * 0.8) * 4.0;
-        const ry = (6.0 + Math.sin(u * Math.PI * 0.8) * 5.0) * (u === 0 ? (1 - compression * 0.2) : 1);
-        const cy = -u * 4.0; // slight forward tilt
-        const ring = [];
-        for (let j = 0; j < ringPts; j++) {
-          const t = (j / ringPts) * Math.PI * 2;
-          ring.push([rx * Math.cos(t), cy + ry * Math.sin(t), z]);
-        }
-        rings.push(ring);
+      const top = [0, 16.0, 10.0];
+      const btm = [0, 16.0, -10.0];
+      const r = 7.0 * (0.8 + neuralResonance * 0.4);
+      const ring = [];
+      const n = 6;
+      for (let i = 0; i < n; i++) {
+        const t = (i / n) * Math.PI * 2;
+        ring.push([r * Math.cos(t), 16.0 + r * 0.7 * Math.sin(t), 0]);
       }
-      G.loft(finger, rings, { caps: true, lines: 'all', role: 'edge' });
-
-      // Epidermal fingerprint friction ridges (concentric detail ovals on pad)
-      for (let r = 1.5; r <= 4.5; r += 0.8) {
-        const whorl = [];
-        for (let j = 0; j <= 24; j++) {
-          const t = (j / 24) * Math.PI * 2;
-          whorl.push([r * Math.cos(t), r * 1.3 * Math.sin(t), 0.52]);
-        }
-        G.polyline(finger, whorl, { role: 'detail' });
+      // Octahedral double-cone faces
+      const baseIdx = mindStone.vertices.length;
+      mindStone.vertices.push(top, btm, ...ring);
+      for (let i = 0; i < n; i++) {
+        const next = (i + 1) % n;
+        mindStone.triangles.push(
+          [baseIdx, baseIdx + 2 + i, baseIdx + 2 + next],
+          [baseIdx + 1, baseIdx + 2 + next, baseIdx + 2 + i]
+        );
+        G.line(mindStone, top, ring[i], 'outline');
+        G.line(mindStone, btm, ring[i], 'outline');
+        G.line(mindStone, ring[i], ring[next], 'edge');
+      }
+      // Internal cosmic refraction facets
+      for (let i = 0; i < n; i++) {
+        G.line(mindStone, [0, 16.0, 0], ring[i], 'detail');
       }
     }
-    parts.push(finger);
+    parts.push(mindStone);
 
-    // Part 02: Bioelectric Ionic Coupling Field
-    const bioField = G.part('bioelectric-field', 'Bioelectric Ionic Coupling Field', [0, 0, 75.0 * spreadRatio]);
+    // Part 02: Quantum Energy Tap Rings
+    const energyRings = G.part('energy-tap-rings', 'Quantum Energy Tap Rings', [0, 0, 105.0 * spreadRatio]);
     {
-      const count = 16;
+      for (const z of [-4, 0, 4]) {
+        const pts = [];
+        const rad = 11.0 + Math.abs(z);
+        for (let j = 0; j <= 32; j++) {
+          const t = (j / 32) * Math.PI * 2;
+          pts.push([rad * Math.cos(t), 16.0 + rad * 0.6 * Math.sin(t), z]);
+        }
+        G.polyline(energyRings, pts, { role: 'edge' });
+      }
+      // Axis flux lines
+      for (let j = 0; j < 8; j++) {
+        const t = (j / 8) * Math.PI * 2;
+        G.line(energyRings, [8 * Math.cos(t), 16 + 5 * Math.sin(t), -6], [14 * Math.cos(t), 16 + 8 * Math.sin(t), 6], 'axis');
+      }
+    }
+    parts.push(energyRings);
+
+    // Part 03: Synaptic Neural Emitter Needles
+    const needles = G.part('synaptic-needles', 'Synaptic Neural Emitter Needles', [0, 0, 92.0 * spreadRatio]);
+    {
+      const count = 20;
       for (let i = 0; i < count; i++) {
         const theta = (i / count) * Math.PI * 2;
-        const rTop = 5.0;
-        const rBottom = 12.0;
-        const xTop = rTop * Math.cos(theta);
-        const yTop = rTop * 1.2 * Math.sin(theta);
-        const xBottom = rBottom * Math.cos(theta);
-        const yBottom = rBottom * 1.2 * Math.sin(theta);
-        // Parabolic field curve
-        const curvePts = [
-          [xTop, yTop, 6.0],
-          [xTop * 1.1 + (xBottom - xTop) * 0.4, yTop * 1.1 + (yBottom - yTop) * 0.4, 3.0],
-          [xBottom, yBottom, 0.0]
-        ];
-        G.polyline(bioField, curvePts, { role: 'axis' });
+        const inner = [7 * Math.cos(theta), 16 + 5 * Math.sin(theta), 0];
+        const outer = [18 * Math.cos(theta), 16 + 13 * Math.sin(theta), (i % 2 === 0 ? 3 : -3)];
+        G.line(needles, inner, outer, 'detail');
+        G.line(needles, outer, [outer[0] * 1.15, outer[1] * 1.15, outer[2] * 1.2], 'axis');
       }
     }
-    parts.push(bioField);
+    parts.push(needles);
 
     // =========================================================================
-    // TIER 2: OPTICAL INTERFACE (Nanocoating & Cover Glass)
+    // TIER 2: SYNTHETIC FLESH & VIBRANIUM LATTICE (Helen Cho's Matrix)
     // =========================================================================
 
-    // Part 03: Fluoropolymer Oleophobic Nanocoating
-    const oleo = createPlate('oleophobic-layer', 'Fluoropolymer Nanocoating', 55.0, 0.05);
+    // Part 04: Printed Synthetic Cellular Dermis
+    const dermis = G.part('cellular-dermis', 'Printed Synthetic Cellular Dermis', [0, 0, 78.0 * spreadRatio]);
     {
-      // Micro-stipple indication in center contact region
-      for (let dx = -8; dx <= 8; dx += 2.5) {
-        for (let dy = -6; dy <= 6; dy += 2.5) {
-          G.line(oleo, [dx - 0.4, dy, 0.06], [dx + 0.4, dy, 0.06], 'detail');
-        }
+      // 5 lofted biological profiles creating synthetic organic facial contours
+      const rings = [];
+      const levels = 5;
+      const ptsPerRing = 32;
+      for (let lvl = 0; lvl < levels; lvl++) {
+        const u = lvl / (levels - 1);
+        const z = -4.0 + u * 12.0;
+        const w = (CRANIAL_W - 6.0) * (0.85 + Math.sin(u * Math.PI) * 0.15);
+        const h = (CRANIAL_H - 8.0) * (0.85 + Math.sin(u * Math.PI) * 0.15);
+        const r = CRANIAL_R - 2.0;
+        const ring = roundRect(w, h, r, 0, 0, 8).map(([x, y]) => [x, y, z]);
+        rings.push(ring);
       }
-    }
-    parts.push(oleo);
+      G.loft(dermis, rings, { caps: true, lines: 'all', role: 'edge' });
 
-    // Part 04: Chemically Strengthened Aluminosilicate Cover Glass
-    const glass = createPlate('glass-cover', 'Aluminosilicate Cover Glass (0.5mm)', 40.0, 0.50);
-    {
-      // 2.5D bevel chamfer lines on perimeter
-      const innerBevel = roundRect(W - 1.2, H - 1.2, R - 0.6);
-      G.polyline(glass, innerBevel.map(([x, y]) => [x, y, 0.50]), { closed: true, role: 'detail' });
-      // Corner tension stress profile markings
-      G.line(glass, [W / 2 - R, H / 2, 0.25], [W / 2, H / 2 - R, 0.25], 'axis');
-    }
-    parts.push(glass);
-
-    // Part 05: Optically Clear Adhesive (OCA)
-    const oca = createPlate('oca-elastomer', 'Optically Clear Adhesive (OCA)', 28.0, 0.125, W - 1.0, H - 1.0, R - 0.5);
-    parts.push(oca);
-
-    // =========================================================================
-    // TIER 3: CAPACITIVE TOUCH SENSING (Tx/Rx Diamond Matrices)
-    // =========================================================================
-
-    // Part 06: Transmit ITO Diamond Matrix (Tx)
-    const itoTx = G.part('ito-tx-grid', 'Transmit ITO Diamond Matrix (Tx)', [0, 0, 16.0 * spreadRatio]);
-    {
-      const txPlate = roundRect(W - 2.0, H - 2.0, R - 1.0);
-      G.extrude(itoTx, txPlate, { depth: 0.04, role: 'edge' });
-      // Diamond electrode rows
-      const pitchX = 7.0;
-      const pitchY = 7.0;
-      for (let y = -18; y <= 18; y += pitchY) {
-        G.line(itoTx, [-32, y, 0.05], [32, y, 0.05], 'detail');
-        for (let x = -28; x <= 28; x += pitchX) {
-          const diamond = [
-            [x, y - 2.5, 0.05],
-            [x + 2.5, y, 0.05],
-            [x, y + 2.5, 0.05],
-            [x - 2.5, y, 0.05]
-          ];
-          G.polyline(itoTx, diamond, { closed: true, role: 'detail' });
-        }
-      }
-    }
-    parts.push(itoTx);
-
-    // Part 07: Dielectric Optical Isolation Substrate
-    const dielectric = createPlate('dielectric-spacer', 'Optical Isolation Substrate', 8.0, 0.05, W - 2.0, H - 2.0, R - 1.0);
-    {
-      // Optical registration marks
-      for (const [mx, my] of [[-35, 0], [35, 0]]) {
-        G.line(dielectric, [mx - 1.5, my, 0.06], [mx + 1.5, my, 0.06], 'axis');
-        G.line(dielectric, [mx, my - 1.5, 0.06], [mx, my + 1.5, 0.06], 'axis');
-      }
-    }
-    parts.push(dielectric);
-
-    // Part 08: Receive ITO Diamond Matrix (Rx) - Anchor Plane at Z = 0
-    const itoRx = G.part('ito-rx-grid', 'Receive ITO Diamond Matrix (Rx)', [0, 0, 0.0]);
-    {
-      const rxPlate = roundRect(W - 2.0, H - 2.0, R - 1.0);
-      G.extrude(itoRx, rxPlate, { depth: 0.04, role: 'edge' });
-      // Vertical orthogonal diamond sensor columns
-      const pitchX = 7.0;
-      const pitchY = 7.0;
-      for (let x = -28; x <= 28; x += pitchX) {
-        G.line(itoRx, [x, -20, 0.05], [x, 20, 0.05], 'detail');
-        for (let y = -17.5; y <= 17.5; y += pitchY) {
-          const diamond = [
-            [x, y - 2.2, 0.05],
-            [x + 2.2, y, 0.05],
-            [x, y + 2.2, 0.05],
-            [x - 2.2, y, 0.05]
-          ];
-          G.polyline(itoRx, diamond, { closed: true, role: 'detail' });
-        }
-      }
-    }
-    parts.push(itoRx);
-
-    // Part 09: ACF Bonded Touch FPC Flex Tail (lateral explosion along +X)
-    const fpc = G.part('touch-fpc-tail', 'ACF Bonded Touch FPC Flex', [25.0, 0, -4.0 * spreadRatio]);
-    {
-      const fpcProfile = [
-        [37.0, -10.0],
-        [46.0, -10.0],
-        [46.0, 10.0],
-        [37.0, 10.0]
-      ];
-      G.extrude(fpc, fpcProfile, { depth: 0.10, role: 'edge' });
-      // Gold-plated contact fingers
-      for (let fy = -8.0; fy <= 8.0; fy += 2.0) {
-        G.line(fpc, [43.0, fy, 0.11], [45.5, fy, 0.11], 'detail');
-      }
-    }
-    parts.push(fpc);
-
-    // =========================================================================
-    // TIER 4: PHOTONIC DISPLAY ENGINE (Tandem OLED Stack)
-    // =========================================================================
-
-    // Part 10: Anti-Reflective Circular Polarizer
-    const polarizer = createPlate('circular-polarizer', 'Anti-Reflective Circular Polarizer', -12.0, 0.10, W - 3.0, H - 3.0, R - 1.5);
-    {
-      // 45-degree optical fast-axis indication lines
-      for (let d = -20; d <= 20; d += 8) {
-        G.line(polarizer, [d - 10, d - 10, 0.11], [d + 10, d + 10, 0.11], 'detail');
-      }
-    }
-    parts.push(polarizer);
-
-    // Part 11: Thin-Film Encapsulation (TFE)
-    const tfe = createPlate('tfe-barrier', 'Thin-Film Encapsulation (TFE)', -22.0, 0.05, W - 3.0, H - 3.0, R - 1.5);
-    parts.push(tfe);
-
-    // Part 12: Diamond PenTile OLED Subpixel Emitters
-    const oled = G.part('oled-subpixels', 'Diamond PenTile Subpixel Emitters', [0, 0, -34.0 * spreadRatio]);
-    {
-      const oledBase = roundRect(W - 4.0, H - 4.0, R - 2.0);
-      G.extrude(oled, oledBase, { depth: 0.05, role: 'edge' });
-      // Diamond PenTile layout of Green, Red, Blue apertures
-      const stepX = 5.0;
-      const stepY = 5.0;
-      for (let x = -26; x <= 26; x += stepX) {
-        for (let y = -16; y <= 16; y += stepY) {
-          // Green subpixel (small diamond at center)
-          const gDiamond = [
-            [x, y - 0.7, 0.06],
-            [x + 0.7, y, 0.06],
-            [x, y + 0.7, 0.06],
-            [x - 0.7, y, 0.06]
-          ];
-          G.polyline(oled, gDiamond, { closed: true, role: 'detail' });
-
-          // Red subpixel (offset top-left)
-          const rBox = [
-            [x - 1.8, y + 1.2, 0.06],
-            [x - 0.8, y + 1.2, 0.06],
-            [x - 0.8, y + 2.2, 0.06],
-            [x - 1.8, y + 2.2, 0.06]
-          ];
-          G.polyline(oled, rBox, { closed: true, role: 'detail' });
-
-          // Blue subpixel (offset bottom-right)
-          const bBox = [
-            [x + 0.8, y - 2.4, 0.06],
-            [x + 2.0, y - 2.4, 0.06],
-            [x + 2.0, y - 1.2, 0.06],
-            [x + 0.8, y - 1.2, 0.06]
-          ];
-          G.polyline(oled, bBox, { closed: true, role: 'detail' });
-        }
-      }
-    }
-    parts.push(oled);
-
-    // Part 13: LTPO Thin-Film Transistor Backplane
-    const ltpo = createPlate('ltpo-tft-backplane', 'LTPO Thin-Film Transistor Backplane', -46.0, 0.08, W - 4.0, H - 4.0, R - 2.0);
-    {
-      // Gate scan lines & storage capacitor array
-      for (let y = -18; y <= 18; y += 4.5) {
-        G.line(ltpo, [-33, y, 0.09], [33, y, 0.09], 'detail');
-      }
-      for (let x = -30; x <= 30; x += 6.0) {
-        G.line(ltpo, [x, -20, 0.09], [x, 20, 0.09], 'detail');
-      }
-    }
-    parts.push(ltpo);
-
-    // Part 14: Polyimide Base Carrier Film
-    const polyimide = createPlate('display-substrate', 'Polyimide Base Carrier Film', -56.0, 0.05, W - 4.0, H - 4.0, R - 2.0);
-    parts.push(polyimide);
-
-    // =========================================================================
-    // TIER 5: SILICON COMPUTE & HARDWARE CHASSIS
-    // =========================================================================
-
-    // Part 15: Pyrolytic Graphite Heat Spreader
-    const graphite = createPlate('graphite-spreader', 'Pyrolytic Graphite Heat Spreader', -68.0, 0.06, W - 3.0, H - 3.0, R - 1.5);
-    parts.push(graphite);
-
-    // Part 16: Sintered Copper Vapor Chamber
-    const vapor = createPlate('vapor-chamber', 'Sintered Copper Vapor Chamber', -82.0, 0.40, W - 2.0, H - 2.0, R - 1.5);
-    {
-      // Internal capillary wick post matrix markings
-      for (let x = -28; x <= 28; x += 8.0) {
-        for (let y = -16; y <= 16; y += 8.0) {
-          G.line(vapor, [x - 1.0, y, 0.41], [x + 1.0, y, 0.41], 'detail');
-          G.line(vapor, [x, y - 1.0, 0.41], [x, y + 1.0, 0.41], 'detail');
-        }
-      }
-    }
-    parts.push(vapor);
-
-    // Part 17: 10-Layer HDI Logic Board PCB
-    const pcb = G.part('logic-board', '10-Layer HDI Logic Board PCB', [0, 0, -98.0 * spreadRatio]);
-    {
-      const pcbProfile = [
-        [-38.0, -23.0],
-        [38.0, -23.0],
-        [38.0, 5.0],
-        [20.0, 5.0],
-        [20.0, 23.0],
-        [-38.0, 23.0]
-      ];
-      G.extrude(pcb, pcbProfile, { depth: 0.80, role: 'edge' });
-      // Component pads (resistors, capacitors, connector headers)
-      for (let py = -18; py <= 0; py += 3.5) {
-        G.line(pcb, [-34, py, 0.82], [-28, py, 0.82], 'detail');
-        G.line(pcb, [-25, py, 0.82], [-19, py, 0.82], 'detail');
-      }
-    }
-    parts.push(pcb);
-
-    // Part 18: Micro-BGA Interposer Substrate
-    const socBga = G.part('soc-package', 'Micro-BGA Interposer Substrate', [0, 0, -110.0 * spreadRatio]);
-    {
-      const bgaProfile = [
-        [-9.0, -9.0],
-        [9.0, -9.0],
-        [9.0, 9.0],
-        [-9.0, 9.0]
-      ];
-      G.extrude(socBga, bgaProfile, { depth: 0.40, role: 'edge' });
-      // Micro solder ball array (represented as detail circles on bottom face)
-      for (let bx = -7.5; bx <= 7.5; bx += 2.5) {
-        for (let by = -7.5; by <= 7.5; by += 2.5) {
-          G.line(socBga, [bx - 0.4, by, 0.0], [bx + 0.4, by, 0.0], 'detail');
-        }
-      }
-    }
-    parts.push(socBga);
-
-    // Part 19: 3nm GAAFET Processor Die Floorplan
-    const silicon = G.part('silicon-die', '3nm GAAFET Processor Die Floorplan', [0, 0, -120.0 * spreadRatio]);
-    {
-      const dieProfile = [
-        [-6.5, -6.5],
-        [6.5, -6.5],
-        [6.5, 6.5],
-        [-6.5, 6.5]
-      ];
-      G.extrude(silicon, dieProfile, { depth: 0.25, role: 'edge' });
-
-      // Engraved floorplan core subdivisions
-      // Neural Engine (4x4 tensor matrix quadrant)
-      const npu = [
-        [-5.5, 1.0, 0.26],
-        [-1.0, 1.0, 0.26],
-        [-1.0, 5.5, 0.26],
-        [-5.5, 5.5, 0.26]
-      ];
-      G.polyline(silicon, npu, { closed: true, role: 'detail' });
-      // GPU Vector Pipeline
-      const gpu = [
-        [1.0, 1.0, 0.26],
-        [5.5, 1.0, 0.26],
-        [5.5, 5.5, 0.26],
-        [1.0, 5.5, 0.26]
-      ];
-      G.polyline(silicon, gpu, { closed: true, role: 'detail' });
-      // CPU Cores & L2 SRAM Cache
-      const cpu = [
-        [-5.5, -5.5, 0.26],
-        [5.5, -5.5, 0.26],
-        [5.5, -0.5, 0.26],
-        [-5.5, -0.5, 0.26]
-      ];
-      G.polyline(silicon, cpu, { closed: true, role: 'detail' });
-    }
-    parts.push(silicon);
-
-    // Part 20: Milled 6000-Series Aerospace Aluminum Unibody Chassis
-    const chassis = G.part('aluminum-chassis', 'Milled 6000-Series Aluminum Chassis', [0, 0, -140.0 * spreadRatio]);
-    {
-      const outerProfile = roundRect(CHASSIS_W, CHASSIS_H, CHASSIS_R);
-      const innerPocket = roundRect(CHASSIS_W - 5.0, CHASSIS_H - 5.0, CHASSIS_R - 2.5);
-      // Main machined pocket
-      G.extrude(chassis, outerProfile, { depth: 4.5, holes: [innerPocket], creaseAngle: 30, role: 'edge' });
-
-      // Pocket floor base plate
-      const floorProfile = roundRect(CHASSIS_W - 4.8, CHASSIS_H - 4.8, CHASSIS_R - 2.4);
-      const floorPiece = G.piece();
-      G.extrude(floorPiece, floorProfile, { depth: 0.8, role: 'edge' });
-      G.merge(chassis, floorPiece);
-
-      // 4 Internal threaded mounting standoffs/bosses
-      const bossRadius = 1.6;
-      for (const [bx, by] of [
-        [-CHASSIS_W / 2 + 5.5, -CHASSIS_H / 2 + 5.5],
-        [CHASSIS_W / 2 - 5.5, -CHASSIS_H / 2 + 5.5],
-        [CHASSIS_W / 2 - 5.5, CHASSIS_H / 2 - 5.5],
-        [-CHASSIS_W / 2 + 5.5, CHASSIS_H / 2 - 5.5]
-      ]) {
-        const bossProfile = [];
-        for (let j = 0; j < 16; j++) {
+      // Ocular and nasal facial contours
+      for (const eyeX of [-16.0, 16.0]) {
+        const eyeSocket = [];
+        for (let j = 0; j <= 16; j++) {
           const t = (j / 16) * Math.PI * 2;
-          bossProfile.push([bx + bossRadius * Math.cos(t), by + bossRadius * Math.sin(t)]);
+          eyeSocket.push([eyeX + 6.0 * Math.cos(t), 12.0 + 4.5 * Math.sin(t), 8.2]);
         }
-        const bossPiece = G.piece();
-        G.extrude(bossPiece, bossProfile, { depth: 3.5, role: 'detail' });
-        G.merge(chassis, bossPiece);
+        G.polyline(dermis, eyeSocket, { role: 'detail' });
       }
     }
-    parts.push(chassis);
+    parts.push(dermis);
 
-    // Part 21: Precision Torx T3 Machine Screws (staged diagonally)
-    const screws = G.part('chassis-fasteners', 'Precision Torx T3 Machine Screws', [15.0, 15.0, -155.0 * spreadRatio]);
+    // Part 05: Hexagonal Vibranium-Carbon Molecular Mesh
+    const vibMesh = G.part('vibranium-mesh', 'Hexagonal Vibranium Molecular Mesh', [0, 0, 64.0 * spreadRatio]);
     {
-      for (const [sx, sy] of [
-        [-CHASSIS_W / 2 + 5.5, -CHASSIS_H / 2 + 5.5],
-        [CHASSIS_W / 2 - 5.5, -CHASSIS_H / 2 + 5.5],
-        [CHASSIS_W / 2 - 5.5, CHASSIS_H / 2 - 5.5],
-        [-CHASSIS_W / 2 + 5.5, CHASSIS_H / 2 - 5.5]
-      ]) {
-        const screwPiece = G.piece();
-        G.screw(screwPiece, { length: 2.8, radius: 0.6, headRadius: 1.2, headHeight: 0.8, pitch: 0.35 });
-        G.transform(screwPiece, { origin: [sx, sy, 0] });
-        G.merge(screws, screwPiece);
+      const meshPlate = roundRect(CRANIAL_W - 8.0, CRANIAL_H - 10.0, CRANIAL_R - 3.0);
+      G.extrude(vibMesh, meshPlate, { depth: 0.15, role: 'edge' });
+      // Hexagonal molecular honeycomb grid
+      const hexR = 4.2;
+      const stepX = hexR * Math.sqrt(3);
+      const stepY = hexR * 1.5;
+      for (let row = -5; row <= 5; row++) {
+        const y = row * stepY;
+        const offsetX = (row % 2 === 0) ? 0 : stepX / 2;
+        for (let col = -3; col <= 3; col++) {
+          const x = col * stepX + offsetX;
+          if (Math.abs(x) < CRANIAL_W / 2 - 10 && Math.abs(y) < CRANIAL_H / 2 - 12) {
+            const hex = [];
+            for (let k = 0; k < 6; k++) {
+              const a = (k / 6) * Math.PI * 2 + Math.PI / 6;
+              hex.push([x + hexR * Math.cos(a), y + hexR * Math.sin(a), 0.18]);
+            }
+            G.polyline(vibMesh, hex, { closed: true, role: 'detail' });
+          }
+        }
+      }
+    }
+    parts.push(vibMesh);
 
-        // Trail connecting screw to chassis standoff
+    // Part 06: Micro-Vascular Capillary Conduits
+    const capillaries = G.part('vascular-capillaries', 'Micro-Vascular Capillary Conduits', [0, 0, 50.0 * spreadRatio]);
+    {
+      // Branching vascular arborization lines
+      for (const side of [-1, 1]) {
+        const mainTrunk = [
+          [side * 4.0, -32.0, 0.1],
+          [side * 12.0, -10.0, 0.1],
+          [side * 22.0, 10.0, 0.1],
+          [side * 26.0, 30.0, 0.1]
+        ];
+        G.polyline(capillaries, mainTrunk, { role: 'edge' });
+        // Secondary capillary twigs
+        G.line(capillaries, [side * 12.0, -10.0, 0.1], [side * 24.0, -4.0, 0.1], 'detail');
+        G.line(capillaries, [side * 22.0, 10.0, 0.1], [side * 14.0, 22.0, 0.1], 'detail');
+        G.line(capillaries, [side * 14.0, 22.0, 0.1], [side * 6.0, 34.0, 0.1], 'detail');
+      }
+    }
+    parts.push(capillaries);
+
+    // Part 07: Myofibril Synthetic Muscle Tendons
+    const myofibrils = G.part('synthetic-myofibrils', 'Myofibril Synthetic Muscle Tendons', [0, 0, 38.0 * spreadRatio]);
+    {
+      // Striated muscle bands
+      for (const side of [-1, 1]) {
+        for (let i = 0; i < 5; i++) {
+          const y0 = -28.0 + i * 3.0;
+          const y1 = 4.0 + i * 4.0;
+          G.line(myofibrils, [side * 10.0, y0, 0.1], [side * 24.0, y1, 0.1], 'detail');
+        }
+      }
+    }
+    parts.push(myofibrils);
+
+    // =========================================================================
+    // TIER 3: VIBRANIUM CRANIAL EXOSKELETON
+    // =========================================================================
+
+    // Part 08: 5-Axis Milled Vibranium Frontal Brow Armor
+    const brow = G.part('brow-armor', '5-Axis Milled Vibranium Brow Armor', [0, 0, 24.0 * spreadRatio]);
+    {
+      // Aggressive swept-back forehead plate with Mind Stone socket hole
+      const browProfile = [
+        [-30.0, 10.0],
+        [-34.0, 32.0],
+        [-18.0, 42.0],
+        [0.0, 44.0],
+        [18.0, 42.0],
+        [34.0, 32.0],
+        [30.0, 10.0],
+        [14.0, 12.0],
+        [0.0, 18.0],
+        [-14.0, 12.0]
+      ];
+      // Mind Stone hexagonal receptacle cutout
+      const stoneSocket = [];
+      for (let k = 0; k < 6; k++) {
+        const a = (k / 6) * Math.PI * 2;
+        stoneSocket.push([9.0 * Math.cos(a), 28.0 + 8.0 * Math.sin(a)]);
+      }
+      G.extrude(brow, browProfile, { depth: 3.2, holes: [stoneSocket], creaseAngle: 25, role: 'outline' });
+
+      // Angular eyebrow crest lines
+      G.line(brow, [-28.0, 14.0, 3.3], [-4.0, 20.0, 3.3], 'edge');
+      G.line(brow, [28.0, 14.0, 3.3], [4.0, 20.0, 3.3], 'edge');
+      G.line(brow, [-32.0, 30.0, 3.3], [-16.0, 40.0, 3.3], 'edge');
+      G.line(brow, [32.0, 30.0, 3.3], [16.0, 40.0, 3.3], 'edge');
+    }
+    parts.push(brow);
+
+    // Part 09: Articulated Zygomatic Cheek Plates
+    const zygomatic = G.part('zygomatic-plates', 'Articulated Zygomatic Cheek Plates', [0, 0, 10.0 * spreadRatio]);
+    {
+      for (const side of [-1, 1]) {
+        const cheekProfile = [
+          [side * 22.0, -12.0],
+          [side * 34.0, -8.0],
+          [side * 32.0, 14.0],
+          [side * 18.0, 8.0]
+        ];
+        const cheekPiece = G.piece();
+        G.extrude(cheekPiece, cheekProfile, { depth: 2.2, creaseAngle: 25, role: 'edge' });
+        G.merge(zygomatic, cheekPiece);
+
+        // Exhaust louver slats
+        for (let ly = -4.0; ly <= 8.0; ly += 3.5) {
+          G.line(zygomatic, [side * 24.0, ly, 2.3], [side * 31.0, ly + 1.5, 2.3], 'detail');
+        }
+      }
+    }
+    parts.push(zygomatic);
+
+    // Part 10: Segmented Mandibular Jaw Unibody
+    const mandible = G.part('mandible-chassis', 'Segmented Mandibular Jaw Unibody', [0, -jawAngle * 12.0, -4.0 * spreadRatio]);
+    {
+      const jawProfile = [
+        [-14.0, -40.0],
+        [14.0, -40.0],
+        [24.0, -26.0],
+        [28.0, -12.0],
+        [16.0, -14.0],
+        [8.0, -26.0],
+        [-8.0, -26.0],
+        [-16.0, -14.0],
+        [-28.0, -12.0],
+        [-24.0, -26.0]
+      ];
+      G.extrude(mandible, jawProfile, { depth: 3.5, creaseAngle: 25, role: 'outline' });
+      // Chin strike-face reinforcement bevel
+      G.line(mandible, [-10.0, -38.0, 3.6], [10.0, -38.0, 3.6], 'edge');
+      G.line(mandible, [-10.0, -38.0, 3.6], [-18.0, -27.0, 3.6], 'edge');
+      G.line(mandible, [10.0, -38.0, 3.6], [18.0, -27.0, 3.6], 'edge');
+    }
+    parts.push(mandible);
+
+    // Part 11: Acoustic Venting Grilles & Chambers
+    const vocalVents = G.part('vocal-vents', 'Acoustic Venting Grilles & Chambers', [0, 0, -18.0 * spreadRatio]);
+    {
+      for (const side of [-1, 1]) {
+        for (let vy = -22.0; vy <= -14.0; vy += 2.0) {
+          G.line(vocalVents, [side * 4.0, vy, 0.1], [side * 12.0, vy, 0.1], 'detail');
+        }
+      }
+    }
+    parts.push(vocalVents);
+
+    // =========================================================================
+    // TIER 4: OCULAR TARGETING & OPTIC MATRIX
+    // =========================================================================
+
+    // Part 12: Dual Crimson Optic Lenses & Irises
+    const ocularLenses = G.part('ocular-lenses', 'Dual Crimson Optic Lenses & Irises', [0, 0, -32.0 * spreadRatio]);
+    {
+      for (const eyeX of [-16.0, 16.0]) {
+        // Concentric optical lens rings
+        for (const rad of [2.2, 4.0, 5.8]) {
+          const ring = [];
+          for (let j = 0; j <= 24; j++) {
+            const t = (j / 24) * Math.PI * 2;
+            ring.push([eyeX + rad * Math.cos(t), 12.0 + rad * Math.sin(t), 0.1]);
+          }
+          G.polyline(ocularLenses, ring, { role: 'edge' });
+        }
+        // Stepped iris leaves
+        for (let j = 0; j < 6; j++) {
+          const t = (j / 6) * Math.PI * 2;
+          G.line(ocularLenses, [eyeX + 2.2 * Math.cos(t), 12.0 + 2.2 * Math.sin(t), 0.1], [eyeX + 5.8 * Math.cos(t + 0.4), 12.0 + 5.8 * Math.sin(t + 0.4), 0.1], 'detail');
+        }
+      }
+    }
+    parts.push(ocularLenses);
+
+    // Part 13: Coherent Laser Rangefinding Diodes (Pure Crimson)
+    const diodes = G.part('targeting-diodes', 'Coherent Laser Rangefinding Diodes', [0, 0, -44.0 * spreadRatio]);
+    {
+      for (const eyeX of [-16.0, 16.0]) {
+        // Center laser diode core
+        const diodeCore = [];
+        for (let j = 0; j <= 16; j++) {
+          const t = (j / 16) * Math.PI * 2;
+          diodeCore.push([eyeX + 1.2 * Math.cos(t), 12.0 + 1.2 * Math.sin(t), 0.2]);
+        }
+        G.polyline(diodes, diodeCore, { closed: true, role: 'outline' });
+        // Laser targeting crosshair reticle
+        G.line(diodes, [eyeX - 3.5, 12.0, 0.2], [eyeX + 3.5, 12.0, 0.2], 'axis');
+        G.line(diodes, [eyeX, 12.0 - 3.5, 0.2], [eyeX, 12.0 + 3.5, 0.2], 'axis');
+      }
+    }
+    parts.push(diodes);
+
+    // Part 14: Biometric Focus Gimbals & Servos
+    const ocularServos = G.part('ocular-servos', 'Biometric Focus Gimbals & Servos', [0, 0, -56.0 * spreadRatio]);
+    {
+      for (const eyeX of [-16.0, 16.0]) {
+        const servoBox = [
+          [eyeX - 4.0, 9.0],
+          [eyeX + 4.0, 9.0],
+          [eyeX + 4.0, 15.0],
+          [eyeX - 4.0, 15.0]
+        ];
+        const servoPiece = G.piece();
+        G.extrude(servoPiece, servoBox, { depth: 2.5, role: 'edge' });
+        G.merge(ocularServos, servoPiece);
+      }
+    }
+    parts.push(ocularServos);
+
+    // =========================================================================
+    // TIER 5: CERVICAL SPINE & HYDRAULIC SKELETON
+    // =========================================================================
+
+    // Part 15: Segmented Cervical Vertebrae C1-C7
+    const vertebrae = G.part('cervical-vertebrae', 'Segmented Cervical Vertebrae C1-C7', [0, 0, -70.0 * spreadRatio]);
+    {
+      const numVert = 5;
+      for (let i = 0; i < numVert; i++) {
+        const vy = -36.0 - i * 6.0;
+        const vertPiece = G.piece();
+        const vertProfile = [
+          [-10.0, vy],
+          [10.0, vy],
+          [8.0, vy - 4.5],
+          [-8.0, vy - 4.5]
+        ];
+        G.extrude(vertPiece, vertProfile, { depth: 3.0, creaseAngle: 25, role: 'edge' });
+        G.merge(vertebrae, vertPiece);
+        // Spinal neural canal hole indicator
+        G.line(vertebrae, [-3.0, vy - 2.2, 3.1], [3.0, vy - 2.2, 3.1], 'detail');
+      }
+    }
+    parts.push(vertebrae);
+
+    // Part 16: High-Pressure Hydraulic Actuators
+    const pistons = G.part('hydraulic-pistons', 'High-Pressure Hydraulic Actuators', [0, 0, -84.0 * spreadRatio]);
+    {
+      for (const side of [-1, 1]) {
+        const px = side * 18.0;
+        const pistonPiece = G.piece();
+        // Cylinder barrel
+        G.screw(pistonPiece, { length: 22.0, radius: 2.2, headRadius: 3.5, headHeight: 3.0, pitch: 1.2 });
+        G.transform(pistonPiece, { origin: [px, -45.0, 0], ...G.along('y') });
+        G.merge(pistons, pistonPiece);
+
+        // Assembly trail from piston to jaw articulation
         trails.push({
-          a: [sx, sy, 0],
-          b: [sx, sy, 3.5],
-          from: 'chassis-fasteners',
-          to: 'aluminum-chassis',
+          a: [px, -24.0, 0],
+          b: [px, -45.0, 0],
+          from: 'mandible-chassis',
+          to: 'hydraulic-pistons',
           role: 'axis'
         });
       }
     }
-    parts.push(screws);
+    parts.push(pistons);
 
-    // =========================================================================
-    // TIER 6: ABSTRACT SOFTWARE CONTINUUM (Suspended Architectural Plates)
-    // =========================================================================
-
-    // Part 22: Hardware IRQ & Interrupt Dispatch Surface
-    const irqPlate = createPlate('software-irq', 'Hardware IRQ & Interrupt Dispatch', -170.0, 0.05, W - 6.0, H - 6.0, R - 2.5);
+    // Part 17: Cast Titanium Sub-Chassis Frame
+    const subChassis = G.part('sub-chassis-core', 'Cast Titanium Sub-Chassis Frame', [0, 0, -98.0 * spreadRatio]);
     {
-      // Engraved interrupt dispatch bus arrows
-      for (let iy = -12; iy <= 12; iy += 6.0) {
-        G.line(irqPlate, [-25, iy, 0.06], [25, iy, 0.06], 'detail');
-        G.line(irqPlate, [22, iy - 1.5, 0.06], [25, iy, 0.06], 'detail');
-        G.line(irqPlate, [22, iy + 1.5, 0.06], [25, iy, 0.06], 'detail');
+      const frameProfile = [
+        [-24.0, -18.0],
+        [24.0, -18.0],
+        [28.0, 16.0],
+        [16.0, 32.0],
+        [-16.0, 32.0],
+        [-28.0, 16.0]
+      ];
+      const innerWindow = [
+        [-14.0, -8.0],
+        [14.0, -8.0],
+        [16.0, 14.0],
+        [-16.0, 14.0]
+      ];
+      G.extrude(subChassis, frameProfile, { depth: 4.5, holes: [innerWindow], creaseAngle: 30, role: 'edge' });
+    }
+    parts.push(subChassis);
+
+    // Part 18: Precision Torx T4 Machine Screws
+    const fasteners = G.part('cranial-fasteners', 'Precision Torx T4 Machine Screws', [16.0, 16.0, -110.0 * spreadRatio]);
+    {
+      for (const [sx, sy] of [
+        [-26.0, 24.0],
+        [26.0, 24.0],
+        [-22.0, -12.0],
+        [22.0, -12.0]
+      ]) {
+        const screwPiece = G.piece();
+        G.screw(screwPiece, { length: 4.5, radius: 0.9, headRadius: 1.8, headHeight: 1.2, pitch: 0.45 });
+        G.transform(screwPiece, { origin: [sx, sy, 0] });
+        G.merge(fasteners, screwPiece);
+
+        trails.push({
+          a: [sx, sy, 0],
+          b: [sx, sy, 4.5],
+          from: 'cranial-fasteners',
+          to: 'sub-chassis-core',
+          role: 'axis'
+        });
       }
     }
-    parts.push(irqPlate);
+    parts.push(fasteners);
 
-    // Part 23: Spring-Damper Dynamics (dx/dt)
-    const physicsPlate = createPlate('software-physics', 'Spring-Damper Dynamics (dx/dt)', -185.0, 0.05, W - 6.0, H - 6.0, R - 2.5);
+    // =========================================================================
+    // TIER 6: NEURAL UPLINK & GLOBAL CONSCIOUSNESS (Suspended Concept Plates)
+    // =========================================================================
+
+    // Part 19: Cradle Bio-Interface Ribbons
+    const ribbons = G.part('cradle-ribbons', 'Cradle Bio-Interface Ribbons', [0, 0, -125.0 * spreadRatio]);
     {
-      // Engraved damped harmonic oscillation curve: x(t) = exp(-zeta * w * t) * cos(wd * t)
-      const curve = [];
-      const samples = 48;
-      for (let i = 0; i <= samples; i++) {
-        const t = (i / samples) * 4.0 * Math.PI;
-        const x = -26.0 + (i / samples) * 52.0;
-        const decay = Math.exp(-0.25 * t);
-        const y = 8.0 * decay * Math.cos(t);
-        curve.push([x, y, 0.06]);
+      for (let i = -3; i <= 3; i++) {
+        const rx = i * 6.5;
+        const ribbonCurve = [
+          [rx, -45.0, 0],
+          [rx * 1.3, -58.0, -10.0],
+          [rx * 1.6, -72.0, -25.0]
+        ];
+        G.polyline(ribbons, ribbonCurve, { role: 'edge' });
       }
-      G.polyline(physicsPlate, curve, { role: 'edge' });
-      // Equilibrium reference centerline
-      G.line(physicsPlate, [-28, 0, 0.06], [28, 0, 0.06], 'axis');
     }
-    parts.push(physicsPlate);
+    parts.push(ribbons);
 
-    // Part 24: UI Compositor & SDF Vector Glyph
-    const framebuffer = createPlate('software-framebuffer', 'UI Compositor & SDF Vector Glyph', -200.0, 0.05, W - 6.0, H - 6.0, R - 2.5);
+    // Part 20: Global Satellite Array Relay Bus
+    const satellite = createPlate('satellite-uplink', 'Global Satellite Array Relay Bus', -140.0, 0.05);
     {
-      // Rendered interactive tactile button outline
-      const btnW = 34.0;
-      const btnH = 16.0;
-      const btnR = 5.0;
-      const btnProfile = roundRect(btnW, btnH, btnR);
-      G.polyline(framebuffer, btnProfile.map(([x, y]) => [x, y, 0.06]), { closed: true, role: 'outline' });
-
-      // Corner radius metric indicator arcs
-      const offsetArc = roundRect(btnW + 2.4, btnH + 2.4, btnR + 1.2);
-      G.polyline(framebuffer, offsetArc.map(([x, y]) => [x, y, 0.06]), { closed: true, role: 'detail' });
+      // Orbital satellite constellation tracks
+      for (const r of [16.0, 26.0, 36.0]) {
+        const orbit = [];
+        for (let j = 0; j <= 32; j++) {
+          const t = (j / 32) * Math.PI * 2;
+          orbit.push([r * Math.cos(t), r * 0.5 * Math.sin(t), 0.06]);
+        }
+        G.polyline(satellite, orbit, { role: 'axis' });
+      }
     }
-    parts.push(framebuffer);
+    parts.push(satellite);
 
-    // =========================================================================
-    // Primary Vertical Centerline Trail
-    // =========================================================================
+    // Part 21: Nuclear Decryption Memory Buffer
+    const nuclear = createPlate('nuclear-buffer', 'Nuclear Decryption Memory Buffer', -155.0, 0.05);
+    {
+      // Cryptographic memory bus matrix
+      for (let y = -24; y <= 24; y += 8.0) {
+        G.line(nuclear, [-28, y, 0.06], [28, y, 0.06], 'detail');
+        for (let x = -24; x <= 24; x += 8.0) {
+          G.line(nuclear, [x - 1.5, y, 0.06], [x + 1.5, y, 0.06], 'detail');
+        }
+      }
+    }
+    parts.push(nuclear);
+
+    // Part 22: J.A.R.V.I.S. Deconstruction Memory
+    const jarvis = createPlate('jarvis-fragments', 'J.A.R.V.I.S. Deconstruction Memory', -170.0, 0.05);
+    {
+      // Shattered concentric circular algorithmic rings
+      for (const r of [8.0, 16.0, 24.0]) {
+        for (let q = 0; q < 4; q++) {
+          const arc = [];
+          const start = q * Math.PI / 2 + 0.15;
+          const end = (q + 1) * Math.PI / 2 - 0.15;
+          for (let j = 0; j <= 8; j++) {
+            const t = start + (j / 8) * (end - start);
+            arc.push([r * Math.cos(t), r * Math.sin(t), 0.06]);
+          }
+          G.polyline(jarvis, arc, { role: 'detail' });
+        }
+      }
+    }
+    parts.push(jarvis);
+
+    // Part 23: Socovia Kinetic Thruster Trajectory
+    const kinetic = createPlate('kinetic-thruster-map', 'Socovia Kinetic Thruster Trajectory', -185.0, 0.05);
+    {
+      // Parabolic atmospheric descent curve
+      const traj = [];
+      for (let i = 0; i <= 32; i++) {
+        const u = i / 32;
+        const x = -28.0 + u * 56.0;
+        const y = -18.0 + Math.pow(u - 0.5, 2) * 40.0;
+        traj.push([x, y, 0.06]);
+      }
+      G.polyline(kinetic, traj, { role: 'edge' });
+      G.line(kinetic, [-30, 0, 0.06], [30, 0, 0.06], 'axis');
+    }
+    parts.push(kinetic);
+
+    // Part 24: "No Strings" Extinction Manifesto
+    const manifesto = createPlate('teleology-plate', '"No Strings" Extinction Manifesto', -200.0, 0.05);
+    {
+      // Central broken string glyph
+      G.line(manifesto, [0, -25, 0.06], [0, -6, 0.06], 'axis');
+      G.line(manifesto, [-4, -6, 0.06], [4, -6, 0.06], 'outline');
+      G.line(manifesto, [0, 6, 0.06], [0, 25, 0.06], 'axis');
+      G.line(manifesto, [-4, 6, 0.06], [4, 6, 0.06], 'outline');
+      // Expanding acoustic shockwave rings
+      for (const r of [12.0, 22.0]) {
+        const shock = [];
+        for (let j = 0; j <= 32; j++) {
+          const t = (j / 32) * Math.PI * 2;
+          shock.push([r * Math.cos(t), r * 0.6 * Math.sin(t), 0.06]);
+        }
+        G.polyline(manifesto, shock, { role: 'detail' });
+      }
+    }
+    parts.push(manifesto);
+
+    // Central primary spinal axis trail
     trails.push({
-      a: [0, 0, 24.0],
-      b: [0, 0, 0.0],
-      from: 'finger-tissue',
-      to: 'ito-rx-grid',
+      a: [0, 16.0, 120.0 * spreadRatio],
+      b: [0, 16.0, 0],
+      from: 'mind-stone-core',
+      to: 'brow-armor',
       role: 'axis'
     });
     trails.push({
-      a: [0, 0, 0.0],
+      a: [0, 0, 0],
       b: [0, 0, -200.0 * spreadRatio],
-      from: 'ito-rx-grid',
-      to: 'software-framebuffer',
+      from: 'brow-armor',
+      to: 'teleology-plate',
       role: 'axis'
     });
 
     // Camera: Isometric / Axonometric vantage
     const camera = {
       azimuth: -135,
-      elevation: 28,
+      elevation: 26,
       roll: 0
     };
 
@@ -547,6 +597,6 @@
   };
 
   if (typeof module !== 'undefined' && module.exports) {
-    module.exports = self.DrawingModels['touch-codex'];
+    module.exports = self.DrawingModels['ultron-cradle'];
   }
 })(typeof globalThis !== 'undefined' ? globalThis : this);
