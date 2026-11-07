@@ -2,6 +2,7 @@
   "name": "touch-codex",
   "version": "1.0.0",
   "description": "ULTRON // IN THE FLESH: The Cradle of Sentience (Living Cybernetic Experience)",
+  "type": "module",
   "scripts": {
     "build": "node build-scene.js",
     "build:viewer": "node tools/teardown/scripts/build-viewer.cjs drawing.json dist/viewer.html",
