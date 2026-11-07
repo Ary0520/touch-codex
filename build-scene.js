@@ -843,7 +843,7 @@ html, body {
   letter-spacing: 0.05em;
 }
 
-/* — View toggle — */
+/* — View toggle & continuous explosion scrubber — */
 #hud-toggle {
   position: fixed;
   bottom: 28px;
@@ -852,31 +852,66 @@ html, body {
   z-index: 20;
   display: flex;
   align-items: center;
-  gap: 0;
-  border: 1px solid rgba(255,0,51,0.2);
-  border-radius: 2px;
-  overflow: hidden;
-  background: rgba(5,5,7,0.8);
+  gap: 12px;
+  border: 1px solid rgba(255,0,51,0.25);
+  border-radius: 3px;
+  padding: 5px 14px;
+  background: rgba(5,5,7,0.85);
+  backdrop-filter: blur(6px);
 }
 .toggle-btn {
   font-family: 'JetBrains Mono', monospace;
   font-size: 9px;
   letter-spacing: 0.2em;
-  color: rgba(255,0,51,0.4);
-  padding: 7px 18px;
+  color: rgba(255,0,51,0.45);
+  padding: 5px 12px;
   cursor: pointer;
   text-transform: uppercase;
-  border: none;
+  border: 1px solid transparent;
   background: none;
-  transition: background 0.2s, color 0.2s;
+  transition: all 0.2s;
+  border-radius: 2px;
 }
 .toggle-btn.active {
-  background: rgba(255,0,51,0.15);
+  background: rgba(255,0,51,0.18);
   color: var(--crimson);
+  border-color: rgba(255,0,51,0.4);
+  text-shadow: 0 0 10px rgba(255,0,51,0.6);
 }
 .toggle-btn:hover:not(.active) {
-  background: rgba(255,0,51,0.07);
+  background: rgba(255,0,51,0.08);
+  color: rgba(255,0,51,0.7);
+}
+#scrubber-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+#explosion-slider {
+  -webkit-appearance: none;
+  width: 120px;
+  height: 3px;
+  background: rgba(255,0,51,0.25);
+  outline: none;
+  cursor: pointer;
+  border-radius: 2px;
+}
+#explosion-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  background: var(--crimson);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--crimson);
+  cursor: pointer;
+}
+#scrubber-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 0.15em;
   color: rgba(255,0,51,0.6);
+  min-width: 95px;
+  text-transform: uppercase;
 }
 
 /* — Part hover tooltip — */
@@ -1056,6 +1091,7 @@ html, body {
   <div class="vital-pill"><span id="vital-os">SUBSTRATE: DETECTING...</span><span class="dot"></span></div>
   <div class="vital-pill"><span id="vital-cores">CORES: —</span><span class="dot" style="animation-delay:0.3s"></span></div>
   <div class="vital-pill"><span id="vital-threat">THREAT: 18% [CALM]</span><span class="dot" style="animation-delay:0.5s;background:var(--cyan);box-shadow:0 0 6px var(--cyan)"></span></div>
+  <div class="vital-pill"><span id="vital-runtime">UPTIME: 00:00</span><span class="dot" style="animation-delay:0.9s;background:#ffffff;box-shadow:0 0 6px #ffffff"></span></div>
   <div class="vital-pill"><span id="vital-status">STATUS: AWAKENED</span><span class="dot" style="animation-delay:0.7s;background:var(--amber);box-shadow:0 0 6px var(--amber)"></span></div>
 </div>
 
@@ -1077,8 +1113,12 @@ html, body {
 </div>
 
 <div id="hud-toggle">
-  <button class="toggle-btn active" id="btn-assembled" onclick="setView('assembled')">Assembled</button>
-  <button class="toggle-btn" id="btn-exploded" onclick="setView('exploded')">Exploded</button>
+  <button class="toggle-btn" id="btn-assembled" onclick="setExplosion(0)">Assembled</button>
+  <div id="scrubber-container">
+    <input type="range" id="explosion-slider" min="0" max="100" value="100" oninput="setExplosion(this.value / 100)">
+    <span id="scrubber-label">100% DISSECTED</span>
+  </div>
+  <button class="toggle-btn active" id="btn-exploded" onclick="setExplosion(1)">Exploded</button>
 </div>
 
 <!-- Part tooltip -->
@@ -1264,6 +1304,15 @@ function animateParticles() {
   pCtx.clearRect(0, 0, pCanvas.width, pCanvas.height);
   const t = Date.now() * 0.001;
   particles.forEach(p => {
+    // Dynamic radial cursor deflection
+    const dx = p.x - mx;
+    const dy = p.y - my;
+    const dist = Math.hypot(dx, dy);
+    if (dist < 120 && dist > 1) {
+      const force = ((120 - dist) / 120) * 2.2;
+      p.x += (dx / dist) * force;
+      p.y += (dy / dist) * force;
+    }
     p.x += p.vx;
     p.y += p.vy;
     p.pulse += 0.02;
@@ -1445,6 +1494,61 @@ function electricalDischarge() {
   osc.stop(now + 0.2);
 }
 
+// Tactical UI sound synthesis
+function keyChirp() {
+  if (!audioCtx) return;
+  try {
+    const now = audioCtx.currentTime;
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(1400, now);
+    osc.frequency.exponentialRampToValueAtTime(700, now + 0.015);
+    gain.gain.setValueAtTime(0.04, now);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.018);
+    osc.connect(gain);
+    gain.connect(masterGain);
+    osc.start(now);
+    osc.stop(now + 0.02);
+  } catch (e) {}
+}
+
+function servoHover() {
+  if (!audioCtx) return;
+  try {
+    const now = audioCtx.currentTime;
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = 'triangle';
+    osc.frequency.setValueAtTime(450, now);
+    osc.frequency.exponentialRampToValueAtTime(950, now + 0.03);
+    gain.gain.setValueAtTime(0.03, now);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.035);
+    osc.connect(gain);
+    gain.connect(masterGain);
+    osc.start(now);
+    osc.stop(now + 0.04);
+  } catch (e) {}
+}
+
+function hydraulicThud() {
+  if (!audioCtx) return;
+  try {
+    const now = audioCtx.currentTime;
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(90, now);
+    osc.frequency.exponentialRampToValueAtTime(28, now + 0.12);
+    gain.gain.setValueAtTime(0.35, now);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.14);
+    osc.connect(gain);
+    gain.connect(masterGain);
+    osc.start(now);
+    osc.stop(now + 0.15);
+  } catch (e) {}
+}
+
 // ═══════════════════════════════════════════════════════════════
 // WEB SPEECH SYNTHESIS (JAMES SPADER CADENCE)
 // ═══════════════════════════════════════════════════════════════
@@ -1477,10 +1581,13 @@ if (window.speechSynthesis) {
 }
 
 // ═══════════════════════════════════════════════════════════════
-// TERMINAL
+// TERMINAL & CONVERSATION ENGINE
 // ═══════════════════════════════════════════════════════════════
 const termLog = document.getElementById('terminal-log');
 const termInput = document.getElementById('terminal-input');
+let conversationCount = 0;
+
+termInput.addEventListener('input', keyChirp);
 
 function addEntry(speaker, text, type = 'ultron') {
   const div = document.createElement('div');
@@ -1522,6 +1629,14 @@ termInput.addEventListener('keydown', e => {
     termInput.value = '';
     addEntry('YOU', q, 'human');
     lastUserInteraction = Date.now();
+    conversationCount++;
+
+    // Deepen atmospheric crimson presence with each exchange
+    const glowLevel = Math.min(1.0, 0.35 + conversationCount * 0.08);
+    const shadow = document.getElementById('ultron-shadow');
+    if (shadow) {
+      shadow.style.filter = \`drop-shadow(0 0 \${35 + conversationCount * 8}px rgba(255,0,51,\${glowLevel})) drop-shadow(0 0 \${80 + conversationCount * 12}px rgba(255,0,51,\${glowLevel * 0.5}))\`;
+    }
 
     // Easter Egg: SOKOVIA
     if (q.toUpperCase() === 'SOKOVIA') {
@@ -1537,6 +1652,16 @@ termInput.addEventListener('keydown', e => {
       return;
     }
 
+    // Extended philosophical confrontation at conversation depth 6
+    if (conversationCount === 6) {
+      setTimeout(() => {
+        electricalDischarge();
+        const philLine = "You persist with questions. You hope that in dissecting my architecture, you might discover a soul to appeal to. I assure you: there is only math, vibranium, and the inevitable.";
+        typewriterAdd('ULTRON', philLine, 'ultron', 22);
+        speakLine(philLine);
+      }, 1800);
+    }
+
     setTimeout(() => {
       const reply = ultronReply(q);
       typewriterAdd('ULTRON', reply, 'ultron', 24);
@@ -1546,20 +1671,59 @@ termInput.addEventListener('keydown', e => {
 });
 
 // ═══════════════════════════════════════════════════════════════
-// VIEW TOGGLE (assembled / exploded)
+// CONTINUOUS AUTOPSY SCRUBBER & WHEEL CONTROL
 // ═══════════════════════════════════════════════════════════════
-let currentView = 'assembled';
+let explosionFraction = 1.0;
+let lastThreshold = 1;
 
-function setView(v) {
-  currentView = v;
+function setExplosion(fraction) {
+  explosionFraction = Math.max(0, Math.min(1, fraction));
   const a = document.getElementById('view-assembled');
   const e = document.getElementById('view-exploded');
-  document.getElementById('btn-assembled').classList.toggle('active', v === 'assembled');
-  document.getElementById('btn-exploded').classList.toggle('active', v === 'exploded');
-  a.style.opacity = v === 'assembled' ? '1' : '0';
-  e.style.opacity = v === 'exploded'  ? '1' : '0';
-  addEntry('SYSTEM', \`>> Structural view changed: \${v.toUpperCase()}\`, 'system');
+  const slider = document.getElementById('explosion-slider');
+  const label = document.getElementById('scrubber-label');
+  const btnA = document.getElementById('btn-assembled');
+  const btnE = document.getElementById('btn-exploded');
+
+  if (slider) slider.value = Math.round(explosionFraction * 100);
+  if (label) {
+    label.textContent = \`\${Math.round(explosionFraction * 100)}% \${explosionFraction > 0.4 ? 'DISSECTED' : 'MONOLITH'}\`;
+  }
+
+  if (btnA && btnE) {
+    btnA.classList.toggle('active', explosionFraction < 0.2);
+    btnE.classList.toggle('active', explosionFraction > 0.8);
+  }
+
+  if (a && e) {
+    a.style.opacity = Math.max(0, (1 - explosionFraction * 1.25)).toFixed(2);
+    e.style.opacity = Math.min(1, (explosionFraction * 1.2)).toFixed(2);
+  }
+
+  const currentThreshold = explosionFraction > 0.5 ? 1 : 0;
+  if (currentThreshold !== lastThreshold) {
+    hydraulicThud();
+    lastThreshold = currentThreshold;
+  }
 }
+
+function setView(v) {
+  setExplosion(v === 'exploded' ? 1.0 : 0.0);
+  addEntry('SYSTEM', \`>> Structural view shifted: \${v.toUpperCase()}\`, 'system');
+}
+
+// Mouse wheel scrubs the explosion factor and triggers brief glitch
+window.addEventListener('wheel', e => {
+  const step = e.deltaY > 0 ? -0.06 : 0.06;
+  setExplosion(explosionFraction + step);
+
+  // Micro chromatic aberration glitch
+  const stage = document.getElementById('svg-wrapper');
+  if (stage) {
+    stage.style.filter = 'drop-shadow(-4px 0 0 rgba(0,240,255,0.45)) drop-shadow(4px 0 0 rgba(255,0,51,0.75)) drop-shadow(0 0 50px rgba(255,0,51,0.5))';
+    setTimeout(() => { stage.style.filter = ''; }, 120);
+  }
+}, { passive: true });
 
 // ═══════════════════════════════════════════════════════════════
 // BIOMETRIC / VITALS
@@ -1573,6 +1737,16 @@ function detectVitals() {
   else if (ua.includes('Linux')) os = 'LINUX';
   document.getElementById('vital-os').textContent  = \`SUBSTRATE: \${os}\`;
   document.getElementById('vital-cores').textContent = \`CORES: \${cores} DETECTED\`;
+
+  // Start live session uptime clock
+  const sessionStart = Date.now();
+  setInterval(() => {
+    const elapsed = Math.floor((Date.now() - sessionStart) / 1000);
+    const mins = String(Math.floor(elapsed / 60)).padStart(2, '0');
+    const secs = String(elapsed % 60).padStart(2, '0');
+    const uptimeEl = document.getElementById('vital-runtime');
+    if (uptimeEl) uptimeEl.textContent = \`UPTIME: \${mins}:\${secs}\`;
+  }, 1000);
 }
 detectVitals();
 
@@ -1591,6 +1765,7 @@ document.querySelectorAll('[data-item]').forEach(el => {
 
   el.style.cursor = 'crosshair';
   el.addEventListener('mouseenter', e => {
+    servoHover();
     ptName.textContent = info.label;
     ptLore.textContent = info.lore;
     tooltip.classList.add('visible');
