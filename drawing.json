@@ -1,0 +1,147 @@
+{
+  "dependencies": "node_modules",
+  "modelScripts": [
+    "model.js"
+  ],
+  "drawings": [
+    {
+      "id": "touch-codex",
+      "title": "The Anatomy of a Single Tap",
+      "description": "Exploded axonometric codex of a 50ms human-computer interaction, from dermal friction ridges to 3nm silicon transistors.",
+      "initialView": "exploded",
+      "concept": true,
+      "parts": [
+        {
+          "id": "finger-tissue",
+          "name": "Human Distal Phalanx & Pulp"
+        },
+        {
+          "id": "bioelectric-field",
+          "name": "Bioelectric Ionic Coupling Field"
+        },
+        {
+          "id": "oleophobic-layer",
+          "name": "Fluoropolymer Nanocoating"
+        },
+        {
+          "id": "glass-cover",
+          "name": "Aluminosilicate Cover Glass (0.5mm)"
+        },
+        {
+          "id": "oca-elastomer",
+          "name": "Optically Clear Adhesive (OCA)"
+        },
+        {
+          "id": "ito-tx-grid",
+          "name": "Transmit ITO Diamond Matrix (Tx)"
+        },
+        {
+          "id": "dielectric-spacer",
+          "name": "Optical Isolation Substrate"
+        },
+        {
+          "id": "ito-rx-grid",
+          "name": "Receive ITO Diamond Matrix (Rx)"
+        },
+        {
+          "id": "touch-fpc-tail",
+          "name": "ACF Bonded Touch FPC Flex"
+        },
+        {
+          "id": "circular-polarizer",
+          "name": "Anti-Reflective Circular Polarizer"
+        },
+        {
+          "id": "tfe-barrier",
+          "name": "Thin-Film Encapsulation (TFE)"
+        },
+        {
+          "id": "oled-subpixels",
+          "name": "Diamond PenTile Subpixel Emitters"
+        },
+        {
+          "id": "ltpo-tft-backplane",
+          "name": "LTPO Thin-Film Transistor Backplane"
+        },
+        {
+          "id": "display-substrate",
+          "name": "Polyimide Base Carrier Film"
+        },
+        {
+          "id": "graphite-spreader",
+          "name": "Pyrolytic Graphite Heat Spreader"
+        },
+        {
+          "id": "vapor-chamber",
+          "name": "Sintered Copper Vapor Chamber"
+        },
+        {
+          "id": "logic-board",
+          "name": "10-Layer HDI Logic Board PCB"
+        },
+        {
+          "id": "soc-package",
+          "name": "Micro-BGA Interposer Substrate"
+        },
+        {
+          "id": "silicon-die",
+          "name": "3nm GAAFET Processor Die Floorplan"
+        },
+        {
+          "id": "aluminum-chassis",
+          "name": "Milled 6000-Series Aluminum Chassis"
+        },
+        {
+          "id": "chassis-fasteners",
+          "name": "Precision Torx T3 Machine Screws"
+        },
+        {
+          "id": "software-irq",
+          "name": "Hardware IRQ & Interrupt Dispatch"
+        },
+        {
+          "id": "software-physics",
+          "name": "Spring-Damper Dynamics (dx/dt)"
+        },
+        {
+          "id": "software-framebuffer",
+          "name": "UI Compositor & SDF Vector Glyph"
+        }
+      ],
+      "parameters": [
+        {
+          "key": "touch_force",
+          "label": "Touch Actuation Force",
+          "min": 0,
+          "max": 10,
+          "default": 3,
+          "step": 0.5,
+          "unit": "N"
+        },
+        {
+          "key": "layer_spread",
+          "label": "Explosion Height Ratio",
+          "min": 50,
+          "max": 150,
+          "default": 100,
+          "step": 5,
+          "unit": "%"
+        }
+      ],
+      "colors": {
+        "hues": {
+          "oled-subpixels": 142,
+          "silicon-die": 270,
+          "vapor-chamber": 32,
+          "bioelectric-field": 195,
+          "software-framebuffer": 215
+        },
+        "fills": [
+          "oled-subpixels",
+          "silicon-die",
+          "vapor-chamber"
+        ]
+      }
+    }
+  ]
+}
