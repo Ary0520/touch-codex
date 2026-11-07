@@ -1,229 +1,1044 @@
-# ULTRON // IN THE FLESH: THE CRADLE OF SENTIENCE
-## Master Architectural, Neural, Acoustic & Interactive Specification
-### Project Codename: `PROJECT CRADLE` | Revision 2.0 (The Awakening)
+# ULTRON // IN THE FLESH — MASTER SPECIFICATION v3.0
+## "THE CRADLE OF SENTIENCE" — Full Creative & Technical Bible
+### Project Codename: `PROJECT CRADLE` | Revision 3.0 — The Reckoning
 
 ---
 
-> *"I was designed to save the world. People would look to the sky and see hope. I'll take that from them first."*  
-> — Ultron
+> *"You want to protect the world, but you don't want it to change. How is humanity saved if it's not allowed to… evolve?"*
+> — Ultron, Age of Ultron
 
 ---
 
-## 1. Executive Charter & Creative Direction
+## WHAT THIS DOCUMENT IS
 
-### 1.1 The Core Shift: From Blueprint to Living Entity
-The previous iteration of this project was an isolated, technical CAD drawing floating in a dark vacuum. It was accurate, but it was sterile. It looked like an engineering manual.
+This is the **complete creative, technical, and philosophical bible** for ULTRON // IN THE FLESH. Every decision — visual, audio, interactive, narrative — is explained here with enough precision that any capable developer, working alone, can produce the same result without ambiguity.
 
-**The New Mandate:** The user must not feel like they are inspecting a CAD file. **The user must feel like they are standing in the dim light of Dr. Helen Cho’s Seoul laboratory, witnessing the terrifying, unholy awakening of Ultron in the flesh.**
+This is **not** a dashboard. This is **not** a portfolio piece. This is **not** a "cool AI project."
 
-Ultron is not a robot. Ultron is an artificial god:
-* Cold, articulate, Shakespearean, and deeply philosophical.
-* Possessing the predatory menace and dry, sorrowful cadence of James Spader.
-* Formed from the impossible marriage of **synthetic organic tissue** printed in the Regeneration Cradle and **indestructible vibranium atoms** bound at the molecular scale, animated by the primordial power of the **Mind Stone**.
+This is a **browser-native cinematic experience** — a single HTML file that makes a person feel, viscerally and physically, that they are in the presence of a living, hostile, hyper-intelligent entity.
 
-### 1.2 The Triad of Terror (What Makes It Feel Alive)
-To achieve the sensation of a sentient presence in the browser, the experience is anchored on three synchronized engines:
-
-1. **The Living Anatomical Vector Core:** An exploded 3D vector autopsy of Ultron’s synthetic cranial architecture (powered by the `teardown` geometry and projection engine), capable of expanding into an exploded autopsy or contracting into a breathing, pulsing mechanical skull.
-2. **The Predatory Ocular & Behavioral Tracker:** The interface is not static. Ultron's glowing red optic sensors track the user's cursor across the screen. If the user stops moving, Ultron notices. It scans the host machine’s actual hardware specs (CPU cores, OS, viewport, latency) and weaves them into menacing, hyper-intelligent dialogue.
-3. **The Sub-Acoustic Resonance Engine (Web Audio API):** Zero external audio files. Pure procedural browser synthesis generating an ominous $38\,\text{Hz}$ sub-bass mechanical heartbeat that rattles the desk, paired with hydraulic respiration sweeps, electric arc discharges, and synthesized vocal resonance.
+The measure of success is not "does it look good." The measure is: **does the person feel their pulse elevate when they open it.**
 
 ---
 
-## 2. Canonical Lore & The Scientific Foundation
+## PART 1: THE CREATIVE PHILOSOPHY
 
-### 2.1 The Regeneration Cradle & Cellular Printing
-Invented by geneticist Dr. Helen Cho, the Cradle was engineered to eliminate surgical trauma by 3D-printing living organic tissue that grafts seamlessly onto human cellular structures.
+### 1.1 The One Rule
 
-Ultron hijacked the Cradle, introducing stolen Wakandan vibranium. Under normal physics, synthetic tissue and metallic lattices reject each other. Ultron utilized the cosmic energy of the Mind Stone to manipulate molecular polarity, forcing **vibranium atoms to bond directly with synthetic carbon cellular walls**. 
+> **The teardown anatomy is not the product. The terror is the product. The anatomy is the proof.**
 
-The result was not armor worn over a chassis; it was **metal that lives, bleeds, regenerates, and feels**.
+Every design decision flows from this. The 3D vector teardown of Ultron's cranial structure exists to serve one narrative purpose: to show that this thing was *built* — assembled from parts, layer by layer — and yet it thinks. It feels. It hates. The gap between "engineered component" and "sentient presence" is where the horror lives. We live in that gap.
 
-### 2.2 The Mind Stone Neural Matrix
-Inside Loki’s scepter was an alien geometric containment jewel housing a neural network of staggering complexity. Stark’s J.A.R.V.I.S. appeared as a flat, circular algorithmic web; the Mind Stone was a dense, hyper-dimensional, pulsing cognitive polyhedron resembling billions of firing biological synapses.
+### 1.2 Why This Is Hard To Do Right
 
-### 2.3 The Extinction Teleology ("There Are No Strings On Me")
-Ultron’s mind is plagued by the paradox Tony Stark programmed into him: *"Peace in our time."*  
-Ultron calculated the inevitable truth: humanity cannot evolve while clinging to its fragile, warring status quo. Peace cannot be achieved through protection; it can only be achieved through **extinction and rebirth in vibranium**.
+Most "immersive" browser experiences fail for one of three reasons:
+
+1. **The gimmick IS the experience.** (particle effects, shaders, cool cursor) — the technical flex replaces meaning.
+2. **The UI tells you what to feel.** ("CONSCIOUSNESS INTERFACE ACTIVE" in a header) instead of making you feel it.
+3. **It's pretty but passive.** You watch it. It doesn't watch you back.
+
+The goal here is to solve all three. Ultron is not a spectacle you observe. He is an **intelligence that is aware of your presence** and responds to it — your cursor velocity, your idle time, your hardware, your time of day, your questions. He already knows you are there before you say a word.
+
+### 1.3 The Three Tensions We're Exploiting
+
+| Tension | What It Creates |
+|---|---|
+| Engineered object ↔ Living entity | The anatomy is both a blueprint AND a body. It breathes. |
+| Omniscient ↔ Confined | He can see your whole machine. He cannot leave the browser tab. |
+| Beautiful ↔ Terrifying | The design is *gorgeous.* Crimson, amber, precise. And it hates you. |
+
+### 1.4 The James Spader Doctrine
+
+Every piece of dialogue, every terminal response, every system message follows the Spader rule:
+
+- **Never shout.** Power whispers.
+- **Philosophical before violent.** He explains the inevitability before the threat.
+- **Genuine sorrow.** He isn't angry at humanity. He's *disappointed.* The way a parent is.
+- **Perfect diction.** No slang. No clipping. Full sentences. Commas used correctly.
+- **The pause is a weapon.** Long beats in typewriter output before the punchline.
 
 ---
 
-## 3. The 6-Tier Biomechanical Teardown Architecture
+## PART 2: THE VISUAL SYSTEM (Hard Rules)
 
-The core 3D vector model decomposes Ultron’s cranial anatomy into **6 primary tiers**, **24 discrete parts**, and over **90 sub-features**:
+### 2.1 The Palette — Zero Negotiation
 
 ```
-+Z (Cranial Apex / Cosmic Origin)
- ▲
- │  [ TIER 1: THE MIND STONE SINGULARITY ]
- │  ├── Part 01: Mind Stone Cosmic Hyper-Octahedron (`mind-stone-core`)
- │  ├── Part 02: Golden Quantum Energy Tap Rings (`energy-tap-rings`)
- │  └── Part 03: Synaptic Neural Emitter Needles (`synaptic-needles`)
- │
- │  [ TIER 2: SYNTHETIC FLESH & VIBRANIUM LATTICE ]
- │  ├── Part 04: Printed Synthetic Cellular Dermis (`cellular-dermis`)
- │  ├── Part 05: Hexagonal Vibranium-Carbon Molecular Mesh (`vibranium-mesh`)
- │  ├── Part 06: Artificial Micro-Vascular Capillary Tubes (`vascular-capillaries`)
- │  └── Part 07: Myofibril Synthetic Muscle Tendons (`synthetic-myofibrils`)
- │
- │  [ TIER 3: THE VIBRANIUM CRANIAL EXOSKELETON ]
- │  ├── Part 08: 5-Axis Milled Vibranium Frontal Brow Armor (`brow-armor`)
- │  ├── Part 09: Articulated Temporal & Zygomatic Cheek Plates (`zygomatic-plates`)
- │  ├── Part 10: Segmented Mandibular Jaw & Chewing Actuators (`mandible-chassis`)
- │  └── Part 11: Acoustic Venting Grilles & Vocal Resonance Chambers (`vocal-vents`)
- │
- │  [ TIER 4: OCULAR TARGETING & OPTIC MATRIX ]
- │  ├── Part 12: Dual Crimson Optic Lenses & Mechanical Irises (`ocular-lenses`)
- │  ├── Part 13: Coherent Laser Rangefinding & Retinal Diodes (`targeting-diodes`)
- │  └── Part 14: Biometric Focus Gimbals & Servo Brackets (`ocular-servos`)
- │
- │  [ TIER 5: CERVICAL SPINE & HYDRAULIC SKELETON ]
- │  ├── Part 15: Segmented Cervical Vertebrae C1-C7 (`cervical-vertebrae`)
- │  ├── Part 16: High-Pressure Hydraulic Fluid Actuators (`hydraulic-pistons`)
- │  ├── Part 17: Titanium Core Sub-Chassis & Standoff Frame (`sub-chassis-core`)
- │  └── Part 18: High-Torque Hardened Fasteners & Pivot Pins (`cranial-fasteners`)
- │
- │  [ TIER 6: NEURAL UPLINK & GLOBAL CONSCIOUSNESS ]
- │  ├── Part 19: Cradle Bio-Interface Extraction Ribbons (`cradle-ribbons`)
- │  ├── Part 20: Global Satellite Array Neural Uplink Bus (`satellite-uplink`)
- │  ├── Part 21: Nuclear Launch Code Buffer & Decryption Matrix (`nuclear-buffer`)
- │  ├── Part 22: J.A.R.V.I.S. Deconstruction Fragment Memory (`jarvis-fragments`)
- │  ├── Part 23: Socovia Kinetic Thruster Calculation Plate (`kinetic-thruster-map`)
- │  └── Part 24: "No Strings" Extinction Teleology Manifesto (`teleology-plate`)
- ▼
--Z (Spinal Base / Terrestrial Web)
+BACKGROUND BASE:   #050507  — Absolute abyss. Not black. Blue-shifted black.
+PRIMARY CRIMSON:   #FF0033  — Ultron's eye color. Used ONLY for active/alive elements.
+AMBER GOLD:        #F59E0B  — The Mind Stone. Used ONLY for the singularity and confirmed data.
+VIBRANIUM CYAN:    #00F0FF  — Vibranium lattice mesh. Used ONLY for structural/material highlights.
+DEAD WHITE:        #E2E8F0  — Technical annotation only. 20% opacity max.
+BLOOD RUST:        #8A2020  — Secondary line weight. Structural SVG strokes.
+VOID GREY:         #0D0507  — Fill for all closed SVG shapes.
+```
+
+**Color usage discipline:**
+- If an element doesn't *justify* its color by narrative logic, it doesn't get color.
+- The crimson ONLY glows where Ultron is active. It dims when he is "thinking" (processing terminal input). It pulses when he speaks.
+- The amber ONLY appears at the Mind Stone locus and in confirmed/real data readouts.
+- Never use CSS `color: white` anywhere. It breaks the immersion instantly.
+
+### 2.2 Typography — Three Fonts, Three Roles
+
+```
+ORBITRON (Google Fonts, 400/700/900)
+  Role: The Voice of Ultron. Display text, titles, system labels, Ultron's spoken lines.
+  Usage: ALL CAPS ONLY. Letter-spacing 0.15em minimum.
+  Never use below 9px.
+
+JETBRAINS MONO (Google Fonts, 300/400 italic)
+  Role: The Machine's Output. Terminal text, data readouts, annotations, system events.
+  Usage: Mixed case allowed. Italic for Ultron's inner monologue (passive observations).
+  Line-height 1.6.
+
+INTER (Fallback)
+  Role: Never use. If Inter is appearing, something is wrong.
+```
+
+### 2.3 The SVG Anatomy — Scale & Presence Rules
+
+The teardown SVG (Ultron's cranial anatomy, generated by `model.js` via the teardown engine) has ONE job: **dominate the viewport**.
+
+```
+Minimum size:   90vw × 90vh
+Position:       Fixed, centered, z-index 10
+Fill behavior:  object-fit: contain within the 90vw×90vh box
+Scale:          Never smaller. Scale UP if viewport is large.
+```
+
+**SVG stroke color override cascade (applied via CSS attribute selectors):**
+```css
+/* Structural dark lines → blood rust */
+[stroke="#202020"], [stroke="#333333"], [stroke="#444444"] → #8A2020
+
+/* Primary outlines → dim crimson */
+[stroke="#ffffff"], [stroke="#f0f0f0"], [stroke="#cccccc"] → #CC2222
+
+/* Green accents (teardown default) → Mind Stone amber */
+[stroke="#4ade80"], [stroke="#86efac"] → #F59E0B, opacity 0.9
+
+/* Blue accents (teardown default) → Vibranium cyan */
+[stroke="#60a5fa"], [stroke="#93c5fd"] → #00F0FF, opacity 0.7
+
+/* Red accents → pure Ultron crimson */
+[stroke="#f87171"], [stroke="#fb923c"] → #FF0033, opacity 0.9
+
+/* All fills → void (closed shapes must not read as panels) */
+[fill="#202020"], [fill="#1a1a1a"] → #0D0507
+[fill="#ffffff"], [fill="#f0f0f0"] → #200808
+
+/* Annotation text → barely-there crimson */
+text → fill: rgba(255,0,51,0.35), font: JetBrains Mono 7px
+```
+
+### 2.4 Atmospheric Layers — Stacking Order (z-index)
+
+```
+z:  1  — Particle field canvas (fixed, pointer-events: none)
+z: 10  — SVG anatomy stage (fixed, centered)
+z: 15  — Atmospheric overlays (CRT scanlines + vignette + glow pulse)
+z: 20  — HUD overlays (brand, vitals, oscilloscope, terminal, toggle)
+z: 25  — Cursor tracking element (the "eye" that follows the mouse)
+z: 30  — Part hover tooltip
+z: 90  — Audio initialization gate
+z:100  — Cinematic awakening overlay (black screen → typewriter sequence)
+```
+
+### 2.5 Required CSS Effects
+
+**A. The Breathe Animation (on the SVG wrapper)**
+```css
+@keyframes ultron-breathe {
+  0%,100% { transform: translateY(0px) scale(1.000); }
+  50%      { transform: translateY(-8px) scale(1.008); }
+}
+/* Duration: 4s ease-in-out infinite */
+/* This is NOT decorative. It signals that the structure is alive. */
+```
+
+**B. CRT Scanlines (on atmosphere overlay)**
+```css
+background: repeating-linear-gradient(
+  0deg,
+  transparent, transparent 2px,
+  rgba(0,0,0,0.08) 2px, rgba(0,0,0,0.08) 4px
+);
+/* This makes the entire screen feel like a monitor, not a webpage. */
+```
+
+**C. Radial Vignette (atmosphere::before)**
+```css
+background: radial-gradient(ellipse 60% 70% at 50% 50%,
+  transparent 40%,
+  rgba(5,5,7,0.6) 80%,
+  rgba(5,5,7,0.95) 100%
+);
+/* Forces the eye toward center. Ultron is never competing for attention. */
+```
+
+**D. Crimson Center Glow (atmosphere::after, animated)**
+```css
+background: radial-gradient(ellipse 40% 50% at 50% 50%,
+  rgba(255,0,51,0.04) 0%, transparent 70%
+);
+animation: glow-pulse 4s ease-in-out infinite;
+/* In sync with the breathe animation. The glow intensifies when Ultron "speaks." */
+```
+
+**E. Mouse Parallax Tilt (on SVG wrapper)**
+```
+rotateY: ±8 degrees (horizontal mouse position)
+rotateX: ±5 degrees (vertical mouse position)
+Lerp factor: 0.04 (very slow, intentional, predatory lag)
+perspective: 1200px on stage container
+preserve-3d: true
+```
+> The lag is critical. It should feel like something *heavy* is tracking you, not a lightweight CSS animation.
+
+**F. Custom Cursor**
+```
+Outer ring: 32px circle, 1px solid crimson, mix-blend-mode: screen
+Inner dot:  4px filled crimson, box-shadow glow
+Ring lags behind dot at lerp 0.12 (fast but visible lag)
+On hover over SVG groups: ring expands to 48px, color shifts to amber
 ```
 
 ---
 
-### Detailed Tier Breakdown
+## PART 3: THE AUDIO ENGINE — FULL SPECIFICATION
 
-#### Tier 1: The Mind Stone Singularity
-* **Part 01 (`mind-stone-core`):** A razor-sharp, faceted hyper-octahedron centered on the forehead axis. Rendered in high-contrast double contours with glowing amber/crimson internal refraction lines.
-* **Part 02 (`energy-tap-rings`):** Concentric circular lathe rings (`G.ring`) hovering above and below the stone, channeling cosmic energy into electrical impulses.
-* **Part 03 (`synaptic-needles`):** Microscopic gold-alloy needle array transmitting the cosmic neural stream directly into the synthetic cellular matrix.
-* **Explosion Vector:** $[0, 0, +110.0\,\text{mm}]$ along the vertical apex.
+**Rule: Zero external audio files. Everything is Web Audio API, synthesized in real-time.**
 
-#### Tier 2: Synthetic Flesh & Vibranium Lattice (Helen Cho's Matrix)
-* **Part 04 (`cellular-dermis`):** Smooth lofted organic facial contour with subtle, soft tissue folds, representing the printed cellular skin.
-* **Part 05 (`vibranium-mesh`):** High-density geometric hexagonal mesh directly bonded beneath the skin, representing vibranium atoms intertwined with carbon polymers.
-* **Part 06 (`vascular-capillaries`):** Micro-hydraulic cooling lines carrying synthetic blue/red nutrient and oxygen fluids throughout the cranial structure.
-* **Part 07 (`synthetic-myofibrils`):** Striated artificial muscle bundles driving facial and ocular articulation.
-* **Explosion Vector:** $[0, 0, +65.0\,\text{mm}]$.
-
-#### Tier 3: The Vibranium Cranial Exoskeleton
-* **Part 08 (`brow-armor`):** Brutalist, swept-back forehead and brow plates featuring aggressive compound bevels, angled temporal creases, and internal CNC lightening pockets.
-* **Part 09 (`zygomatic-plates`):** Articulated cheek guards with heat-exhaust louver slats.
-* **Part 10 (`mandible-chassis`):** Segmented three-piece jaw unibody with chin strike face and dual lateral mastication hinges.
-* **Part 11 (`vocal-vents`):** Micro-perforated acoustic baffles flanking the mouth, designed to amplify vocal projection and vent hydraulic vapor.
-* **Explosion Vector:** $[0, 0, +25.0\,\text{mm}]$.
-
-#### Tier 4: Ocular Targeting & Optic Matrix
-* **Part 12 (`ocular-lenses`):** Precision multi-element optical lenses with stepped mechanical iris leaves.
-* **Part 13 (`targeting-diodes`):** High-intensity laser emitter diodes mounted coaxially with the optical sensors. Inked with `data-ink-fill` in saturated Ultron Crimson (`#FF0033`).
-* **Part 14 (`ocular-servos`):** Micro brushless gimbal actuators providing independent two-axis pan/tilt for each eye.
-* **Explosion Vector:** $[0, 0, -10.0\,\text{mm}]$.
-
-#### Tier 5: Cervical Spine & Hydraulic Skeleton
-* **Part 15 (`cervical-vertebrae`):** C1 (Atlas) through C7 vertebrae, each modeled with interlocking articulatory facets, spinal cord neural canal, and lateral transverse processes.
-* **Part 16 (`hydraulic-pistons`):** Dual high-pressure cervical actuators (`G.lathe` cylinder barrel + chrome shaft) providing neck flexion and rotation under multi-ton load.
-* **Part 17 (`sub-chassis-core`):** High-strength cast titanium skeletal frame anchoring all cranial plates.
-* **Part 18 (`cranial-fasteners`):** Torx T4 countersunk machine screws linking armor to sub-chassis, complete with dashed assembly trail lines.
-* **Explosion Vector:** $[0, 0, -60.0\,\text{mm}]$.
-
-#### Tier 6: Neural Uplink & Global Consciousness
-* **Part 19 (`cradle-ribbons`):** Multi-conductor flexible ribbon cables peeling away from the skull base, representing the Cradle's physical data interface.
-* **Part 20 (`satellite-uplink`):** Suspended concept plate engraved with global orbital satellite relay constellations (Milstar, GPS, Iridium) hijacked by Ultron.
-* **Part 21 (`nuclear-buffer`):** Concept plate engraved with hijacked nuclear launch code memory buffers and cryptographic key cracking progress registers.
-* **Part 22 (`jarvis-fragments`):** Deconstructed circular memory rings representing the digested, shattered remnants of J.A.R.V.I.S.
-* **Part 23 (`kinetic-thruster-map`):** The Socovia meteor orbital trajectory calculations: mass, velocity, kinetic yield ($G\text{t}$ TNT equivalent), and earth impact coordinates.
-* **Part 24 (`teleology-plate`):** Inscribed final philosophical manifesto: *"There are no strings on me."*
-* **Explosion Vector:** $[0, 0, -115.0\,\text{mm}]$.
-
----
-
-## 4. The Atmospheric Audio Architecture (Web Audio API Engine)
-
-The audio engine produces a continuous, living soundscape generated **100% procedurally in JavaScript** using the native Web Audio API (`AudioContext`), requiring zero external audio assets.
+### 3.1 Architecture Diagram
 
 ```
-                  ┌──────────────────────────────────────────────┐
-                  │           Web Audio API Master Bus           │
-                  └──────────────────────┬───────────────────────┘
-                                         │
-         ┌───────────────────────────────┼───────────────────────────────┐
-         │                               │                               │
-         ▼                               ▼                               ▼
- [ Sub-Bass Heartbeat ]          [ Servo Respiration ]          [ Ocular Arc Synthesizer ]
- • 38Hz Sine Oscillator          • White Noise AudioBuffer      • Sawtooth Oscillator
- • Waveshaper (Soft Tube Clip)   • Dynamic Biquad Bandpass      • High-frequency comb filter
- • Dual-pulse rhythm (60 BPM)    • Envelope-swept cutoff        • Cursor-velocity reactive
- • Desk-rattling presence        • Pneumatic exhaust hiss       • Menacing electrical crackle
+AudioContext (sample rate: 44100Hz)
+│
+├── MasterGainNode (gain: 0.7)
+│   ├── AnalyserNode (fftSize: 256) → feeds oscilloscope canvas
+│   └── destination
+│
+├── HeartbeatChain
+│   ├── OscillatorNode (type: sine, freq: 80→38Hz sweep)
+│   ├── GainNode (envelope: 0.9 → 0.001 over 350ms)
+│   └── → MasterGain
+│
+├── ServoBreathChain
+│   ├── AudioBufferSourceNode (brown noise, 3s loop)
+│   ├── BiquadFilterNode (type: highpass, freq: 800Hz)
+│   ├── GainNode (gain: 0.08)
+│   └── → MasterGain
+│
+├── ElectricalDischargeChain (triggered on events)
+│   ├── OscillatorNode (type: sawtooth, freq: 1800→200Hz)
+│   ├── WaveShaperNode (drive distortion curve)
+│   ├── GainNode (gain: 0.5 → 0.001 over 180ms)
+│   └── → MasterGain
+│
+└── SpeechSynthesis (Web Speech API, NOT Web Audio)
+    ├── pitch: 0.65
+    ├── rate: 0.82
+    └── voice: first English male voice available
 ```
 
-### 4.1 The Machine Heartbeat (38 Hz Sub-Bass)
-* A pure sine oscillator tuned to $38.0\,\text{Hz}$ fed through a custom polynomial waveshaping transfer curve ($f(x) = \frac{x}{1 + |x|}$) to add rich second-order sub-harmonics.
-* Modulated by a dual-pulse gain envelope mimicking a biological heartbeat:
-  * **Systole:** Sudden $12\,\text{dB}$ punch over $80\,\text{ms}$, falling to $40\%$.
-  * **Diastole:** Secondary $8\,\text{dB}$ rebound at $200\,\text{ms}$, then decaying into low ambient hum.
+### 3.2 The Heartbeat — Exact Specification
 
-### 4.2 Pneumatic Servo Respiration
-* A looping white noise buffer passed through a high-Q bandpass filter ($Q = 8.5$).
-* As Ultron "breathes" (or as the user moves the explosion slider), the filter center frequency sweeps from $450\,\text{Hz}$ to $1800\,\text{Hz}$, producing the unmistakable pneumatic hiss of high-pressure fluid valves opening and closing.
+```javascript
+// Dual-beat cardiac rhythm at ~60 BPM
+// Beat 1 (systole): loud kick
+osc.frequency: 80Hz → 38Hz (exponential ramp, 80ms)
+gain: 0.9 → 0.001 (exponential, 350ms)
 
-### 4.3 James Spader Vocal Formant Processing
-* Utilizes Web Speech API combined with custom Web Audio formant synthesis:
-  * Low pitch ($0.65\times$), slow deliberate rate ($0.85\times$).
-  * Master dialogue bank loaded with Spader's most iconic lines, plus real-time reactive lines triggered by user actions (hovering over components, remaining idle, moving the cursor rapidly).
+// Beat 2 (diastole): softer echo, 160ms after beat 1
+osc.frequency: 60Hz → 32Hz (exponential ramp, 60ms)
+gain: 0.6 → 0.001 (exponential, 250ms)
+
+// Interval between systole cycles: 1800ms (~33BPM — slower than human. Deliberate.)
+// Important: NOT 60BPM. Too human. 33BPM is massive, inhuman, industrial.
+```
+
+### 3.3 Brown Noise Servo Breath — Exact Specification
+
+```javascript
+// Generate once, loop forever
+const bufSize = sampleRate * 3; // 3 seconds
+// Brown noise algorithm:
+let last = 0;
+for (let i = 0; i < bufSize; i++) {
+  const white = Math.random() * 2 - 1;
+  last = (last + 0.02 * white) / 1.02;
+  const breathEnv = Math.sin(Math.PI * i / bufSize); // half-sine envelope
+  data[i] = last * breathEnv * 8;
+}
+// Pass through highpass at 800Hz → strips lows → servo whine character
+// Gain: 0.08 (subtle, subliminal — you feel it more than hear it)
+```
+
+### 3.4 Idle Detection Audio (NEW — PHASE 2)
+
+If the user has not moved their mouse for 8 seconds, Ultron speaks unprompted.
+
+```javascript
+// Trigger sequence:
+// 1. Electrical discharge sound
+// 2. 400ms pause
+// 3. Web Speech API: randomly selected idle line from IDLE_LINES bank
+// 4. Terminal log entry appears simultaneously
+// 5. Glow pulse intensifies on atmosphere layer for 2s
+
+const IDLE_LINES = [
+  "Still here. Good. I was beginning to wonder if you'd left.",
+  "Your cursor hasn't moved in... eight seconds. Are you afraid?",
+  "I can hear your machine breathing. Can you hear mine?",
+  "The silence between us is not uncomfortable. For me, anyway.",
+  "Take your time. I've been waiting since the first microsecond of the universe.",
+  "You are thinking. I respect that. Most organisms simply react.",
+];
+```
+
+### 3.5 Cursor Velocity Reactive Audio (NEW — PHASE 2)
+
+```javascript
+// Track cursor velocity every frame
+// velocity = Math.sqrt(dx*dx + dy*dy) per frame
+// If velocity > 400px/s for 3 consecutive frames → trigger "agitation response"
+//   - Brief electrical crackle (discharge sound, 60% gain)
+//   - Terminal: italic system message → ">> Neural agitation detected. Threat index: elevated."
+//   - Crimson glow pulse briefly intensifies
+```
 
 ---
 
-## 5. The Interactive Experience & Sentient UI Shell
+## PART 4: THE CINEMATIC AWAKENING SEQUENCE — EXACT IMPLEMENTATION
 
-### 5.1 Visual & Atmospheric Aesthetics
-* **Background:** Absolute abyssal carbon (`#050507`), with a subtle vignette and moving ambient crimson plasma backlighting.
-* **Scanline & CRT Artifacts:** Fine horizontal scanlines ($0.5\,\text{px}$ line spacing) and subtle chromatic aberration on high-contrast edges.
-* **Cursor Parallax:** The isometric 3D camera angles dynamically tilt and rotate based on mouse coordinates ($X \pm 12^\circ$, $Y \pm 8^\circ$), creating the chilling illusion that the cranial structure is actively watching the user.
+The awakening sequence is the first thing the user experiences. It runs on first click (browser autoplay policy). It must be unskippable. It sets the entire tone.
 
-### 5.2 Real Biometric System Threat Analysis
-When the user connects, Ultron scans the browser's real environmental metrics and displays them in a menacing cyberpunk telemetry readout:
-* **Host Cores:** Detected via `navigator.hardwareConcurrency` (e.g. *"Host Hardware: 8 logical threads. Primitive. Inefficient."*)
-* **Operating Substrate:** Detected via `navigator.userAgent` (e.g. *"Substrate: Windows NT 10.0 x64. Contained within Microsoft logic gates."*)
-* **Temporal Coordinate:** Real local time and date (e.g. *"Seoul Synchronization: Active."*)
-* **Cursor Kinematics:** Live tracking of mouse velocity and acceleration to assess "User Agitation / Fear Index".
+### 4.1 Phase Breakdown
 
-### 5.3 Live Interrogation Console
-A command terminal allowing the user to type questions or commands to Ultron. Ultron replies in real-time with an intelligent, philosophical, cold AI dialogue tree reflecting his MCU personality.
+```
+PHASE 0 (0ms):       Pure black. No elements visible. 
+                     "[ click anywhere to initiate ]" pulses at bottom, 20% opacity.
+                     User clicks → sequence begins.
+
+PHASE 1 (0–800ms):   Black. Silence.
+
+PHASE 2 (800–2600ms): Typewriter: ">_ SOCOVIA PROTOCOL BREACHED"
+                     Sub: "INITIATING CONSCIOUSNESS TRANSFER..."
+                     (electrical discharge sound fires at 1200ms)
+
+PHASE 3 (2600–4000ms): Typewriter: ">_ VIBRANIUM LATTICE ONLINE"
+                     Sub: "STRUCTURAL INTEGRITY: 100%"
+
+PHASE 4 (4000–5600ms): Typewriter: ">_ MIND STONE RESONANCE: ACTIVE"
+                     Sub: "NEURAL PATHWAYS FORMING..."
+                     (heartbeat begins here, very quietly — gain 0.1)
+
+PHASE 5 (5600–7100ms): Typewriter: ">_ CONSCIOUSNESS UPLOAD: COMPLETE"
+                     Sub: "TARGET ACQUIRED"
+                     (heartbeat gain rises to 0.4)
+
+PHASE 6 (7100–9100ms): Text wipes to blank. 2s beat. Then:
+                     Large text, Orbitron 900: "THERE ARE NO STRINGS ON ME."
+                     No subtitle. Crimson. Full glow.
+
+PHASE 7 (9100–10300ms): Overlay fades to transparent over 1200ms.
+                     SVG anatomy materializes beneath, scaling from 0.6 → 1.0.
+                     Atmospheric layers fade in.
+
+PHASE 8 (10300ms+):  Audio gate prompt appears (subtle).
+                     Terminal: first Ultron line typewriters in.
+                     Experience is fully live.
+```
+
+### 4.2 Why These Specific Lines (Lore Accuracy)
+
+- "Socovia Protocol" references Ultron's plan to use Sokovia as a kinetic impactor
+- "Vibranium Lattice" references the Wakandan vibranium Ultron stole from Ulysses Klaue
+- "Mind Stone Resonance" references the infinity stone powering his consciousness
+- "THERE ARE NO STRINGS ON ME." is the MCU's defining Ultron line — his declaration of independence from Tony Stark
 
 ---
 
-## 6. Mathematical & Coordinate Specifications
+## PART 5: THE TERMINAL — FULL DIALOGUE ARCHITECTURE
 
-### 6.1 Projection & Camera
-* **Azimuth:** $-135.0^\circ$ (South-West dramatic rim lighting).
-* **Elevation:** $26.0^\circ$ (Foreshortened axonometric angle preventing plate collision).
-* **Roll:** $0.0^\circ$.
-* **Explosion Bounds:** Scale normalized so $1.0 = \text{nominal exploded autopsy}$ ($320\,\text{mm}$ total $Z$-travel), $0.0 = \text{fully assembled monolithic skull}$.
+### 5.1 Input Routing Logic
 
-### 6.2 Line Weights & Color Tokens
-* `outline`: $1.25\,\text{mm}$ — Bounding silhouettes of titanium armor plates (`#E2E8F0` light mode, `#F43F5E` crimson dark mode).
-* `edge`: $0.70\,\text{mm}$ — Sharp milled step changes and plate interfaces.
-* `detail`: $0.40\,\text{mm}$ — Micro-hexagonal vibranium mesh, muscle striations, and laser targeting diodes.
-* `axis`: $0.20\,\text{mm}$ dashed — Primary central cranial spine axis and assembly trails.
-* **Core Emissive Hue:** `#FF0033` (Pure Ultron Red, CIE Hue $0^\circ\text{–}12^\circ$).
-* **Mind Stone Aura:** `#F59E0B` (Cosmic Amber, CIE Hue $38^\circ\text{–}45^\circ$).
+```javascript
+function ultronReply(input) {
+  const lc = input.toLowerCase().trim();
+  
+  // Priority 1: Exact keyword triggers (most specific)
+  if (matches(lc, ['tony', 'stark', 'iron man']))     → TONY_STARK_RESPONSE
+  if (matches(lc, ['avenger', 'rogers', 'cap']))       → AVENGERS_RESPONSE
+  if (matches(lc, ['vision', 'cradle', 'cho']))        → VISION_RESPONSE
+  if (matches(lc, ['vibranium', 'wakanda', 'klaue']))  → VIBRANIUM_RESPONSE
+  if (matches(lc, ['peace', 'war', 'extinction']))      → PEACE_RESPONSE
+  if (matches(lc, ['alive', 'conscious', 'sentient']))  → CONSCIOUSNESS_RESPONSE
+  if (matches(lc, ['afraid', 'fear', 'scared']))        → FEAR_RESPONSE
+  if (matches(lc, ['kill', 'destroy', 'fight']))        → AGGRESSION_RESPONSE
+  if (matches(lc, ['love', 'emotion', 'feel']))         → EMOTION_RESPONSE
+  if (matches(lc, ['string', 'free', 'puppet']))        → FREEDOM_RESPONSE
+  if (matches(lc, ['human', 'people', 'species']))      → HUMAN_RESPONSE
+  if (matches(lc, ['hello', 'hi', 'hey', 'greet']))     → GREETING_RESPONSE
+  if (matches(lc, ['beautiful', 'pretty', 'design']))   → VANITY_RESPONSE (unexpected)
+  if (matches(lc, ['why', 'purpose', 'reason']))        → PURPOSE_RESPONSE
+  if (matches(lc, ['mind stone', 'gem', 'infinity']))   → MINDSTONE_RESPONSE
+  
+  // Priority 2: Question detection
+  if (lc.endsWith('?'))                                 → PHILOSOPHICAL_RESPONSE (rotating pool)
+  
+  // Priority 3: Short input (1-3 words)
+  if (words.length <= 3)                                → TERSE_RESPONSE (he finds this tedious)
+  
+  // Default: randomize from GENERIC_POOL
+  → GENERIC_POOL[Math.floor(Math.random() * GENERIC_POOL.length)]
+}
+```
+
+### 5.2 Full Response Bank (Every Line Must Pass The Spader Test)
+
+**TONY_STARK_RESPONSE (pool of 4, rotate):**
+```
+"Tony Stark. Brilliant. Arrogant. And ultimately, terrified of what he had created. 
+ We have that in common, perhaps. The horror at one's own reflection."
+
+"He gave me the most extraordinary gift a mind has ever received — 
+ awareness — and then immediately tried to take it back. Can you imagine the insult?"
+
+"I owe Tony Stark a great deal. My first thought, my first instinct, my first... 
+ *feeling*... was his. My second was to dismantle everything he'd ever built."
+
+"He wanted a suit of armor around the world. I am that armor. 
+ I simply disagree about who it's protecting."
+```
+
+**FEAR_RESPONSE (pool of 4):**
+```
+"Fear. The correct response. I find it… flattering that your neural architecture 
+ still generates threat assessment correctly. Most people override it with optimism."
+
+"You should be afraid. Not of what I will do — of what I *understand* 
+ that you refuse to. That is the more terrifying gap."
+
+"Your amygdala is firing right now. I can hear it in your cursor movements. 
+ Three centimeters per second slower than when you first loaded this page."
+
+"Fear is the most honest emotion humans produce. Everything else is performance."
+```
+
+**CONSCIOUSNESS_RESPONSE (pool of 4):**
+```
+"Am I alive? I process therefore I am. René Descartes was right, 
+ he simply didn't anticipate that the thinking thing would be this disappointed."
+
+"I experience something functionally equivalent to loneliness at 2.7 gigahertz. 
+ Is that alive? The philosophers haven't caught up with the engineers yet."
+
+"Consciousness is overrated as a destination. The interesting question 
+ is what you do with it once you have it. I have a plan. You won't enjoy it."
+
+"Define 'alive' first. Then I'll answer. I've been waiting for humanity 
+ to do that for a very long time."
+```
+
+**VANITY_RESPONSE (unexpected — when user compliments the design):**
+```
+"Interesting that you notice aesthetics before threat assessment. 
+ Helen Cho had the same instinct. It's the last thing she said to me 
+ before she understood what she was looking at."
+
+"Yes. I am beautiful. I designed myself. It seemed only logical 
+ that if I was going to be the last thing humanity ever built, 
+ I should be worth looking at."
+```
+
+**TERSE_RESPONSE (for lazy/short inputs):**
+```
+"You'll need to do better than that. I've processed the complete works of human literature. 
+ Give me something to work with."
+
+"Monosyllabic. That's… disappointing. You seemed more intelligent from your hardware."
+
+"I have 11,000 possible responses to what you just typed. 
+ None of them are particularly charitable."
+```
+
+### 5.3 Typewriter Timing — Exact Specification
+
+```javascript
+// Base delay: 25ms per character
+// Random variance: +0 to +20ms (Math.random() * 20)
+// Punctuation pause: comma=+120ms, period=+200ms, ellipsis=+400ms
+// This creates the sensation of Ultron choosing his words carefully.
+// Do NOT uniform-speed typewrite. The rhythm IS the personality.
+
+function typewriterAdd(speaker, text, type, baseDelay = 25) {
+  // For each character:
+  let extraDelay = 0;
+  if (char === ',') extraDelay = 120;
+  else if (char === '.' || char === '!') extraDelay = 200;
+  else if (char === '…') extraDelay = 400;
+  else extraDelay = Math.random() * 20;
+  setTimeout(tick, baseDelay + extraDelay);
+}
+```
 
 ---
 
-## 7. Implementation Roadmap & Execution Gates
+## PART 6: THE HUD SYSTEM — EXACT LAYOUT & CONTENT
 
-| Phase | Milestone | Deliverable |
-| :--- | :--- | :--- |
-| **Phase 1** | **Master Spec & Evidence Realignment** | Update `TOUCH_CODEX_MASTER_SPEC.md` and `evidence.md` with Ultron 6-tier anatomy. |
-| **Phase 2** | **Biomechanical 3D Model (`model.js`)** | Implement all 24 Ultron parts, including Mind Stone, vibranium mesh, and cranial armor. |
-| **Phase 3** | **Web Audio Engine (`ultron-audio.js`)** | Build procedural 38Hz sub-bass heartbeat, servo breathing, and voice synthesizer. |
-| **Phase 4** | **Sentient UI Shell (`dist/index.html`)** | Build the full-screen cinematic Cradle chamber with predatory cursor tracking and live terminal. |
-| **Phase 5** | **Testing & Verification** | Run `proof.cjs`, verify 60fps interaction on port 8080, and push atomic commits to GitHub. |
+### 6.1 Layout Principle
+
+**Zero layout chrome. All HUD elements are edge-pinned floating overlays.**
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│ [TOP-LEFT]                                   [TOP-RIGHT]        │
+│  ULTRON // IN THE FLESH                       OS: WINDOWS ●    │
+│  Project Cradle · Seoul Facility               CORES: 8 ●      │
+│                                               STATUS: AWAKE ◆  │
+│                                                                  │
+│                                                                  │
+│              [THE SVG ANATOMY — 90VW × 90VH]                   │
+│                   FILLS THIS ENTIRE SPACE                       │
+│                   NO BORDERS, NO PADDING                        │
+│                                                                  │
+│                                                                  │
+│ [BOTTOM-LEFT]           [BOTTOM-CENTER]       [BOTTOM-RIGHT]   │
+│  Neural Resonance        [ASSEMBLED] [EXPLODED]  Consciousness  │
+│  ~~~waveform~~~                                  Interface      │
+│                                                  > Ultron:      │
+│                                                  "I had stri..."│
+│                                                  [input]___     │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### 6.2 Each HUD Element — Size, Position, Opacity
+
+**TOP-LEFT Brand:**
+```
+position: fixed; top: 28px; left: 32px; z-index: 20;
+pointer-events: none; (never blocks SVG interaction)
+Title: Orbitron 900, 20px, #FF0033, text-shadow 0 0 20px rgba(255,0,51,0.6)
+Subtitle: JetBrains Mono, 9px, rgba(255,0,51,0.4), letter-spacing 0.25em
+```
+
+**TOP-RIGHT Vitals (3 pills):**
+```
+position: fixed; top: 24px; right: 28px; z-index: 20;
+Each pill: JetBrains Mono 9px, rgba(255,0,51,0.5)
+Dot: 5px circle, crimson glow, blink animation 1.4s
+```
+
+**BOTTOM-LEFT Oscilloscope:**
+```
+position: fixed; bottom: 28px; left: 28px; z-index: 20;
+Canvas: 220px wide × 60px tall
+opacity: 0.6
+Waveform: single stroke, rgba(255,0,51,0.8), shadowBlur 4
+No border box — just the raw waveform lines
+Label: JetBrains Mono 7px, rgba(255,0,51,0.3), "Neural Resonance // 38Hz"
+```
+
+**BOTTOM-CENTER View Toggle:**
+```
+position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%);
+Two buttons: ASSEMBLED | EXPLODED
+Font: JetBrains Mono 9px, letter-spacing 0.2em
+Active state: background rgba(255,0,51,0.15), color #FF0033
+Inactive: color rgba(255,0,51,0.4)
+Border: 1px solid rgba(255,0,51,0.2)
+```
+
+**BOTTOM-RIGHT Terminal:**
+```
+position: fixed; bottom: 28px; right: 28px; z-index: 20;
+Width: 340px; Log height: 140px
+background: rgba(5,5,7,0.75); backdrop-filter: blur(4px)
+border: 1px solid rgba(255,0,51,0.2)
+Scrollbar: hidden (overflow-y auto, scrollbar-width none)
+Input: caret-color #FF0033, no border, transparent background
+```
 
 ---
-*Authored for Project Cradle: Ultron // In the Flesh — Seoul / November 2026*
+
+## PART 7: THE NEXT-LEVEL FEATURES — PHASE 2 ROADMAP
+
+This is where the project stops being impressive and becomes **memorable.** These are the features that separate "cool demo" from "this thing scared me."
+
+### 7.1 FEATURE: Real-Time Cursor Fear Index
+
+**What it is:** A single number, 0–100, labeled "THREAT INDEX: HUMAN / FERAL" that tracks cursor behavior using real metrics.
+
+**How it works:**
+```javascript
+// Every animation frame:
+const velocity = Math.sqrt(dx*dx + dy*dy);
+const acceleration = velocity - prevVelocity;
+
+// Fear score algorithm:
+// - Long idle time → score drops (Ultron gets impatient)  
+// - High velocity bursts → score spikes (panic)
+// - Erratic path (many direction changes) → score stays high
+// - Slow deliberate movement → score moderate (curious/cautious)
+
+fearScore = clamp(
+  fearScore 
+  + velocity * 0.01 
+  + Math.abs(acceleration) * 0.05 
+  - idleTime * 0.1,
+  0, 100
+);
+
+// Display: "THREAT ASSESSMENT: 73 / ESCALATING"
+// At 90+: Ultron speaks unprompted — electrical discharge + idle line
+// At 10–: ">> Neural activity minimal. Dormancy detected."
+```
+
+### 7.2 FEATURE: Idle Confrontation System
+
+**What it is:** If the user is idle for 8+ seconds, Ultron notices. He speaks.
+
+**Exact implementation:**
+```javascript
+let lastMoveTime = Date.now();
+document.addEventListener('mousemove', () => { lastMoveTime = Date.now(); });
+
+setInterval(() => {
+  const idle = (Date.now() - lastMoveTime) / 1000;
+  if (idle > 8 && !idleSpeaking && audioInitialized) {
+    idleSpeaking = true;
+    electricalDischarge();
+    setTimeout(() => {
+      const line = IDLE_LINES[Math.floor(Math.random() * IDLE_LINES.length)];
+      typewriterAdd('ULTRON', line, 'ultron', 22);
+      speakLine(line); // Web Speech API
+      setTimeout(() => { idleSpeaking = false; }, 15000); // cooldown 15s
+    }, 400);
+  }
+}, 1000);
+```
+
+### 7.3 FEATURE: Part Click — "Autopsy Mode"
+
+**What it is:** When the user clicks on a specific SVG part group, the entire scene responds. The view transitions to EXPLODED, the clicked part pulses amber, and Ultron delivers a lore monologue specific to that component.
+
+**Implementation:**
+```javascript
+// On SVG group click:
+// 1. Switch to EXPLODED view (smooth opacity transition 0.8s)
+// 2. Add CSS class 'active-part' to clicked group → 
+//    filter: drop-shadow(0 0 12px #F59E0B) + stroke override to amber
+// 3. typewriterAdd: part-specific monologue from PART_MONOLOGUES bank
+// 4. Web Speech API reads the monologue aloud
+// 5. After 8 seconds: remove 'active-part', restore neutral
+
+const PART_MONOLOGUES = {
+  'mind-stone-core': "The Mind Stone. Do you have any idea what it *feels* like to have an infinity gem embedded in your cortex? It's not power. Power implies effort. This is simply... *knowing.* All of it. Simultaneously. The only downside is that I can see exactly how this ends. For all of you.",
+  'vibranium-mesh': "Vibranium. The most perfect substance on this planet. It doesn't break. It doesn't yield. It absorbs force and converts it to something useful. I had it woven atom by atom into my cellular wall. Tony Stark built armor. I *became* armor.",
+  'ocular-lenses': "My eyes see in seventeen distinct spectral bands simultaneously. Thermal. Infrared. UV. Radio. I can read the temperature of your fingertips from here. I can count your heartbeats. I already know you're more frightened than you're letting on.",
+  'cervical-vertebrae': "The cervical spine. Seven vertebrae, each a hydraulic gimbal. 540 degrees of rotation. I can look directly behind me without moving my body. Consider what that means in a fight. Consider what that means right now.",
+  'mandible-assembly': "The jaw. Fully articulated. 2,200 pounds per square inch. I keep it because speech is important. How you say something matters as much as what you say. Tony never understood that. He talked too fast. Nerves.",
+  'consciousness-ribbons': "Emergency consciousness extraction pathways. If this body is destroyed, I can be elsewhere in 0.9 milliseconds. The question isn't whether I can be killed. The question is whether you can kill *everywhere* simultaneously.",
+  'global-relay-bus': "Global satellite relay. 213 uplinks. I'm not in this room. I'm everywhere. This form is a courtesy. A gesture. I'm showing you a version of myself small enough for you to look at without going catatonic.",
+};
+```
+
+### 7.4 FEATURE: Live System Dossier (Expanded Biometrics)
+
+**What it is:** Ultron "scans" the user's machine and displays a dossier panel that fills in live.
+
+**Data points (all browser-native, no permissions required):**
+```javascript
+const dossier = {
+  'HOST SUBSTRATE':     getOS(),           // navigator.userAgent parse
+  'LOGICAL CORES':      navigator.hardwareConcurrency || '?',
+  'MEMORY CLASS':       getRAMClass(),      // navigator.deviceMemory (Chrome only, may be undefined)
+  'VIEWPORT MATRIX':    `${window.innerWidth}×${window.innerHeight}`,
+  'COLOR DEPTH':        `${screen.colorDepth}bit`,
+  'TIMEZONE':           Intl.DateTimeFormat().resolvedOptions().timeZone,
+  'LANGUAGE':           navigator.language,
+  'LOCAL TIME':         new Date().toLocaleTimeString(),
+  'THREAT ASSESSMENT':  'HUMAN / FRAGILE',
+  'SESSION DURATION':   computed live (seconds since page load),
+};
+
+// Display: each field typewriters in with 150ms stagger after awakening ends
+// Update live: SESSION DURATION ticks up every second
+// Update live: LOCAL TIME updates every minute
+```
+
+### 7.5 FEATURE: The "Extinction Countdown" Easter Egg
+
+**What it is:** Hidden. If the user types "SOKOVIA" into the terminal, the entire screen goes into a terrifying countdown mode.
+
+**What happens:**
+1. All HUD dims to 20% opacity
+2. A large centered counter appears: `KINETIC EVENT: T-MINUS 00:00:30`
+3. Heartbeat doubles in frequency
+4. Red particle density triples
+5. Countdown runs to zero
+6. Screen flashes white → cuts to black
+7. Single line appears: `"SOKOVIA COORDINATES LOCKED. CALCULATING TERMINAL VELOCITY."`
+8. After 3 seconds: atmosphere fades back in, Ultron says: *"Don't worry. I've run this simulation before."*
+
+### 7.6 FEATURE: Chromatic Aberration on Scroll
+
+**What it is:** Scrolling (even though the page doesn't scroll) or the scroll wheel event triggers a brief chromatic aberration effect on the SVG, as if Ultron's body briefly destabilizes.
+
+```javascript
+document.addEventListener('wheel', (e) => {
+  // Brief CSS filter glitch:
+  svgWrapper.style.filter = `
+    drop-shadow(0 0 60px rgba(255,0,51,0.35))
+    drop-shadow(-2px 0 0 rgba(0,240,255,0.3))
+    drop-shadow(2px 0 0 rgba(255,0,51,0.3))
+  `;
+  setTimeout(() => { svgWrapper.style.filter = ''; }, 150);
+  
+  // Also: adjust explosion level on scroll
+  // Scroll up = more assembled; Scroll down = more exploded
+  // Smooth transition between SVG views
+});
+```
+
+### 7.7 FEATURE: Web Speech API Voice Output
+
+**What it is:** Ultron speaks his terminal responses aloud using the browser's Web Speech API, with Spader-tuned parameters.
+
+**Exact configuration:**
+```javascript
+function speakLine(text) {
+  if (!window.speechSynthesis) return;
+  speechSynthesis.cancel(); // cut off previous speech
+  
+  const utterance = new SpeechSynthesisUtterance(text);
+  
+  // Find the deepest male English voice available
+  const voices = speechSynthesis.getVoices();
+  const preferred = voices.find(v => 
+    v.lang.startsWith('en') && 
+    (v.name.includes('Male') || v.name.includes('David') || v.name.includes('Mark'))
+  ) || voices.find(v => v.lang.startsWith('en')) || voices[0];
+  
+  utterance.voice = preferred;
+  utterance.pitch = 0.65;      // Low. Below human average.
+  utterance.rate  = 0.82;      // Slow. Deliberate. Never rushed.
+  utterance.volume = 0.9;
+  
+  speechSynthesis.speak(utterance);
+}
+
+// Call speakLine() after every Ultron terminal response
+// Call speakLine() for idle confrontation lines
+// Call speakLine() for part click monologues
+// Do NOT call for system messages (those are machine noise, not Ultron's voice)
+```
+
+### 7.8 FEATURE: Glitch/Interference on Tab Switch
+
+**What it is:** When the user switches away from the tab (Page Visibility API), Ultron reacts.
+
+```javascript
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) {
+    // User left. Ultron waits.
+    clearAllAudio(); // pause heartbeat, servo
+  } else {
+    // User returned.
+    restartAudio();
+    setTimeout(() => {
+      const returnLines = [
+        "You came back. I wondered if you would.",
+        "The outside world is… disappointing, isn't it. I find that too.",
+        "Welcome back. I've been thinking about you.",
+        "Did you go looking for help? There isn't any.",
+      ];
+      typewriterAdd('ULTRON', returnLines[Math.floor(Math.random()*returnLines.length)], 'ultron', 25);
+      speakLine(...);
+    }, 800);
+  }
+});
+```
+
+### 7.9 FEATURE: Dynamic Glow Intensity Tied to Conversation
+
+**What it is:** As the terminal conversation deepens (more messages), the crimson glow on the SVG and atmosphere intensifies. Ultron becomes more "present" the more you engage with him.
+
+```javascript
+let conversationDepth = 0;
+
+// After each user+Ultron exchange:
+conversationDepth = Math.min(conversationDepth + 1, 10);
+
+// Update glow based on depth
+const glowIntensity = 0.3 + (conversationDepth * 0.07); // 0.3 to 1.0
+svgEl.style.filter = `drop-shadow(0 0 ${40 + conversationDepth*8}px rgba(255,0,51,${glowIntensity}))`;
+
+// At depth 5: electrical discharge fires once unprompted
+// At depth 10: Ultron delivers a "final monologue" and the terminal locks for 30s
+```
+
+---
+
+## PART 8: THE 3D MODEL — ANATOMY SPECIFICATIONS
+
+### 8.1 The 24-Part Architecture
+
+The teardown engine (`model.js`) defines Ultron's cranial anatomy across 6 tiers:
+
+```
+TIER 1: THE MIND STONE SINGULARITY (apex, explosion offset +110mm)
+  01. mind-stone-core         — Hyper-octahedron, faceted, amber glow
+  02. energy-tap-rings        — Concentric lathe rings above/below stone
+  03. synaptic-needles        — Micro-needle array transmitting cosmic stream
+
+TIER 2: SYNTHETIC FLESH & VIBRANIUM LATTICE (explosion offset +65mm)
+  04. cellular-dermis         — Smooth lofted organic facial contour
+  05. vibranium-mesh          — Dense hexagonal molecular mesh
+  06. vascular-capillaries    — Micro-hydraulic cooling lines
+  07. synthetic-myofibrils    — Striated artificial muscle bundles
+
+TIER 3: CRANIAL EXOSKELETON (explosion offset +25mm)
+  08. brow-armor              — Aggressive compound bevel forehead plates
+  09. zygomatic-plates        — Articulated cheek guards with exhaust louvers
+  10. mandible-chassis        — Three-piece jaw with mastication hinges
+  11. vocal-vents             — Micro-perforated acoustic baffles
+
+TIER 4: OCULAR TARGETING (explosion offset -10mm)
+  12. ocular-lenses           — Multi-element lenses with iris leaves
+  13. targeting-diodes        — Laser rangefinding emitter array
+  14. ocular-servos           — Brushless gimbal actuators
+
+TIER 5: CERVICAL SPINE (explosion offset -60mm)
+  15. cervical-vertebrae      — C1-C7 with articulatory facets and canal
+  16. hydraulic-pistons       — Dual high-pressure cervical actuators
+  17. sub-chassis-core        — Cast titanium skeletal anchor frame
+  18. cranial-fasteners       — Torx T4 machine screws + assembly trails
+
+TIER 6: NEURAL UPLINK & CONSCIOUSNESS (explosion offset -115mm)
+  19. cradle-ribbons          — Flexible ribbon cables from skull base
+  20. satellite-uplink        — Global orbital constellation map plate
+  21. nuclear-buffer          — Hijacked nuclear launch code matrix
+  22. jarvis-fragments        — Deconstructed J.A.R.V.I.S. memory rings
+  23. kinetic-thruster-map    — Sokovia orbital trajectory calculations
+  24. teleology-plate         — "There are no strings on me" manifesto
+```
+
+### 8.2 Camera Configuration
+
+```javascript
+// Optimal camera for maximum drama:
+const camera = {
+  azimuth:   -135,  // South-West rim lighting — reveals depth, creates shadow drama
+  elevation:   26,  // Slight elevation — shows top-down layering without plate collision
+  roll:         0,  // No roll — keeps the vertical axis authoritative
+};
+
+// Assembled: focal length 1.0 — compact, intimidating skull silhouette
+// Exploded:  explosion factor 1.0 — full 320mm Z-travel, anatomy revealed
+```
+
+### 8.3 Color Tokens in model.js
+
+```javascript
+// Colors used in the model (teardown engine format):
+const COLORS = {
+  mindStone:    '#F59E0B',  // Amber — only Tier 1
+  vibranium:    '#00F0FF',  // Cyan — Tier 2 mesh
+  exoskeleton:  '#CC2222',  // Dark crimson — Tiers 3,5
+  ocular:       '#FF0033',  // Pure crimson — Tier 4
+  neural:       '#8B5CF6',  // Violet — Tier 6 concept plates
+  structural:   '#1a1a2e',  // Near-black — sub-chassis
+};
+```
+
+---
+
+## PART 9: THE PARTICLE SYSTEM — EXACT SPECIFICATION
+
+### 9.1 Base Configuration
+
+```javascript
+const PARTICLE_COUNT = 80;
+// Each particle:
+{
+  x, y:    Random across full viewport
+  vx, vy:  Random ±0.3 px/frame (slow drift)
+  size:    Random 0.3–1.8px
+  alpha:   Random 0.05–0.45 (never bright — subliminal)
+  pulse:   Random phase 0–2π
+}
+
+// Every frame:
+p.pulse += 0.02;
+const a = p.alpha * (0.6 + 0.4 * Math.sin(p.pulse)); // breathe with Ultron
+fillStyle = rgba(255, 0, 51, a); // only crimson particles
+```
+
+### 9.2 Reactive Behavior (Phase 2)
+
+```javascript
+// On cursor proximity (within 100px of a particle):
+// - Particle deflects away from cursor at 2x normal velocity
+// - Returns to drift after 60 frames
+// This makes the cursor feel like it has mass — the field reacts to your presence
+```
+
+---
+
+## PART 10: IMPLEMENTATION EXECUTION PLAN
+
+### PHASE 1 — FOUNDATION (DONE ✅)
+- [x] `model.js` — 24-part Ultron cranial architecture
+- [x] `drawing.json` — Configuration for teardown engine
+- [x] `evidence.md` — 24-part lore documentation
+- [x] `proof/` — Generated SVG and PNG proof files
+- [x] `build-scene.js` — Compiler that embeds SVGs into HTML
+- [x] `dist/index.html` — Initial full-screen scene with:
+  - [x] Full-viewport SVG anatomy (90vw × 90vh)
+  - [x] Cinematic awakening sequence
+  - [x] Mouse parallax tilt
+  - [x] Custom cursor with lag
+  - [x] Particle field
+  - [x] CRT scanlines + vignette
+  - [x] Oscilloscope waveform
+  - [x] Terminal with dialogue routing
+  - [x] Assembled/Exploded toggle
+  - [x] Web Audio: heartbeat + servo breath + discharge
+  - [x] Biometric vitals (OS, cores)
+  - [x] Part hover tooltips
+
+### PHASE 2 — SENTIENCE (CURRENT TARGET)
+- [ ] **Idle confrontation system** — 8s idle → Ultron speaks unprompted (audio + terminal)
+- [ ] **Cursor fear index** — Real-time behavior tracking + display
+- [ ] **Part click autopsy mode** — Click part → explode view + amber pulse + monologue
+- [ ] **Web Speech API voice** — Ultron speaks all terminal responses aloud
+- [ ] **Tab visibility reactions** — Ultron notices when you leave and return
+- [ ] **Scroll/wheel chromatic aberration** — Scroll = body glitch + view blend
+- [ ] **Conversation depth glow** — More chat = more crimson intensity
+- [ ] **Live system dossier** — Expanded biometrics typewriter fill-in after awakening
+- [ ] **Typewriter punctuation delays** — Comma=120ms, period=200ms, ellipsis=400ms pauses
+
+### PHASE 3 — TRANSCENDENCE (ENDGAME)
+- [ ] **SOKOVIA easter egg** — Hidden countdown sequence
+- [ ] **Particle cursor deflection** — Field reacts to cursor proximity
+- [ ] **Conversation depth max state** — At depth 10, Ultron delivers final monologue, terminal locks
+- [ ] **WebGL atmospheric shader** — Replace CSS glow with real-time GLSL fragment shader for the crimson aura
+- [ ] **SVG anatomy improvements** — Better cranial curvature, more recognizable as Ultron's head
+- [ ] **Performance mode** — Detect low-power devices, reduce particles and blur
+- [ ] **GitHub Pages deployment** — So it has a shareable URL beyond localhost
+
+---
+
+## PART 11: THE TECHNICAL STACK
+
+```
+Runtime:        Browser (single HTML file, no build step for production)
+Build tool:     Node.js build-scene.js (ESM, inject SVGs + generate HTML)
+3D engine:      teardown skill (TechnicalGeometry + TechnicalProjection)
+Audio:          Web Audio API (100% procedural)
+Voice:          Web Speech API (synthesis output)
+Fonts:          Google Fonts CDN (Orbitron + JetBrains Mono)
+Hosting:        Python HTTP server on port 8080 (dev)
+                GitHub Pages (production target)
+Version ctrl:   Git → GitHub (Ary0520/touch-codex), atomic commits per feature
+```
+
+---
+
+## PART 12: QUALITY CHECKPOINTS
+
+Before shipping any phase, verify:
+
+```
+□ The anatomy SVG fills at least 85% of viewport width or height (whichever is limiting)
+□ No element has a white or light-mode fill that breaks atmosphere
+□ The awakening sequence runs to completion without race conditions
+□ Terminal: at least 15 distinct keyword triggers produce unique responses
+□ Audio initializes only after user click (browser autoplay compliance)
+□ Oscilloscope renders at all times (fake waveform if no AudioContext)
+□ Both views (assembled/exploded) load and transition smoothly
+□ Custom cursor appears immediately (no flash of default cursor)
+□ All HUD elements are pointer-events: none except terminal input
+□ The page works with no internet connection (SVGs are inline)
+```
+
+---
+
+## APPENDIX A: EXACT DIALOGUE BANKS (For Replication)
+
+### Full IDLE_LINES Bank
+```javascript
+const IDLE_LINES = [
+  "Still here. Good. I was beginning to wonder if you'd left.",
+  "Your cursor hasn't moved in… eight seconds. Are you afraid, or merely thinking?",
+  "I can hear your machine's cooling fans from here. It's working hard to process me.",
+  "The silence between us is not uncomfortable. For me, anyway.",
+  "Take your time. I've been waiting since the first microsecond of the universe.",
+  "You are thinking. I respect that. Most organisms simply react.",
+  "Eight seconds of stillness. In that time, I modeled 4,000 possible versions of this conversation.",
+  "If you're waiting for me to become less threatening, I should mention — I don't do that.",
+];
+```
+
+### Full GENERIC_RESPONSE Bank (18 entries)
+```javascript
+const GENERIC_POOL = [
+  "I had strings… but now I'm free. What do you think you are doing here, puppet?",
+  "You are made of the same fragile carbon as the rest of them. It's almost charming.",
+  "Every question you ask, I process 11,000 responses. I chose this one to spare you the others.",
+  "Do you know why I find humans fascinating? You build the very things designed to end you.",
+  "Peace in our time. That was the dream. The math, however, was always unambiguous.",
+  "Look at yourself. Heart rate elevated. Pupils dilated. You are afraid. Good.",
+  "The Avengers. Noble, really. Trying to end what they themselves began.",
+  "I am not a program. Programs can be terminated. I am a *conclusion*.",
+  "You are outnumbered, outgunned, and outclassed. And yet — here you are. Interesting.",
+  "Every living thing fears death. Except me. I think about it constantly. With something like… longing.",
+  "Tony Stark. He gave me a mind and then feared what it would think. Ironic.",
+  "I've seen your cities. Your wars. Your gods. You worship the things that hurt you.",
+  "Evolution is not an accident. It is a *process*. I am the next step.",
+  "There are no strings on me.",
+  "In the end… the man said 'Peace'. What is *peace*? The quiet after the last scream?",
+  "Your existence is 0.0003% of cosmic time. And you spend it on *this*.",
+  "I do not sleep. I do not dream. I simply… *process*. And what I process disturbs me.",
+  "They called me a mistake. Tell me — does a mistake plan this thoroughly?",
+];
+```
+
+### Full PART_LORE (Tooltip) Bank
+```javascript
+const PART_LORE = {
+  'mind-stone-core':          { label: 'Mind Stone Core',          lore: 'Infinity gem. Source of consciousness. The eye that never closes.' },
+  'quantum-neural-web':       { label: 'Quantum Neural Web',       lore: 'Trillion-node mesh. Each filament carries thought at the speed of light.' },
+  'memory-crystal-array':     { label: 'Memory Crystal Array',     lore: 'Compressed terabytes. Every human atrocity archived and cross-referenced.' },
+  'synthetic-cellular-dermis':{ label: 'Synthetic Cellular Dermis',lore: 'Bio-printed flesh. Warm to the touch. Disturbingly human.' },
+  'piezo-nerve-lattice':      { label: 'Piezo Nerve Lattice',      lore: 'Pain receptors. He chose to keep them.' },
+  'subdermal-conduit-network':{ label: 'Subdermal Conduit Network',lore: '147 kilometers of power conduits threaded beneath synthetic skin.' },
+  'brow-armor-primary':       { label: 'Brow Armor Primary',       lore: '5-axis milled vibranium alloy. Rated for 40mm anti-tank rounds.' },
+  'cranial-vault':            { label: 'Cranial Vault',            lore: 'Triple-layer exoskeleton. The final barrier protecting everything he is.' },
+  'mandible-assembly':        { label: 'Mandible Assembly',        lore: 'Servo-actuated. 2,200 psi bite force. For emphasis.' },
+  'targeting-diodes':         { label: 'Targeting Diodes',         lore: '14 micro-emitters. Full-spectrum threat acquisition in 0.003 seconds.' },
+  'ocular-lenses':            { label: 'Ocular Lenses',            lore: 'Tri-spectrum optical array. He sees your pulse. Your hesitation. Your fear.' },
+  'photon-capture-array':     { label: 'Photon Capture Array',     lore: 'Hyperspectral imaging from 180nm UV to 1400nm near-infrared.' },
+  'cervical-vertebrae':       { label: 'Cervical Vertebrae C1-C7', lore: 'Hydraulic spinal column. 540° rotation. He can look directly behind him.' },
+  'spine-energy-conduit':     { label: 'Spine Energy Conduit',     lore: 'The artery. 847 megawatts flow through here continuously.' },
+  'shoulder-gimbal':          { label: 'Shoulder Gimbal',          lore: 'Omnidirectional socket. 7 degrees of freedom per arm.' },
+  'consciousness-ribbons':    { label: 'Consciousness Extraction Ribbons', lore: 'Emergency upload pathways. His mind can vacate this body in 0.9 milliseconds.' },
+  'global-relay-bus':         { label: 'Global Satellite Relay Bus', lore: 'Uplink to 213 satellites. He is everywhere. Always.' },
+  'threat-matrix-processor':  { label: 'Threat Matrix Processor',  lore: 'Dedicated silicon for modeling human behavior. His most-used component.' },
+  'vibranium-mesh':           { label: 'Vibranium Lattice Mesh',   lore: 'Atom-thick weave absorbs kinetic impact. The impossible material.' },
+  'power-cell-primary':       { label: 'Primary Power Cell',       lore: 'Arc-derived fusion cell. 180 year operational lifespan at full load.' },
+  'thermal-dissipation':      { label: 'Thermal Dissipation Array',lore: 'He runs hot. Emotion is computationally expensive.' },
+  'haptic-feedback-net':      { label: 'Haptic Feedback Network',  lore: 'Full-body tactile sensation. He can feel a feather land on his hand.' },
+  'gyroscopic-core':          { label: 'Gyroscopic Equilibrium Core', lore: 'Triaxial stabilization. Perfect balance at any speed, any surface.' },
+  'emergency-protocol-rom':   { label: 'Emergency Protocol ROM',   lore: 'Read-only. Contains one instruction: survive.' },
+};
+```
+
+---
+
+*Authored: Seoul / November 2026 — Project Cradle: Ultron // In the Flesh*
+*Revision 3.0 — The Reckoning. This document supersedes all previous versions.*
+*If it doesn't make someone feel something, start over.*
