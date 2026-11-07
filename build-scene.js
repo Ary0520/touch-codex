@@ -21,10 +21,92 @@ function loadSVG(filename) {
     process.exit(1);
   }
   let raw = readFileSync(p, 'utf8');
-  // Strip XML declaration
+
+  // 1. Strip XML declaration & DOCTYPE
   raw = raw.replace(/<\?xml[^?]*\?>\s*/g, '');
-  // Strip DOCTYPE
   raw = raw.replace(/<!DOCTYPE[^>]*>\s*/g, '');
+
+  // 2. ── CRITICAL: Remove the teardown engine's white background rect ────────
+  //    The engine injects: <rect x="-1000" y="-1000" width="3000" height="3000" fill="#fff"/>
+  //    This white rect nukes the entire dark atmosphere. Kill it.
+  raw = raw.replace(/<rect[^>]*fill="#fff"[^>]*\/>/gi, '');
+  raw = raw.replace(/<rect[^>]*fill="#ffffff"[^>]*\/>/gi, '');
+  raw = raw.replace(/<rect[^>]*fill="white"[^>]*\/>/gi, '');
+
+  // 3. ── CRITICAL: Override the teardown's <style> block ────────────────────
+  //    The engine sets: path{fill:none;stroke:#202020;...}
+  //    CSS attribute selectors [stroke="#202020"] cannot override a <style> rule.
+  //    We inject our OWN <style> block AFTER the existing one, with higher specificity.
+  const ULTRON_STYLE_OVERRIDE = `<style>
+/* ULTRON COLOR OVERRIDE — injected by build-scene.js */
+/* These rules beat the teardown engine's path{stroke:#202020} via specificity */
+svg path, svg line, svg polyline, svg polygon, svg ellipse, svg circle, svg rect {
+  stroke: #5a1515 !important;
+}
+[data-line-role="outline"] {
+  stroke: #cc2222 !important;
+  stroke-opacity: 1 !important;
+}
+[data-line-role="edge"] {
+  stroke: #992222 !important;
+  stroke-opacity: 0.85 !important;
+}
+[data-line-role="detail"] {
+  stroke: #771111 !important;
+  stroke-opacity: 0.7 !important;
+}
+[data-line-role="texture"] {
+  stroke: #550d0d !important;
+  stroke-opacity: 0.5 !important;
+}
+[data-line-role="axis"] {
+  stroke: #440a0a !important;
+  stroke-opacity: 0.4 !important;
+}
+/* Mind stone — amber glow */
+[data-item="mind-stone-core"] path,
+[data-item="energy-tap-rings"] path,
+[data-item="synaptic-needles"] path {
+  stroke: #c97a0a !important;
+  stroke-opacity: 0.9 !important;
+}
+/* Vibranium mesh — cyan tint */
+[data-item="vibranium-mesh"] path {
+  stroke: #0099aa !important;
+  stroke-opacity: 0.75 !important;
+}
+/* Ocular — pure crimson */
+[data-item="ocular-lenses"] path,
+[data-item="targeting-diodes"] path,
+[data-item="ocular-servos"] path {
+  stroke: #ff0033 !important;
+  stroke-opacity: 0.95 !important;
+}
+/* Annotation text */
+svg text {
+  fill: rgba(255,0,51,0.3) !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 7px !important;
+}
+</style>`;
+
+  // Insert override style block right after the existing </style> tag
+  raw = raw.replace(/<\/style>/, `</style>${ULTRON_STYLE_OVERRIDE}`);
+  // If no style tag exists, inject at top of SVG content
+  if (!raw.includes(ULTRON_STYLE_OVERRIDE)) {
+    raw = raw.replace(/<svg([^>]*)>/, `<svg$1>${ULTRON_STYLE_OVERRIDE}`);
+  }
+
+  // 4. ── CRITICAL: Fix SVG dimensions ──────────────────────────────────────
+  //    The teardown outputs A4 paper (420mm × 297mm) which renders tiny.
+  //    Remove fixed width/height so CSS can control sizing via viewBox only.
+  raw = raw.replace(/\s+width="[^"]*mm"/, '');
+  raw = raw.replace(/\s+height="[^"]*mm"/, '');
+  // Ensure it has preserveAspectRatio for proper centering
+  if (!raw.includes('preserveAspectRatio')) {
+    raw = raw.replace(/<svg/, '<svg preserveAspectRatio="xMidYMid meet"');
+  }
+
   return raw.trim();
 }
 
@@ -435,14 +517,18 @@ html, body {
 
 /* The SVG itself — huge, centered, intimidating */
 #svg-wrapper svg {
-  width: 90vw !important;
-  height: 90vh !important;
+  /* viewBox is 420×297 (landscape A4) — fit to 95% of the SMALLER viewport dimension */
+  width: 95vw !important;
+  height: 95vh !important;
   max-width: none !important;
+  max-height: none !important;
   overflow: visible !important;
+  /* Background MUST be transparent — the teardown white rect is stripped in build step */
+  background: transparent !important;
   filter:
-    drop-shadow(0 0 60px rgba(255,0,51,0.35))
-    drop-shadow(0 0 120px rgba(255,0,51,0.15))
-    drop-shadow(0 0 8px rgba(245,158,11,0.2));
+    drop-shadow(0 0 60px rgba(255,0,51,0.5))
+    drop-shadow(0 0 120px rgba(255,0,51,0.2))
+    drop-shadow(0 0 10px rgba(245,158,11,0.15));
   animation: ultron-breathe 4s ease-in-out infinite;
   transform-origin: center center;
 }
@@ -532,10 +618,12 @@ html, body {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 60% 70% at 50% 50%,
-    transparent 40%,
-    rgba(5,5,7,0.6) 80%,
-    rgba(5,5,7,0.95) 100%
+  /* Vignette: dark edges pulling focus to center — NO white/light center */
+  background: radial-gradient(ellipse 55% 65% at 50% 50%,
+    rgba(5,5,7,0) 0%,
+    rgba(5,5,7,0) 35%,
+    rgba(5,5,7,0.5) 65%,
+    rgba(5,5,7,0.92) 100%
   );
 }
 #atmosphere::after {
