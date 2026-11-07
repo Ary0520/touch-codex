@@ -5,141 +5,155 @@
   ],
   "drawings": [
     {
-      "id": "touch-codex",
-      "title": "The Anatomy of a Single Tap",
-      "description": "Exploded axonometric codex of a 50ms human-computer interaction, from dermal friction ridges to 3nm silicon transistors.",
+      "id": "ultron-cradle",
+      "title": "ULTRON // IN THE FLESH",
+      "description": "Exploded 3D vector autopsy of Ultron's synthetic cranial architecture inside Dr. Helen Cho's Regeneration Cradle.",
       "initialView": "exploded",
       "concept": true,
       "parts": [
         {
-          "id": "finger-tissue",
-          "name": "Human Distal Phalanx & Pulp"
+          "id": "mind-stone-core",
+          "name": "Mind Stone Cosmic Hyper-Octahedron"
         },
         {
-          "id": "bioelectric-field",
-          "name": "Bioelectric Ionic Coupling Field"
+          "id": "energy-tap-rings",
+          "name": "Quantum Energy Tap Rings"
         },
         {
-          "id": "oleophobic-layer",
-          "name": "Fluoropolymer Nanocoating"
+          "id": "synaptic-needles",
+          "name": "Synaptic Neural Emitter Needles"
         },
         {
-          "id": "glass-cover",
-          "name": "Aluminosilicate Cover Glass (0.5mm)"
+          "id": "cellular-dermis",
+          "name": "Printed Synthetic Cellular Dermis"
         },
         {
-          "id": "oca-elastomer",
-          "name": "Optically Clear Adhesive (OCA)"
+          "id": "vibranium-mesh",
+          "name": "Hexagonal Vibranium Molecular Mesh"
         },
         {
-          "id": "ito-tx-grid",
-          "name": "Transmit ITO Diamond Matrix (Tx)"
+          "id": "vascular-capillaries",
+          "name": "Micro-Vascular Capillary Conduits"
         },
         {
-          "id": "dielectric-spacer",
-          "name": "Optical Isolation Substrate"
+          "id": "synthetic-myofibrils",
+          "name": "Myofibril Synthetic Muscle Tendons"
         },
         {
-          "id": "ito-rx-grid",
-          "name": "Receive ITO Diamond Matrix (Rx)"
+          "id": "brow-armor",
+          "name": "5-Axis Milled Vibranium Brow Armor"
         },
         {
-          "id": "touch-fpc-tail",
-          "name": "ACF Bonded Touch FPC Flex"
+          "id": "zygomatic-plates",
+          "name": "Articulated Zygomatic Cheek Plates"
         },
         {
-          "id": "circular-polarizer",
-          "name": "Anti-Reflective Circular Polarizer"
+          "id": "mandible-chassis",
+          "name": "Segmented Mandibular Jaw Unibody"
         },
         {
-          "id": "tfe-barrier",
-          "name": "Thin-Film Encapsulation (TFE)"
+          "id": "vocal-vents",
+          "name": "Acoustic Venting Grilles & Chambers"
         },
         {
-          "id": "oled-subpixels",
-          "name": "Diamond PenTile Subpixel Emitters"
+          "id": "ocular-lenses",
+          "name": "Dual Crimson Optic Lenses & Irises"
         },
         {
-          "id": "ltpo-tft-backplane",
-          "name": "LTPO Thin-Film Transistor Backplane"
+          "id": "targeting-diodes",
+          "name": "Coherent Laser Rangefinding Diodes"
         },
         {
-          "id": "display-substrate",
-          "name": "Polyimide Base Carrier Film"
+          "id": "ocular-servos",
+          "name": "Biometric Focus Gimbals & Servos"
         },
         {
-          "id": "graphite-spreader",
-          "name": "Pyrolytic Graphite Heat Spreader"
+          "id": "cervical-vertebrae",
+          "name": "Segmented Cervical Vertebrae C1-C7"
         },
         {
-          "id": "vapor-chamber",
-          "name": "Sintered Copper Vapor Chamber"
+          "id": "hydraulic-pistons",
+          "name": "High-Pressure Hydraulic Actuators"
         },
         {
-          "id": "logic-board",
-          "name": "10-Layer HDI Logic Board PCB"
+          "id": "sub-chassis-core",
+          "name": "Cast Titanium Sub-Chassis Frame"
         },
         {
-          "id": "soc-package",
-          "name": "Micro-BGA Interposer Substrate"
+          "id": "cranial-fasteners",
+          "name": "Precision Torx T4 Machine Screws"
         },
         {
-          "id": "silicon-die",
-          "name": "3nm GAAFET Processor Die Floorplan"
+          "id": "cradle-ribbons",
+          "name": "Cradle Bio-Interface Ribbons"
         },
         {
-          "id": "aluminum-chassis",
-          "name": "Milled 6000-Series Aluminum Chassis"
+          "id": "satellite-uplink",
+          "name": "Global Satellite Array Relay Bus"
         },
         {
-          "id": "chassis-fasteners",
-          "name": "Precision Torx T3 Machine Screws"
+          "id": "nuclear-buffer",
+          "name": "Nuclear Decryption Memory Buffer"
         },
         {
-          "id": "software-irq",
-          "name": "Hardware IRQ & Interrupt Dispatch"
+          "id": "jarvis-fragments",
+          "name": "J.A.R.V.I.S. Deconstruction Memory"
         },
         {
-          "id": "software-physics",
-          "name": "Spring-Damper Dynamics (dx/dt)"
+          "id": "kinetic-thruster-map",
+          "name": "Socovia Kinetic Thruster Trajectory"
         },
         {
-          "id": "software-framebuffer",
-          "name": "UI Compositor & SDF Vector Glyph"
+          "id": "teleology-plate",
+          "name": "\"No Strings\" Extinction Manifesto"
         }
       ],
       "parameters": [
         {
-          "key": "touch_force",
-          "label": "Touch Actuation Force",
-          "min": 0,
-          "max": 10,
-          "default": 3,
-          "step": 0.5,
-          "unit": "N"
+          "key": "neural_resonance",
+          "label": "Mind Stone Neural Resonance",
+          "min": 10,
+          "max": 100,
+          "default": 75,
+          "step": 5,
+          "unit": "%"
         },
         {
-          "key": "layer_spread",
-          "label": "Explosion Height Ratio",
+          "key": "cranial_expansion",
+          "label": "Autopsy Disassembly Ratio",
           "min": 50,
           "max": 150,
           "default": 100,
           "step": 5,
           "unit": "%"
+        },
+        {
+          "key": "mandible_angle",
+          "label": "Jaw Articulation Angle",
+          "min": 0,
+          "max": 25,
+          "default": 8,
+          "step": 1,
+          "unit": "°"
         }
       ],
       "colors": {
         "hues": {
-          "oled-subpixels": 142,
-          "silicon-die": 270,
-          "vapor-chamber": 32,
-          "bioelectric-field": 195,
-          "software-framebuffer": 215
+          "mind-stone-core": 42,
+          "energy-tap-rings": 42,
+          "targeting-diodes": 0,
+          "ocular-lenses": 0,
+          "cellular-dermis": 348,
+          "vibranium-mesh": 205,
+          "brow-armor": 0,
+          "mandible-chassis": 0
         },
         "fills": [
-          "oled-subpixels",
-          "silicon-die",
-          "vapor-chamber"
+          "mind-stone-core",
+          "targeting-diodes",
+          "brow-armor",
+          "mandible-chassis",
+          "cellular-dermis"
         ]
       }
     }
