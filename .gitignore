@@ -1,6 +1,7 @@
 node_modules/
 dist/
 check/
+proof/
 .DS_Store
 Thumbs.db
 *.tmp
